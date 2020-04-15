@@ -1,0 +1,141 @@
+{
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+		{
+			"path": "pages/index/index",
+			"style": {
+				// "navigationBarTitleText": "uni-app"
+				"navigationStyle":"custom"
+			}
+		},{
+			"path":"pages/information/index",
+			"style":{
+				"navigationBarTitleText":"信息中心"
+			}
+		},{
+			"path":"pages/my/index",//我的 首页
+			"style":{
+				"navigationStyle":"custom"
+			}
+		},
+		{
+			"path":"components/information/editchild",//我的  编辑孩子信息
+			"style":{
+				"navigationBarTitleText":"编辑孩子信息"
+			}
+		},{
+			"path":"components/information/editparent",//我的  编辑家长信息
+			"style":{
+				"navigationBarTitleText":"编辑家长信息"
+			}
+		},
+		{
+			"path":"components/leave/index",
+			"style":{
+				"navigationBarTitleText":"今日请假"
+			}
+		},
+		{
+			"path":"components/leave/info",
+			"style":{
+				"navigationBarTitleText":"详情"
+			}
+		},
+		{
+			"path":"components/msg/groupsend",
+			"style":{
+				"navigationBarTitleText":"群发信息"
+			}
+		},
+		{
+			"path":"components/complaint/index",
+			"style":{
+				"navigationBarTitleText":"收到投诉"
+			}
+		},
+		{
+			"path":"components/complaint/info",
+			"style":{
+				"navigationBarTitleText":"详情"
+			}
+		},
+		{//登录
+			"path":"pages/my/login",
+			"style":{
+				"navigationBarTitleText":"",
+				"navigationBarBackgroundColor":"#FF6C00",
+				"navigationBarTextStyle":"white"
+				// "navigationStyle":"custom"
+			}
+		},{
+			"path":"components/msg/Itineraryrecord",
+			"style":{
+				"navigationBarTitleText":"行程记录"
+			}
+		},
+		{
+			"path":"components/msg/userinfo",
+			"style":{
+				"navigationBarTitleText":"个人资料"
+			}
+		},
+		{
+			"path":"components/msg/report",
+			"style":{
+				"navigationBarTitleText":"运行报告"
+			}			
+		},
+		{
+			"path":"components/msg/linedetails",
+			"style":{
+				"navigationBarTitleText":"线路详情"
+			}			
+		},
+		{
+			"path":"components/msg/security",
+			"style":{
+				"navigationBarTitleText":"线路详情"
+			}			
+		}
+	],
+	"tabBar":{
+		"color":"#555",
+		// "borderStyle":"#ccc",
+		"selectedColor":"#f88724",//选中时的颜色
+		"fontSize":"14px",//单位必须像素
+		"backgroundColor":"#fff",
+		"list":[			
+			{
+				"pagePath":"pages/information/index",
+				"text":"信息中心",
+				"iconPath": "static/img/sy_009.png",
+				"selectedIconPath": "static/img/sy_011.png"
+			},{
+				"pagePath":"pages/index/index",
+			    "iconPath": "static/img/img/sy_012.png",
+				"selectedIconPath": "static/img/img/sy_015.png",
+				"text":"即时定位"
+			},{
+				"pagePath":"pages/my/index",
+			    "iconPath": "static/img/img/sy_013.png",
+				"selectedIconPath": "static/img/img/sy_016.png",
+				"text":"我的"
+			}
+			]
+	},
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8"
+	},
+	"condition" : { //模式配置，仅开发期间生效
+		"current": 0, //当前激活的模式(list 的索引项)
+		"list": [
+			{
+				"name": "", //模式名称
+				"path": "", //启动页面，必选
+				"query": "" //启动参数，在页面的onLoad函数里面得到
+			}
+		]
+	}
+}

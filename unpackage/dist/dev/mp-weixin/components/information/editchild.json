@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "编辑孩子信息",
+  "usingComponents": {
+    "buslist": "/components/common/buslist"
+  }
+}

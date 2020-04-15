@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "线路详情",
+  "usingComponents": {
+    "select": "/components/common/select"
+  }
+}

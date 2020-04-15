@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "行程记录",
+  "usingComponents": {
+    "w-calendar": "/components/common/w-calendar/w-calendar"
+  }
+}
