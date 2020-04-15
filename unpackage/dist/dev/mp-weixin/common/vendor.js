@@ -734,7 +734,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1646,7 +1646,7 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ 163:
+/***/ 179:
 /*!************************************************************************************!*\
   !*** F:/BaiduNetdiskDownload/schoolbusjz/components/common/w-calendar/calendar.js ***!
   \************************************************************************************/
@@ -7685,7 +7685,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -7706,14 +7706,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -7789,7 +7789,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -9115,7 +9115,7 @@ module.exports = {"_from":"@dcloudio/uni-stat@^2.0.0-alpha-24420191128001","_id"
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationStyle": "custom" }, "pages/information/index": { "navigationBarTitleText": "信息中心" }, "pages/my/index": { "navigationStyle": "custom" }, "components/information/editchild": { "navigationBarTitleText": "编辑孩子信息" }, "components/information/editparent": { "navigationBarTitleText": "编辑家长信息" }, "components/leave/index": { "navigationBarTitleText": "今日请假" }, "components/leave/info": { "navigationBarTitleText": "详情" }, "components/msg/groupsend": { "navigationBarTitleText": "群发信息" }, "components/complaint/index": { "navigationBarTitleText": "收到投诉" }, "components/complaint/info": { "navigationBarTitleText": "详情" }, "pages/my/login": { "navigationBarTitleText": "", "navigationBarBackgroundColor": "#FF6C00", "navigationBarTextStyle": "white" }, "components/msg/Itineraryrecord": { "navigationBarTitleText": "行程记录" }, "components/msg/userinfo": { "navigationBarTitleText": "个人资料" }, "components/msg/report": { "navigationBarTitleText": "运行报告" }, "components/msg/linedetails": { "navigationBarTitleText": "线路详情" }, "components/msg/security": { "navigationBarTitleText": "线路详情" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
+Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default = { "pages": { "pages/index/index": { "navigationStyle": "custom", "usingComponents": { "trip": "/components/common/trip", "buslist": "/components/common/buslist" } }, "pages/information/index": { "navigationBarTitleText": "信息中心", "usingComponents": {} }, "pages/my/index": { "navigationStyle": "custom", "usingComponents": {} }, "components/information/editchild": { "navigationBarTitleText": "编辑孩子信息", "usingComponents": { "buslist": "/components/common/buslist" } }, "components/information/editparent": { "navigationBarTitleText": "编辑家长信息", "usingComponents": { "buslist": "/components/common/buslist" } }, "components/information/addchildschool": { "navigationStyle": "custom", "usingComponents": {} }, "components/information/addschool": { "navigationBarTitleText": "添加学校", "usingComponents": {} }, "components/leave/index": { "navigationBarTitleText": "今日请假", "usingComponents": {} }, "components/leave/info": { "navigationBarTitleText": "详情", "usingComponents": {} }, "components/msg/groupsend": { "navigationBarTitleText": "群发信息", "usingComponents": { "buslist": "/components/common/buslist" } }, "components/complaint/index": { "navigationBarTitleText": "收到投诉", "usingComponents": {} }, "components/complaint/info": { "navigationBarTitleText": "详情", "usingComponents": {} }, "pages/my/login": { "navigationBarTitleText": "", "navigationBarBackgroundColor": "#FF6C00", "navigationBarTextStyle": "white", "usingComponents": {} }, "components/msg/Itineraryrecord": { "navigationBarTitleText": "行程记录", "usingComponents": { "w-calendar": "/components/common/w-calendar/w-calendar" } }, "components/msg/userinfo": { "navigationBarTitleText": "个人资料", "usingComponents": {} }, "components/msg/report": { "navigationBarTitleText": "运行报告", "usingComponents": { "select": "/components/common/select" } }, "components/msg/linedetails": { "navigationBarTitleText": "线路详情", "usingComponents": {} }, "components/msg/security": { "navigationBarTitleText": "线路详情", "usingComponents": { "select": "/components/common/select" } }, "components/information/addchildmsg": { "navigationBarTitleText": "填写上学信息(2/4)" } }, "globalStyle": { "navigationBarTextStyle": "black", "navigationBarTitleText": "uni-app", "navigationBarBackgroundColor": "#F8F8F8", "backgroundColor": "#F8F8F8" } };exports.default = _default;
 
 /***/ }),
 

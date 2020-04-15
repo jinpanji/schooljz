@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "填写上学信息(2/4)",
+  "usingComponents": {
+    "buslist": "/components/common/buslist"
+  }
+}

@@ -132,7 +132,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Trip = function Trip() {return __webpack_require__.e(/*! import() | components/common/trip */ "components/common/trip").then(__webpack_require__.bind(null, /*! ../../components/common/trip.vue */ 144));};var Buslist = function Buslist() {return __webpack_require__.e(/*! import() | components/common/buslist */ "components/common/buslist").then(__webpack_require__.bind(null, /*! ../../components/common/buslist.vue */ 151));};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Trip = function Trip() {return __webpack_require__.e(/*! import() | components/common/trip */ "components/common/trip").then(__webpack_require__.bind(null, /*! ../../components/common/trip.vue */ 160));};var Buslist = function Buslist() {return __webpack_require__.e(/*! import() | components/common/buslist */ "components/common/buslist").then(__webpack_require__.bind(null, /*! ../../components/common/buslist.vue */ 167));};var _default =
 
 
 

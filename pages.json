@@ -27,8 +27,22 @@
 			"style":{
 				"navigationBarTitleText":"编辑家长信息"
 			}
-		},
-		{
+		},{
+			"path":"components/information/addchildschool",//搜索学校
+			"style":{
+				"navigationStyle":"custom"
+			}
+		},{
+			"path":"components/information/addschool",//添加学校
+			"style":{
+				"navigationBarTitleText":"添加学校"
+			}
+		},{
+			"path":"components/information/addchildmsg",//填写上学信息
+			"style":{
+				"navigationBarTitleText":"填写上学信息(2/4)"
+			}
+		},{
 			"path":"components/leave/index",
 			"style":{
 				"navigationBarTitleText":"今日请假"

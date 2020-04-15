@@ -1,0 +1,103 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.pages.data-v-db833ca6 {
+  background: #fb832c;
+}
+button.data-v-db833ca6 {
+  background: #fb832c;
+}
+.head.data-v-db833ca6 {
+  padding: 50rpx 30rpx;
+  padding-top: 150rpx;
+}
+.head image.data-v-db833ca6 {
+    float: left;
+    width: 30rpx;
+    margin-top: 10rpx;
+}
+.head input.data-v-db833ca6 {
+    float: left;
+    width: 530rpx;
+    text-align: center;
+    padding: 10rpx;
+    background: #fff;
+    border: 0;
+    border-radius: 50rpx;
+    margin-left: 30rpx;
+}
+.head button.data-v-db833ca6 {
+    width: 90rpx;
+    float: right;
+    color: #fff;
+    padding: 0;
+    height: 68rpx;
+    line-height: 68rpx;
+    font-size: 16px;
+    text-align: right;
+}
+.head button.data-v-db833ca6:after {
+    border: 0;
+}
+.schoolbox.data-v-db833ca6, .school_null.data-v-db833ca6 {
+  height: 1060rpx;
+  background: #fff;
+  border-top-right-radius: 30rpx;
+  border-top-left-radius: 30rpx;
+}
+.schoolbox .listbox.data-v-db833ca6 {
+  height: 920rpx;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding: 20rpx 30rpx;
+}
+.schoolbox .listbox .li.data-v-db833ca6 {
+    padding: 30rpx 0;
+    border-bottom: 1px solid #e6e6e6;
+}
+.schoolbox button.data-v-db833ca6 {
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.school_null.data-v-db833ca6 {
+  overflow: hidden;
+}
+.school_null image.data-v-db833ca6 {
+    display: block;
+    width: 230rpx;
+    margin: auto;
+    margin-top: 150rpx;
+}
+.school_null view.data-v-db833ca6 {
+    text-align: center;
+    margin: 20rpx 0;
+}
+.school_null button.data-v-db833ca6 {
+    width: 680rpx;
+}
+

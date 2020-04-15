@@ -4,7 +4,7 @@
 			<image src="../../static/img/img/wd_048.png" mode="widthFix"></image>
 			<view class="msgbox">
 				<h5>
-					<image src="../../static/img/img/wd_003.png" mode="widthFix"></image>
+					<image src="../../static/img/img/wd_003.png" mode="widthFix" @click="goaddchild()"></image>
 				</h5>
 				<view class="txbox">
 					<image src="../../static/img/img/sy_001.png" mode="widthFix"></image>
@@ -157,6 +157,12 @@
 						url:"../../components/information/editparent"
 					})
 				}
+			},
+			goaddchild(){
+				// console.log("三生三世")
+				uni.navigateTo({
+					url:"../../components/information/addchildschool"
+				})
 			}
 		}
 	}

@@ -281,6 +281,12 @@ var _default =
           url: "../../components/information/editparent" });
 
       }
+    },
+    goaddchild: function goaddchild() {
+      // console.log("三生三世")
+      uni.navigateTo({
+        url: "../../components/information/addchildschool" });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

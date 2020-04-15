@@ -5,6 +5,9 @@
     "pages/my/index",
     "components/information/editchild",
     "components/information/editparent",
+    "components/information/addchildschool",
+    "components/information/addschool",
+    "components/information/addchildmsg",
     "components/leave/index",
     "components/leave/info",
     "components/msg/groupsend",
@@ -50,6 +53,5 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap86.json"
+  "usingComponents": {}
 }
