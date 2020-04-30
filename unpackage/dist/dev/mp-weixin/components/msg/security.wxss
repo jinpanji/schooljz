@@ -29,19 +29,19 @@
   background: #fff;
 }
 .report > view.data-v-43588369 {
-    padding: 20rpx 0;
-    border-bottom: 1px solid #ccc;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #ccc;
 }
 .report > view Select.data-v-43588369 {
-      float: right;
+  float: right;
 }
 .report > view ._h4.data-v-43588369 {
-      color: #ccc;
-      font-size: 30rpx;
+  color: #ccc;
+  font-size: 30rpx;
 }
 .report > button.data-v-43588369 {
-    width: 100%;
-    margin-top: 40rpx;
+  width: 100%;
+  margin-top: 40rpx;
 }
 button.data-v-43588369 {
   background: #FF6C00;
@@ -57,21 +57,21 @@ button.data-v-43588369 {
   z-index: 1000000;
 }
 .shadow .box.data-v-43588369 {
-    border-radius: 20rpx;
-    background: #fff;
-    width: 560rpx;
-    margin: auto;
-    margin-top: 200rpx;
-    padding: 40rpx;
-    line-height: 74rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  width: 560rpx;
+  margin: auto;
+  margin-top: 200rpx;
+  padding: 40rpx;
+  line-height: 74rpx;
 }
 .shadow .box ._h3.data-v-43588369 {
-      text-align: center;
-      font-weight: bold;
-      line-height: 60rpx;
+  text-align: center;
+  font-weight: bold;
+  line-height: 60rpx;
 }
 .shadow .box button.data-v-43588369 {
-      margin-top: 30rpx;
-      border-radius: 50rpx;
+  margin-top: 30rpx;
+  border-radius: 50rpx;
 }
 

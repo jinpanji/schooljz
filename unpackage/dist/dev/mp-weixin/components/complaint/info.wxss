@@ -41,7 +41,8 @@
   width: 100%;
   background: #fff;
   display: block;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
   padding: 0 20rpx;
 }
 .info_page .msg.data-v-2165962d {
@@ -63,12 +64,13 @@ button.data-v-2165962d {
   margin-top: 30rpx;
 }
 .box textarea.data-v-2165962d {
-    padding: 20rpx;
-    border: 1px solid #ccc;
-    background: #eee;
-    border-radius: 10rpx;
-    margin-top: 20rpx;
-    height: 300rpx;
-    box-sizing: border-box;
+  padding: 20rpx;
+  border: 1px solid #ccc;
+  background: #eee;
+  border-radius: 10rpx;
+  margin-top: 20rpx;
+  height: 300rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 

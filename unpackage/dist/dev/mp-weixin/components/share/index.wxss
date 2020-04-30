@@ -1,0 +1,136 @@
+@charset "UTF-8";
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+.share_page.data-v-53f17217 {
+  position: relative;
+}
+.share_page image.data-v-53f17217 {
+  width: 100%;
+}
+.share_page .box.data-v-53f17217 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+.share_page .head.data-v-53f17217 {
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  color: #FFF;
+  margin-top: 30rpx;
+  padding: 0 30rpx;
+}
+.share_page .head image.data-v-53f17217 {
+  width: 20rpx;
+  float: left;
+  margin-top: 37rpx;
+}
+.share_page .numbox.data-v-53f17217 {
+  color: #fff;
+  position: relative;
+  padding: 0 30rpx;
+  padding-top: 40rpx;
+  text-align: center;
+}
+.share_page .numbox ._h4.data-v-53f17217 {
+  font-size: 14px;
+}
+.share_page .numbox ._h3.data-v-53f17217 {
+  font-size: 20px;
+  line-height: 84rpx;
+}
+.share_page .numbox image.data-v-53f17217 {
+  width: 200rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 0;
+}
+.share_page .listbox.data-v-53f17217 {
+  margin-top: 40rpx;
+  border-top-right-radius: 20rpx;
+  border-top-left-radius: 20rpx;
+  background: #fff;
+  padding: 0 30rpx;
+  padding-bottom: 50rpx;
+  min-height: 950rpx;
+  position: relative;
+}
+.share_page .listbox .li.data-v-53f17217 {
+  padding: 30rpx 0;
+  border-bottom: 1px solid #ccc;
+}
+.share_page .listbox .li view.data-v-53f17217 {
+  line-height: 60rpx;
+  font-size: 16px;
+}
+.share_page .listbox .li text.data-v-53f17217 {
+  color: #666;
+  font-size: 12px;
+}
+.share_page .listbox .msg.data-v-53f17217 {
+  position: absolute;
+  bottom: 30rpx;
+  color: red;
+  text-align: center;
+  width: 100%;
+  left: 0;
+}
+.shadow.data-v-53f17217 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+.shadow .box.data-v-53f17217 {
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 30rpx;
+  width: 600rpx;
+  margin-left: 80rpx;
+  margin-top: 150rpx;
+}
+.shadow .box .tits.data-v-53f17217 {
+  text-align: center;
+  line-height: 90rpx;
+}
+.shadow .box .txt.data-v-53f17217 {
+  color: #666;
+  text-indent: 20rpx;
+  line-height: 54rpx;
+}
+.shadow .box button.data-v-53f17217 {
+  border-radius: 50rpx;
+  margin-top: 60rpx;
+  background: #FF6C00;
+}
+

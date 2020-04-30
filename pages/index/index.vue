@@ -58,7 +58,7 @@
 			<!-- 请假申请 -->
 			<image src="../../static/img/img/sy_010.png" mode="widthFix" @click="goInfo(1)"></image>
 			<!-- 昨日行程 -->
-			<image src="../../static/img/img/sy_011.png" mode="widthFix"></image>
+			<image src="../../static/img/img/sy_011.png" mode="widthFix"  @click="goInfo(3)"></image>
 		</view>
 	</view>
 </template>
@@ -167,9 +167,19 @@
 						})
 						break
 					case 2:
-						this.goRouter()
+						// this.goRouter()
+						//投诉上传
+						uni.navigateTo({
+							url:"../../components/complaint/index"
+						})
+						break
+					case 3:
+						uni.navigateTo({
+							url:"../../components/info/trip"
+						})
 						break
 				}
+				
 			}
 		}
 	}

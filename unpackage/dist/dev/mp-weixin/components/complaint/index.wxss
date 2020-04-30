@@ -24,67 +24,87 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.list_box.data-v-d73b4d3a {
-  padding: 0 30rpx;
-  background: #fff;
+.jilu.data-v-d73b4d3a {
+  position: relative;
+  padding-bottom: 100rpx;
+}
+.jilu ._h3.data-v-d73b4d3a {
+  line-height: 100rpx;
   border-bottom: 1px solid #ccc;
 }
-.list_box .box.data-v-d73b4d3a {
-    padding: 25rpx 0;
-    border-bottom: 1px solid #ccc;
+.jilu ._h3 text.data-v-d73b4d3a {
+  padding: 0 30rpx;
+  border-left: 2px solid #FF6C00;
 }
-.list_box .box .img.data-v-d73b4d3a {
-      float: left;
-      width: 90rpx;
-      margin-right: 20rpx;
-      margin-top: 15rpx;
+.jilu .boxlist.data-v-d73b4d3a {
+  padding: 0 20rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
 }
-.list_box .box .img image.data-v-d73b4d3a {
-        width: 100%;
+.jilu .boxlist .list text.data-v-d73b4d3a {
+  display: inline-block;
+  padding: 0 40rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 50rpx;
+  border: 1px solid #FF6C00;
+  color: #FF6C00;
+  margin: 20rpx;
+  font-size: 14px;
 }
-.list_box .box .textbox.data-v-d73b4d3a {
-      float: left;
-      width: 580rpx;
-      font-size: 28rpx;
-      line-height: 60rpx;
+.jilu .boxlist .list .check_index.data-v-d73b4d3a {
+  background: #FF6C00;
+  color: #fff;
 }
-.list_box .box .textbox ._h3.data-v-d73b4d3a {
-        width: 100%;
+.jilu .msgbox.data-v-d73b4d3a {
+  padding: 0 20rpx;
+  background: #fff;
+  padding-bottom: 100rpx;
 }
-.list_box .box .textbox ._h3 .times.data-v-d73b4d3a {
-          float: right;
-          font-weight: normal;
-          color: #ccc;
+.jilu .msgbox ._h3.data-v-d73b4d3a {
+  border: 0;
 }
-.list_box .box .textbox ._h3 image.data-v-d73b4d3a {
-          width: 80rpx;
-          margin-right: 20rpx;
+.jilu .msgbox textarea.data-v-d73b4d3a {
+  background: #eee;
+  border-radius: 20rpx;
+  border: 1px solid #ccc;
+  height: 600rpx;
+  padding: 30rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-top: 30rpx;
 }
-.list_box .box .textbox > text.data-v-d73b4d3a {
-        display: inline-block;
-        width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        color: #646464;
+.jilu .box.data-v-d73b4d3a {
+  background: #fff;
+  padding: 20rpx 0;
+  border-radius: 10rpx;
+  border: 1px solid #ccc;
+  margin-bottom: 30rpx;
+  position: relative;
+  font-size: 30rpx;
 }
-.list_box .box.data-v-d73b4d3a:last-child {
-    border: 0;
+.jilu .box .tit.data-v-d73b4d3a {
+  margin-left: 20rpx;
 }
-.list_box .statusbox.data-v-d73b4d3a {
-    float: left;
-    position: relative;
+.jilu .box .times.data-v-d73b4d3a {
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  background: #eee;
+  padding: 5rpx 0rpx;
+  border-radius: 30rpx;
 }
-.list_box .statusbox image.data-v-d73b4d3a {
-      width: 80rpx;
+.jilu .box .times text.data-v-d73b4d3a {
+  margin: 0 20rpx;
 }
-.list_box .statusbox text.data-v-d73b4d3a {
-      position: absolute;
-      top: 0;
-      color: #fff;
-      left: 0;
-      width: 80rpx;
-      text-align: center;
-      font-size: 8px;
+.jilu .box > image.data-v-d73b4d3a {
+  width: 100%;
+}
+.jilu button.data-v-d73b4d3a {
+  background: #FF6C00;
+  border-radius: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 

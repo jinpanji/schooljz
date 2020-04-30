@@ -25,56 +25,96 @@
 /* 透明度 */
 /* 文章场景相关 */
 .jilu.data-v-0767e6e3 {
-  padding: 20rpx;
   position: relative;
   padding-bottom: 100rpx;
 }
 .jilu ._h3.data-v-0767e6e3 {
-    line-height: 100rpx;
+  line-height: 100rpx;
+  border-bottom: 1px solid #ccc;
+}
+.jilu ._h3 text.data-v-0767e6e3 {
+  padding: 0 30rpx;
+  border-left: 2px solid #FF6C00;
+}
+.jilu .boxlist.data-v-0767e6e3 {
+  padding: 0 20rpx;
+  background: #fff;
+  margin: 20rpx 0;
+}
+.jilu .boxlist .list text.data-v-0767e6e3 {
+  display: inline-block;
+  width: 215rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 50rpx;
+  border: 1px solid #FF6C00;
+  color: #FF6C00;
+  margin: 15rpx;
+  font-size: 14px;
+}
+.jilu .boxlist .list text.data-v-0767e6e3:first-child {
+  margin-left: 0;
+}
+.jilu .boxlist .list text.data-v-0767e6e3:last-child {
+  margin-right: 0;
+}
+.jilu .boxlist .list .check_index.data-v-0767e6e3 {
+  background: #FF6C00;
+  color: #fff;
+}
+.jilu .msgbox.data-v-0767e6e3 {
+  padding: 0 20rpx;
+  background: #fff;
+}
+.jilu .msgbox ._h3.data-v-0767e6e3 {
+  border: 0;
+}
+.jilu .msgbox textarea.data-v-0767e6e3 {
+  background: #eee;
+  border-radius: 20rpx;
+  border: 1px solid #ccc;
+  height: 350rpx;
+  padding: 30rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-top: 30rpx;
+}
+.jilu .msgbox .tis.data-v-0767e6e3 {
+  color: red;
+  line-height: 100rpx;
+  font-size: 14px;
 }
 .jilu .box.data-v-0767e6e3 {
-    background: #fff;
-    padding: 20rpx 0;
-    border-radius: 10rpx;
-    border: 1px solid #ccc;
-    margin-bottom: 30rpx;
-    position: relative;
-    font-size: 30rpx;
+  background: #fff;
+  padding: 20rpx 0;
+  border-radius: 10rpx;
+  border: 1px solid #ccc;
+  margin-bottom: 30rpx;
+  position: relative;
+  font-size: 30rpx;
 }
 .jilu .box .tit.data-v-0767e6e3 {
-      margin-left: 20rpx;
+  margin-left: 20rpx;
 }
 .jilu .box .times.data-v-0767e6e3 {
-      position: absolute;
-      right: 20rpx;
-      top: 20rpx;
-      background: #eee;
-      padding: 5rpx 0rpx;
-      border-radius: 30rpx;
+  position: absolute;
+  right: 20rpx;
+  top: 20rpx;
+  background: #eee;
+  padding: 5rpx 0rpx;
+  border-radius: 30rpx;
 }
 .jilu .box .times text.data-v-0767e6e3 {
-        margin: 0 20rpx;
+  margin: 0 20rpx;
 }
 .jilu .box > image.data-v-0767e6e3 {
-      width: 100%;
+  width: 100%;
 }
 .jilu button.data-v-0767e6e3 {
-    background: #FF6C00;
-    border-radius: 0;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-}
-.businfo > view.data-v-0767e6e3 {
-  float: left;
-  width: 50%;
-  font-size: 28rpx;
-  margin: 10rpx 0;
-  padding: 0 29rpx;
-  box-sizing: border-box;
-}
-.businfo > view image.data-v-0767e6e3 {
-    width: 80rpx;
-    margin-right: 20rpx;
+  background: #FF6C00;
+  border-radius: 0;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 

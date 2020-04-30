@@ -110,8 +110,7 @@
 				_this.init();
 			},
 			checkItem(item){
-				console.log("选取11111"
-				)
+				console.log("选取11111")
 				if(this.disabledBefore&&!this.disabledAfter){
 					if(!item.disabledBefore){
 						console.log("22222")

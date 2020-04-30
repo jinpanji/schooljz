@@ -4,14 +4,27 @@
 			<image src="../../static/img/img/wd_048.png" mode="widthFix"></image>
 			<view class="msgbox">
 				<h5>
-					<image src="../../static/img/img/wd_003.png" mode="widthFix" @click="goaddchild()"></image>
+					<image src="../../static/img/img/wd_003.png" mode="widthFix" @click="showDrawer(1)"></image>
+					<view class="shadow" v-show="isShow" @click="showDrawer(2)">						
+						<view class="morebox" :style="isShow?'width:400rpx':'width:0;'">
+							<view class="box cl" @click="addChild(1)">
+								<text>添加孩子信息</text>
+								<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+							</view>
+							<view class="box cl" @click="addChild(2)">
+								<text>添加家长信息</text>
+								<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+							</view>
+						</view>					
+					</view>
 				</h5>
-				<view class="txbox">
+				<view class="txbox" @click="lookInfo()">
 					<image src="../../static/img/img/sy_001.png" mode="widthFix"></image>
 				</view>
-				<view class="username">
+				<view v-if="isLogin" class="username">
 					{{userName}}
 				</view>
+				<button v-else class="getuserbtn" open-type="getUserInfo" @getuserinfo="bindGetUserInfo" >登录</button>
 				<view class="js">
 					<image src="../../static/img/img/wd_001.png" mode="widthFix"></image>
 					<text>家长</text>
@@ -120,7 +133,7 @@
 			<!-- 快速续费 -->
 			<image src="../../static/img/img/wd_012.png" mode="widthFix" @click="goInfo(1)"></image>
 			<!-- 邀请奖励 -->
-			<image src="../../static/img/img/wd_013.png" mode="widthFix"></image>
+			<image src="../../static/img/img/wd_013.png" mode="widthFix" @click="goInfo(3)"></image>
 		</view>
 	
 	</view>
@@ -137,10 +150,37 @@
 				interval: 2000,
 				duration: 500,
 				ischeck:false,
-				
+				isLogin:false,
+				isShow:false,
 			}
 		},
 		methods:{
+			bindGetUserInfo(val){
+				console.log("获取微信用户数据")
+				console.log(val)
+				wx.login({
+					success:(e)=>{
+						console.log('获取code')
+						console.log(e)
+						wx.getUserInfo({
+							success:(res)=>{
+								console.log("获取用户信息")
+								// 获取头像
+								console.log(res.userInfo.avatarUrl)
+								uni.navigateTo({
+									url:"login"
+								})
+							}
+						})
+					}
+				})
+			},
+			lookInfo(){
+				//个人资料
+				uni.navigateTo({
+					url:"../../components/msg/userinfo"
+				})
+			},
 			switch1Change(val){
 				// console.log(val.detail.value)
 				this.ischeck=val.detail.value
@@ -154,15 +194,47 @@
 				}else{
 					//编辑家长信息
 					uni.navigateTo({
-						url:"../../components/information/editparent"
+						url:"../../components/information/editparent?id="+1
 					})
 				}
 			},
-			goaddchild(){
+			addChild(index){
+				if(index==1){
+					uni.navigateTo({
+						url:"../../components/information/addchildschool"
+					})					
+				}else{
+					uni.navigateTo({
+						url:"../../components/information/editparent"
+					})	
+				}
+			},
+			showDrawer(index){
 				// console.log("三生三世")
-				uni.navigateTo({
-					url:"../../components/information/addchildschool"
-				})
+				if(index==1){
+					this.isShow=true
+				}else{
+					this.isShow=false
+				}
+			},	
+			goInfo(index){
+				switch(index){
+					case 1:
+						console.log("快速续费")
+						uni.navigateTo({
+							url:"../../components/info/renew"
+						})
+						break
+					case 2:
+						console.log("安全报告")
+						break
+					case 3:
+						console.log("邀请奖励")
+						uni.navigateTo({
+							url:"../../components/share/index"
+						})
+						break
+				}
 			}
 		}
 	}
@@ -183,9 +255,9 @@
 			z-index: 1000;
 			color: #fff;
 			h5{
-				text-align: left;
-				margin-top: 70rpx;
-				margin-left: 30rpx;
+				position: absolute;
+				top: 125rpx;
+				right: 100rpx;
 				image{
 					width: 50rpx;
 				}
@@ -198,6 +270,7 @@
 				margin: auto;
 				overflow: hidden;
 				box-shadow: 0px 0px 5px 0px #999999;
+				margin-top: 100rpx;
 				image{
 					width: 150%;
 					margin-left: -50%;
@@ -347,5 +420,52 @@
 			margin-left: 30rpx;
 		}
 	}
-
+	.getuserbtn{
+		background: rgba(0,0,0,0);
+		width: 150rpx;
+		border: 0;
+		padding: 0;
+		font-size: 16px;
+		color:#fff;
+		height: 68rpx;
+		line-height: 68rpx;
+	}
+	.getuserbtn:after{
+		border: 0;
+	}
+	.shadow{
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		background-color: rgba(0,0,0,.5);
+		z-index: 1000;
+	}
+	.morebox{
+		float: right;
+		// width: 400rpx;
+		width: 0;
+		transition: 0.5s;
+		height: 100%;
+		background: #fff;
+		color: #000;
+		.box:first-child{
+			margin-top: 200rpx;
+			border-bottom: 1px solid #ccc;
+		}
+		.box{
+			line-height: 80rpx;
+			padding: 0 30rpx;
+		}
+		text{
+			float: left;
+		}
+		image{
+			float: right;
+			width: 20rpx !important;
+			margin-top: 23rpx;
+		}
+	}
 </style>

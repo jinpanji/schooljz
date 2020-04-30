@@ -1,18 +1,8 @@
 <template>
 	<view class="information">
-		<view class="titles cl">
-			<view class="tous cl" @click="goTs()">
-				<image src="../../static/img/xxzx_004.png" mode="widthFix"></image>
-				<text>5未处理</text>
-			</view>
-			<view class="qinj cl" @click="goLeave()">
-				<image src="../../static/img/xxzx_005.png" mode="widthFix"></image>
-				<text>5未处理</text>
-			</view>
-		</view>
 		<!-- 通知列表 -->
 		<view class="list_box footerbox"v-if="!isNone">
-			<view class="box cl">
+			<view class="box cl" @click="goLeave()">
 				<view class="img">
 					<image src="../../static/img/xxzx_009.png" mode="widthFix"></image>
 				</view>
@@ -45,15 +35,15 @@
 						<text>投诉通知</text>
 						<text>2019年8月21日</text>
 					</h3>
-					<text>报名已提</text>
+					<text>报名已我嫩文件恩人叫我二年级胃口就让你就问人家口味提</text>
 				</view>
 			</view>
 		</view>
 		
 		<!-- 悬浮框 -->
-		<view class="fixed" @click="goGroup()">
+		<!-- <view class="fixed" @click="goGroup()">
 			<image src="../../static/img/xxzx_001.png" mode="widthFix"></image>
-		</view>
+		</view> -->
 		
 		<!-- 无通知提示 -->
 		<view class="nonebox" v-show="isNone">
@@ -68,13 +58,29 @@
 		data(){
 			return{
 				isNone:false,//无通知消息：true
+				imgList:[
+					require("../../static/img/img/xxzx_001.png"),
+					require("../../static/img/img/xxzx_003.png"),
+					require("../../static/img/img/xxzx_004.png"),
+					require("../../static/img/img/xxzx_010.png"),
+					require("../../static/img/img/xxzx_008.png"),
+					require("../../static/img/img/xxzx_013.png"),
+					require("../../static/img/img/xxzx_005.png"),
+					require("../../static/img/img/xxzx_006.png"),
+					require("../../static/img/img/xxzx_012.png"),
+					require("../../static/img/img/xxzx_014.png"),
+					require("../../static/img/img/xxzx_007.png"),
+					require("../../static/img/img/xxzx_011.png"),
+					require("../../static/img/img/xxzx_002.png"),
+					require("../../static/img/img/xxzx_009.png")//投诉回复
+				]
 			}
 		},
 		methods:{
 			goLeave(){
 				//今日请假
 				uni.navigateTo({
-					url:"../../components/leave/index"
+					url:"../../components/info/index"
 				})
 			},
 			goGroup(){
@@ -161,6 +167,11 @@
 				}
 				>text{
 					color: #646464;
+					display: block;
+					width: 100%;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 				}
 			}
 		}

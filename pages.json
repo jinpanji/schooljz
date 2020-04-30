@@ -43,15 +43,46 @@
 				"navigationBarTitleText":"填写上学信息(2/4)"
 			}
 		},{
+			"path":"components/information/declaration",//填写上学信息
+			"style":{
+				"navigationBarTitleText":"申报成功"
+			}
+		},{
+			"path":"components/information/payment",//支付接送费用
+			"style":{
+				"navigationBarTitleText":"支付接送费用"
+			}
+		},{
+			"path":"components/information/padingpayment",//支付接送费用待付款
+			"style":{
+				"navigationBarTitleText":"支付接送费用"
+			}
+		},{
+			"path":"components/share/index",
+			"style":{
+				"navigationStyle":"custom"
+			}
+		},{
+			"path":"components/info/renew",
+			"style":{
+				"navigationBarTitleText":"快速续费"
+			}
+		},
+		{
+			"path":"components/info/index",//信息详情
+			"style":{
+				"navigationBarTitleText":"详情"
+			}
+		},{
 			"path":"components/leave/index",
 			"style":{
 				"navigationBarTitleText":"今日请假"
 			}
-		},
+		},	
 		{
-			"path":"components/leave/info",
+			"path":"components/info/trip",
 			"style":{
-				"navigationBarTitleText":"详情"
+				"navigationBarTitleText":"昨日行程"
 			}
 		},
 		{
@@ -63,7 +94,7 @@
 		{
 			"path":"components/complaint/index",
 			"style":{
-				"navigationBarTitleText":"收到投诉"
+				"navigationBarTitleText":"投诉上传"
 			}
 		},
 		{
@@ -83,7 +114,7 @@
 		},{
 			"path":"components/msg/Itineraryrecord",
 			"style":{
-				"navigationBarTitleText":"行程记录"
+				"navigationBarTitleText":"请假申请"
 			}
 		},
 		{

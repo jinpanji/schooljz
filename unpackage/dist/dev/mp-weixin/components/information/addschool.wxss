@@ -29,31 +29,31 @@
   padding: 0 30rpx;
 }
 .addpage .li.data-v-a0f12d32 {
-    padding: 30rpx 0;
+  padding: 30rpx 0;
 }
 .addpage .li text.data-v-a0f12d32 {
-      float: left;
-      width: 190rpx;
-      color: #ccc;
+  float: left;
+  width: 190rpx;
+  color: #ccc;
 }
 .addpage .li input.data-v-a0f12d32 {
-      float: left;
-      width: 475rpx;
-      border: 0;
+  float: left;
+  width: 475rpx;
+  border: 0;
 }
 .addpage .li image.data-v-a0f12d32 {
-      width: 30rpx;
-      float: right;
+  width: 30rpx;
+  float: right;
 }
 .addpage .li .dticon.data-v-a0f12d32 {
-      width: 50rpx;
-      margin-right: 30rpx;
+  width: 50rpx;
+  margin-right: 30rpx;
 }
 .addpage button.data-v-a0f12d32 {
-    width: 100%;
-    background: #FF6C00;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+  width: 100%;
+  background: #FF6C00;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 

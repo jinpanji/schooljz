@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "快速续费",
+  "usingComponents": {
+    "select": "/components/common/select"
+  }
+}

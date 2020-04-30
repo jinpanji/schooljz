@@ -32,31 +32,30 @@
   background: #fff;
 }
 .information > view.data-v-0bde2d12 {
-    padding: 38rpx 0;
-    border-bottom: 1px solid #e7e6ec;
+  padding: 38rpx 0;
+  border-bottom: 1px solid #e7e6ec;
 }
-.information > view text.data-v-0bde2d12 {
-      float: left;
-      width: 215rpx;
-      color: #969696;
+.information > view text.data-v-0bde2d12, .information > view .uni-list-cell-left.data-v-0bde2d12 {
+  float: left;
+  width: 215rpx;
+  color: #969696;
 }
-.information > view view.data-v-0bde2d12 {
-      float: left;
-      width: 460rpx;
+.information > view input.data-v-0bde2d12, .information > view .uni-list-cell-db.data-v-0bde2d12 {
+  float: left;
+  width: 460rpx;
 }
 .information > view .red.data-v-0bde2d12 {
-      color: #fe0000;
+  color: #fe0000;
 }
 .information > view image.data-v-0bde2d12 {
-      float: right;
-      width: 20rpx;
+  float: right;
+  width: 20rpx;
 }
-.information > view input.data-v-0bde2d12 {
-      width: 260rpx;
-      float: left;
+.information > view .code.data-v-0bde2d12 {
+  width: 260rpx;
 }
 .information > view.data-v-0bde2d12:last-child {
-    border: 0;
+  border: 0;
 }
 .codebox.data-v-0bde2d12 {
   line-height: 70rpx;
@@ -67,14 +66,14 @@
   bottom: 0;
 }
 .btns button.data-v-0bde2d12 {
-    width: 50%;
-    float: left;
-    border-radius: 0;
-    background: #F0AD4E;
-    margin: 0;
+  width: 50%;
+  float: left;
+  border-radius: 0;
+  background: #F0AD4E;
+  margin: 0;
 }
 .btns .preservation.data-v-0bde2d12 {
-    background: #FF6C00;
+  background: #FF6C00;
 }
 button.data-v-0bde2d12:after {
   border: 0;
@@ -98,22 +97,22 @@ button.data-v-0bde2d12:after {
   margin: auto;
 }
 .shadow .box.data-v-0bde2d12 {
-    width: 200rpx;
-    padding: 60rpx 120rpx;
-    text-align: center;
-    background: #fff;
-    margin: auto;
-    margin-top: 100rpx;
-    border-radius: 20rpx;
+  width: 200rpx;
+  padding: 60rpx 120rpx;
+  text-align: center;
+  background: #fff;
+  margin: auto;
+  margin-top: 100rpx;
+  border-radius: 20rpx;
 }
 .shadow .box image.data-v-0bde2d12 {
-      width: 150rpx;
+  width: 150rpx;
 }
 .shadow .box text.data-v-0bde2d12 {
-      font-size: 16px;
-      font-weight: bold;
-      display: inline-block;
-      width: 100%;
-      margin-top: 30rpx;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+  width: 100%;
+  margin-top: 30rpx;
 }
 

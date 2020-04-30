@@ -29,21 +29,21 @@
   background: #fff;
 }
 .report > view.data-v-a4a510c6 {
-    padding: 20rpx 0;
-    border-bottom: 1px solid #ccc;
+  padding: 20rpx 0;
+  border-bottom: 1px solid #ccc;
 }
 .report > view Select.data-v-a4a510c6 {
-      float: right;
+  float: right;
 }
 .report > view ._h4.data-v-a4a510c6 {
-      color: #ccc;
-      font-size: 30rpx;
+  color: #ccc;
+  font-size: 30rpx;
 }
 .report > button.data-v-a4a510c6 {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
 }
 button.data-v-a4a510c6 {
   background: #FF6C00;
@@ -59,21 +59,21 @@ button.data-v-a4a510c6 {
   z-index: 1000000;
 }
 .shadow .box.data-v-a4a510c6 {
-    border-radius: 20rpx;
-    background: #fff;
-    width: 560rpx;
-    margin: auto;
-    margin-top: 200rpx;
-    padding: 40rpx;
-    line-height: 74rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  width: 560rpx;
+  margin: auto;
+  margin-top: 200rpx;
+  padding: 40rpx;
+  line-height: 74rpx;
 }
 .shadow .box ._h3.data-v-a4a510c6 {
-      text-align: center;
-      font-weight: bold;
-      line-height: 60rpx;
+  text-align: center;
+  font-weight: bold;
+  line-height: 60rpx;
 }
 .shadow .box button.data-v-a4a510c6 {
-      margin-top: 30rpx;
-      border-radius: 50rpx;
+  margin-top: 30rpx;
+  border-radius: 50rpx;
 }
 

@@ -8,8 +8,14 @@
     "components/information/addchildschool",
     "components/information/addschool",
     "components/information/addchildmsg",
+    "components/information/declaration",
+    "components/information/payment",
+    "components/information/padingpayment",
+    "components/share/index",
+    "components/info/renew",
+    "components/info/index",
     "components/leave/index",
-    "components/leave/info",
+    "components/info/trip",
     "components/msg/groupsend",
     "components/complaint/index",
     "components/complaint/info",
@@ -53,5 +59,6 @@
       }
     ]
   },
-  "usingComponents": {}
+  "usingComponents": {},
+  "sitemapLocation": "sitemap79.json"
 }

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "昨日行程",
+  "usingComponents": {
+    "trip": "/components/common/trip"
+  }
+}

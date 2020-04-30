@@ -35,32 +35,32 @@ button.data-v-db833ca6 {
   padding-top: 150rpx;
 }
 .head image.data-v-db833ca6 {
-    float: left;
-    width: 30rpx;
-    margin-top: 10rpx;
+  float: left;
+  width: 30rpx;
+  margin-top: 10rpx;
 }
 .head input.data-v-db833ca6 {
-    float: left;
-    width: 530rpx;
-    text-align: center;
-    padding: 10rpx;
-    background: #fff;
-    border: 0;
-    border-radius: 50rpx;
-    margin-left: 30rpx;
+  float: left;
+  width: 530rpx;
+  text-align: center;
+  padding: 10rpx;
+  background: #fff;
+  border: 0;
+  border-radius: 50rpx;
+  margin-left: 30rpx;
 }
 .head button.data-v-db833ca6 {
-    width: 90rpx;
-    float: right;
-    color: #fff;
-    padding: 0;
-    height: 68rpx;
-    line-height: 68rpx;
-    font-size: 16px;
-    text-align: right;
+  width: 90rpx;
+  float: right;
+  color: #fff;
+  padding: 0;
+  height: 68rpx;
+  line-height: 68rpx;
+  font-size: 16px;
+  text-align: right;
 }
 .head button.data-v-db833ca6:after {
-    border: 0;
+  border: 0;
 }
 .schoolbox.data-v-db833ca6, .school_null.data-v-db833ca6 {
   height: 1060rpx;
@@ -75,8 +75,8 @@ button.data-v-db833ca6 {
   padding: 20rpx 30rpx;
 }
 .schoolbox .listbox .li.data-v-db833ca6 {
-    padding: 30rpx 0;
-    border-bottom: 1px solid #e6e6e6;
+  padding: 30rpx 0;
+  border-bottom: 1px solid #e6e6e6;
 }
 .schoolbox button.data-v-db833ca6 {
   color: #fff;
@@ -88,16 +88,17 @@ button.data-v-db833ca6 {
   overflow: hidden;
 }
 .school_null image.data-v-db833ca6 {
-    display: block;
-    width: 230rpx;
-    margin: auto;
-    margin-top: 150rpx;
+  display: block;
+  width: 230rpx;
+  margin: auto;
+  margin-top: 150rpx;
 }
 .school_null view.data-v-db833ca6 {
-    text-align: center;
-    margin: 20rpx 0;
+  text-align: center;
+  margin: 20rpx 0;
 }
 .school_null button.data-v-db833ca6 {
-    width: 680rpx;
+  width: 680rpx;
+  border-radius: 50rpx;
 }
 

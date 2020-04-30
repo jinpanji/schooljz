@@ -29,163 +29,216 @@
   position: relative;
 }
 .usermsg > image.data-v-374bf708 {
-    width: 100%;
+  width: 100%;
 }
 .usermsg .msgbox.data-v-374bf708 {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    z-index: 1000;
-    color: #fff;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1000;
+  color: #fff;
 }
 .usermsg .msgbox ._h5.data-v-374bf708 {
-      text-align: left;
-      margin-top: 70rpx;
-      margin-left: 30rpx;
+  position: absolute;
+  top: 125rpx;
+  right: 100rpx;
 }
 .usermsg .msgbox ._h5 image.data-v-374bf708 {
-        width: 50rpx;
+  width: 50rpx;
 }
 .usermsg .msgbox .txbox.data-v-374bf708 {
-      width: 120rpx;
-      height: 120rpx;
-      border-radius: 50%;
-      border: 2px solid #FFFFFF;
-      margin: auto;
-      overflow: hidden;
-      box-shadow: 0px 0px 5px 0px #999999;
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 2px solid #FFFFFF;
+  margin: auto;
+  overflow: hidden;
+  -webkit-box-shadow: 0px 0px 5px 0px #999999;
+          box-shadow: 0px 0px 5px 0px #999999;
+  margin-top: 100rpx;
 }
 .usermsg .msgbox .txbox image.data-v-374bf708 {
-        width: 150%;
-        margin-left: -50%;
+  width: 150%;
+  margin-left: -50%;
 }
 .usermsg .msgbox .username.data-v-374bf708 {
-      line-height: 80rpx;
-      text-align: center;
-      font-size: 16px;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 16px;
 }
 .usermsg .msgbox .js.data-v-374bf708 {
-      width: 100rpx;
-      height: 44rpx;
-      background: #f54009;
-      padding: 0 33rpx;
-      line-height: 44rpx;
-      font-size: 12px;
-      margin: auto;
-      border-radius: 20rpx;
+  width: 100rpx;
+  height: 44rpx;
+  background: #f54009;
+  padding: 0 33rpx;
+  line-height: 44rpx;
+  font-size: 12px;
+  margin: auto;
+  border-radius: 20rpx;
 }
 .usermsg .msgbox .js image.data-v-374bf708 {
-        width: 35rpx;
-        margin-right: 10rpx;
+  width: 35rpx;
+  margin-right: 10rpx;
 }
 .msgbox.data-v-374bf708 {
   padding: 0 30rpx;
   margin-top: 28rpx;
 }
 .msgbox .tit.data-v-374bf708 {
-    padding: 0 20rpx;
+  padding: 0 20rpx;
 }
 .swiper-item.data-v-374bf708 {
   background: #fff;
   border: 1px solid #eee;
   border-radius: 20rpx;
-  box-shadow: 0px 0px 1px 1px #ccc;
+  -webkit-box-shadow: 0px 0px 1px 1px #ccc;
+          box-shadow: 0px 0px 1px 1px #ccc;
   margin-bottom: 20rpx;
   width: 98%;
   margin: auto;
   margin-top: 10rpx;
   padding: 20rpx;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .swiper-item ._h3.data-v-374bf708 {
-    padding-bottom: 20rpx;
-    border-bottom: 1px solid #ccc;
+  padding-bottom: 20rpx;
+  border-bottom: 1px solid #ccc;
 }
 .childmsg .swiper.data-v-374bf708 {
   height: 470rpx;
 }
 .childmsg .swiper .swiper-item ._h3 > text.data-v-374bf708 {
-    float: left;
-    font-size: 14px;
+  float: left;
+  font-size: 14px;
 }
 .childmsg .swiper .swiper-item ._h3 .xb.data-v-374bf708, .childmsg .swiper .swiper-item ._h3 .nj.data-v-374bf708 {
-    color: #fff;
-    font-size: 12px;
-    float: right;
-    position: relative;
+  color: #fff;
+  font-size: 12px;
+  float: right;
+  position: relative;
 }
 .childmsg .swiper .swiper-item ._h3 .xb image.data-v-374bf708, .childmsg .swiper .swiper-item ._h3 .nj image.data-v-374bf708 {
-      width: 100%;
+  width: 100%;
 }
 .childmsg .swiper .swiper-item ._h3 .xb text.data-v-374bf708, .childmsg .swiper .swiper-item ._h3 .nj text.data-v-374bf708 {
-      position: absolute;
-      width: 100%;
-      text-align: center;
-      line-height: 30rpx;
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  line-height: 30rpx;
 }
 .childmsg .swiper .swiper-item ._h3 .xb.data-v-374bf708 {
-    width: 80rpx;
-    margin-right: 20rpx;
+  width: 80rpx;
+  margin-right: 20rpx;
 }
 .childmsg .swiper .swiper-item ._h3 .nj.data-v-374bf708 {
-    width: 100rpx;
+  width: 100rpx;
 }
 .childmsg .swiper .swiper-item > view.data-v-374bf708 {
-    font-size: 14px;
-    margin: 10rpx 0;
+  font-size: 14px;
+  margin: 10rpx 0;
 }
 .childmsg .swiper .swiper-item > view text.data-v-374bf708 {
-      float: left;
-      margin-right: 20rpx;
+  float: left;
+  margin-right: 20rpx;
 }
 .childmsg .swiper .swiper-item > view ._i.data-v-374bf708 {
-      float: right;
-      padding: 5rpx 20rpx;
-      border-radius: 20rpx;
-      background: #ccc;
+  float: right;
+  padding: 5rpx 20rpx;
+  border-radius: 20rpx;
+  background: #ccc;
 }
 .childmsg .swiper .swiper-item > view .xl.data-v-374bf708 {
-      width: 520rpx;
-      float: left;
+  width: 520rpx;
+  float: left;
 }
 .childmsg .swiper .swiper-item > view .xl .cl.data-v-374bf708 {
-        margin: 10rpx 0;
+  margin: 10rpx 0;
 }
 .childmsg .swiper .swiper-item > view .xl text.data-v-374bf708 {
-        margin: 0;
-        width: 232rpx;
+  margin: 0;
+  width: 232rpx;
 }
 .childmsg .swiper .swiper-item > view .xl image.data-v-374bf708 {
-        width: 30rpx;
-        margin: 0 10rpx;
-        float: left;
-        margin-top: 10rpx;
+  width: 30rpx;
+  margin: 0 10rpx;
+  float: left;
+  margin-top: 10rpx;
 }
 .jzmsg .msgs.data-v-374bf708 {
   margin-top: 10rpx;
 }
 .jzmsg .msgs text.data-v-374bf708:first-child {
-    margin-right: 10rpx;
+  margin-right: 10rpx;
 }
 .jzmsg .msgs .switchbox.data-v-374bf708 {
-    float: right;
-    width: 100rpx;
-    position: relative;
+  float: right;
+  width: 100rpx;
+  position: relative;
 }
 .jzmsg .msgs .switchbox .status.data-v-374bf708 {
-      position: absolute;
-      z-index: 100;
-      top: 10rpx;
-      padding: 0 10rpx;
-      box-sizing: border-box;
+  position: absolute;
+  z-index: 100;
+  top: 10rpx;
+  padding: 0 10rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .footerbox.data-v-374bf708 {
   background: #fff;
   padding: 40rpx 0;
 }
 .footerbox image.data-v-374bf708 {
-    width: 210rpx;
-    margin-left: 30rpx;
+  width: 210rpx;
+  margin-left: 30rpx;
+}
+.getuserbtn.data-v-374bf708 {
+  background: transparent;
+  width: 150rpx;
+  border: 0;
+  padding: 0;
+  font-size: 16px;
+  color: #fff;
+  height: 68rpx;
+  line-height: 68rpx;
+}
+.getuserbtn.data-v-374bf708:after {
+  border: 0;
+}
+.shadow.data-v-374bf708 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+.morebox.data-v-374bf708 {
+  float: right;
+  width: 0;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  height: 100%;
+  background: #fff;
+  color: #000;
+}
+.morebox .box.data-v-374bf708:first-child {
+  margin-top: 200rpx;
+  border-bottom: 1px solid #ccc;
+}
+.morebox .box.data-v-374bf708 {
+  line-height: 80rpx;
+  padding: 0 30rpx;
+}
+.morebox text.data-v-374bf708 {
+  float: left;
+}
+.morebox image.data-v-374bf708 {
+  float: right;
+  width: 20rpx !important;
+  margin-top: 23rpx;
 }
 

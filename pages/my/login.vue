@@ -1,6 +1,9 @@
 <template>
 	<view class="login_page cl">
-		<h3>手机验证码登录</h3>
+		<h3>注册</h3>
+		<view class="inputbox">
+			<input type="text" placeholder="请输入姓名" />
+		</view>
 		<view class="inputbox">
 			<input type="text" placeholder="请输入手机号" />
 		</view>
@@ -8,25 +11,83 @@
 			<input type="text" placeholder="请输入验证码" />
 			<button type="primary" @click.stop="getCodenum()">{{btnStr}}</button>
 		</view>
-		<button type="primary" class="login" @click="login()">登录</button>
-		<view class="footer cl">
+		<view class="tit" >
+			<text>省、市、区</text>
+		</view>
+		<view class="content">
+			<button class="btns" type="default" @tap="openAddres2">{{addressList[0]+"-"+addressList[1]+"-"+addressList[2]}}</button>
+			<simple-address ref="simpleAddress" :pickerValueDefault="cityPickerValueDefault" @onConfirm="onConfirm" themeColor="#007AFF"></simple-address>
+		</view>
+		<view class="inputbox">
+			<input type="text" placeholder="请输入详细地址" />
+		</view>
+		
+		
+		<button type="primary" class="login" @click="login()">注册</button>
+		<!-- <view class="footer cl">
 			<h4><text>第三方登录</text></h4>
 			<view class="sflogo">
 				<image src="../../static/img/img/dl_003.png" mode="widthFix"></image>
 			</view>
-		</view>
+		</view> -->
 	</view>
 </template>
 
 <script>
+	import simpleAddress from '@/components/common/simple-address/simple-address.vue';
 	export default {
 		data(){
 			return{
 				btnStr:'获取验证码',
-				codeFlag:true
+				codeFlag:true,
+				// addressData:{
+				// 	key:"366BZ-AIK6F-DBZJL-NY2AB-GMY2J-CDBRB",
+				// 	id:"",
+				// },
+				cityPickerValueDefault: [0, 0, 1],
+				pickerText: '',
+				addressList:['湖北省','武汉市','江夏区'],
+				codeList:[]
 			}
 		},
-		methods: {
+	   components: {
+			simpleAddress
+		},
+		onShow(){
+			// this.getAddress()
+		},
+		methods: {		
+			openAddres2() {
+				// 根据 label 获取
+				var index = this.$refs.simpleAddress.queryIndex(this.addressList, 'label');
+				console.log(index);
+				this.cityPickerValueDefault = index.index;
+				this.$refs.simpleAddress.open();
+			},
+		
+			onConfirm(e) {
+				this.pickerText = JSON.stringify(e);
+				console.log("这呃呃呃呃呃呃")
+				console.log(e)
+				this.addressList=e.labelArr
+				this.codeList[0]=e.provinceCode
+				this.codeList[1]=e.cityCode
+				this.codeList[2]=e.areaCode
+				console.log(this.codeList)
+			},
+			// 从腾讯api获取省市区数据
+			// getAddress(){				
+			// 	uni.request({
+			// 		url:"https://apis.map.qq.com/ws/district/v1/getchildren",
+			// 		method:"GET",
+			// 		data:this.addressData,
+			// 		success(res) {
+			// 			console.log('获取行政区划')
+			// 			console.log(res)
+						
+			// 		}
+			// 	})
+			// },
 			login(){
 				console.log("登录")
 			},
@@ -91,7 +152,7 @@
 			border-radius: 40rpx;
 			font-size: 14px;
 			background: #fff;
-			z-index: 100;
+			z-index: 1;
 		}
 	}
 	.login{
@@ -132,6 +193,25 @@
 				width: 100%;
 			}
 		}
+	}
+}
+.tit{
+	margin: 10rpx 20rpx;
+	color: #ccc;
+	text{
+		padding: 0 30rpx;
+	}
+}
+.content{
+	margin: 0 20rpx;
+	button{
+		background-color: #fff;
+		font-size: 14px;
+		color: #666;
+	}
+	button:after{
+		border-left: 0;
+		border-right: 0;	
 	}
 }
 </style>

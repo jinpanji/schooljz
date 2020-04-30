@@ -2,5 +2,7 @@
   "navigationBarTitleText": "",
   "navigationBarBackgroundColor": "#FF6C00",
   "navigationBarTextStyle": "white",
-  "usingComponents": {}
+  "usingComponents": {
+    "simple-address": "/components/common/simple-address/simple-address"
+  }
 }

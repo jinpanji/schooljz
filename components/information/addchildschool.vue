@@ -125,6 +125,7 @@
 		}
 		button{
 			width: 680rpx;
+			border-radius: 50rpx;
 		}
 	}
 </style>

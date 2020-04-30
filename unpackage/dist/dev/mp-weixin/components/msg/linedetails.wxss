@@ -32,61 +32,62 @@
   border: 1px solid #ccc;
 }
 .carbox .tits.data-v-5d6a9435 {
-    padding: 30rpx;
+  padding: 30rpx;
 }
 .carbox .tits text.data-v-5d6a9435:nth-child(1) {
-      float: left;
-      padding: 0 22rpx;
-      border-left: 2px solid #ec6400;
-      font-size: 30rpx;
-      font-weight: bold;
+  float: left;
+  padding: 0 22rpx;
+  border-left: 2px solid #ec6400;
+  font-size: 30rpx;
+  font-weight: bold;
 }
 .carbox .tits text.data-v-5d6a9435:nth-child(2) {
-      float: right;
-      padding: 0 22rpx;
-      background: #f0f0f0;
-      border-radius: 20rpx;
-      font-size: 28rpx;
+  float: right;
+  padding: 0 22rpx;
+  background: #f0f0f0;
+  border-radius: 20rpx;
+  font-size: 28rpx;
 }
 .carbox .status.data-v-5d6a9435 {
-    position: relative;
-    margin-bottom: 30rpx;
+  position: relative;
+  margin-bottom: 30rpx;
 }
 .carbox .status .bjimg.data-v-5d6a9435 {
-      width: 100%;
+  width: 100%;
 }
 .carbox .car.data-v-5d6a9435 {
-    width: 150rpx;
-    position: absolute;
-    top: -15rpx;
-    left: 0;
+  width: 150rpx;
+  position: absolute;
+  top: -15rpx;
+  left: 0;
 }
 .carbox .businfo > view.data-v-5d6a9435 {
-    float: left;
-    width: 50%;
-    font-size: 28rpx;
-    margin: 10rpx 0;
-    padding: 0 29rpx;
-    box-sizing: border-box;
+  float: left;
+  width: 50%;
+  font-size: 28rpx;
+  margin: 10rpx 0;
+  padding: 0 29rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 .carbox .businfo > view image.data-v-5d6a9435 {
-      width: 80rpx;
-      margin-right: 20rpx;
+  width: 80rpx;
+  margin-right: 20rpx;
 }
 .carbox .infos.data-v-5d6a9435 {
-    padding: 20rpx;
-    border-top: 1px solid #ccc;
-    line-height: 80rpx;
+  padding: 20rpx;
+  border-top: 1px solid #ccc;
+  line-height: 80rpx;
 }
 .carbox .infos text.data-v-5d6a9435 {
-      float: left;
+  float: left;
 }
 .carbox .infos switch.data-v-5d6a9435 {
-      float: left;
-      margin-left: 40rpx;
+  float: left;
+  margin-left: 40rpx;
 }
 .carbox .infos text.data-v-5d6a9435:nth-child(2) {
-      float: right;
+  float: right;
 }
 .txbox.data-v-5d6a9435 {
   padding: 20rpx 10rpx;
@@ -94,28 +95,28 @@
   padding-bottom: 100rpx;
 }
 .txbox .tit.data-v-5d6a9435 {
-    margin-left: 20rpx;
+  margin-left: 20rpx;
 }
 .txbox .tx.data-v-5d6a9435 {
-    margin: 20rpx;
-    width: 110rpx;
-    height: 110rpx;
-    border-radius: 50%;
-    overflow: hidden;
-    float: left;
-    position: relative;
+  margin: 20rpx;
+  width: 110rpx;
+  height: 110rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  float: left;
+  position: relative;
 }
 .txbox .tx image.data-v-5d6a9435 {
-      width: 100%;
+  width: 100%;
 }
 .txbox .tx view.data-v-5d6a9435 {
-      background: rgba(255, 255, 255, 0.8);
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      margin: auto;
+  background: rgba(255, 255, 255, 0.8);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
 > button.data-v-5d6a9435 {
   position: fixed;
@@ -137,35 +138,36 @@ button.data-v-5d6a9435 {
   z-index: 1000000;
 }
 .shadow .box.data-v-5d6a9435 {
-    border-radius: 20rpx;
-    background: #fff;
-    width: 560rpx;
-    margin: auto;
-    margin-top: 100rpx;
-    padding: 40rpx;
-    line-height: 60rpx;
+  border-radius: 20rpx;
+  background: #fff;
+  width: 560rpx;
+  margin: auto;
+  margin-top: 100rpx;
+  padding: 40rpx;
+  line-height: 60rpx;
 }
 .shadow .box .tx.data-v-5d6a9435 {
-      width: 126rpx;
-      height: 126rpx;
-      margin: auto;
-      border-radius: 50%;
-      overflow: hidden;
-      margin-bottom: 30rpx;
+  width: 126rpx;
+  height: 126rpx;
+  margin: auto;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 30rpx;
 }
 .shadow .box image.data-v-5d6a9435 {
-      width: 100%;
+  width: 100%;
 }
 .shadow .box button.data-v-5d6a9435 {
-      margin-top: 30rpx;
-      border-radius: 50rpx;
+  margin-top: 30rpx;
+  border-radius: 50rpx;
 }
 .shadow .box textarea.data-v-5d6a9435 {
-      background: #ccc;
-      height: 200rpx;
-      width: 100%;
-      padding: 20rpx;
-      box-sizing: border-box;
-      border-radius: 20rpx;
+  background: #ccc;
+  height: 200rpx;
+  width: 100%;
+  padding: 20rpx;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 20rpx;
 }
 

@@ -3,26 +3,37 @@
 		<view class="information">			
 			<view class="cl">
 				<text>姓名</text>
-				<view class="">张三啊</view>
+				<!-- <view class="">张三啊</view> -->
+				<input type="text" value="" placeholder="请输入姓名" />
 				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 			</view>
-			<view class="cl">
-				<text>性别</text>
-				<view class="">男</view>
-				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+			<view class="uni-list cl">
+				<view class="uni-list-cell">
+					<view class="uni-list-cell-left">
+						性别
+					</view>
+					<view class="uni-list-cell-db">
+						<picker mode="selector" :value="xbcheck" :range="xblist" @change="xbchange">
+							<view class="uni-input">{{xblist[xbcheck]}}</view>
+						</picker>
+					</view>
+					<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+				</view>
 			</view>
 			<view class="cl">
 				<text>关系</text>
-				<view class="">爸爸</view>
+				<!-- <view class="">爸爸</view> -->
+				<input type="text" value="" placeholder="请输入关系" />
 				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 			</view>
 			<view class="cl">
 				<text>联系人号码</text>
-				<view class="">15487584584</view>
+				<!-- <view class="">15487584584</view> -->
+				<input type="text" value="" placeholder="请输入电话号码" />
 			</view>
 			<view class="cl codebox">
 				<text>验证码</text>
-				<input type="text" value="" />
+				<input type="text" class="code" value="" placeholder="请输入" />
 				<button type="primary" class="getcode">获取验证码</button>
 			</view>
 		</view>		
@@ -47,12 +58,23 @@
 		components:{
 			Buslist
 		},
+		onLoad(e) {
+			console.log(e)
+			if(!e.id){
+				//添加家长信息
+				uni.setNavigationBarTitle({
+				title:'添加家长信息'
+				})
+			}
+		},
 		data(){
 			return{
 				list:['光谷大道五里湾','光谷大道金融港','光谷大三李陈','光谷大道关南村','光谷大道当代国际花园','光谷大道现代世贸中心'],
 				isSuccess:true,
 				boxShow:false,
-				shadowStr:"保存成功！"
+				shadowStr:"保存成功！",
+				xblist:['男','女'],
+				xbcheck:0,
 			}
 		}
 	}
@@ -68,12 +90,12 @@
 		>view{
 			padding: 38rpx 0;
 			border-bottom: 1px solid #e7e6ec;
-			text{
+			text,.uni-list-cell-left{
 				float: left;
 				width: 215rpx;		
 				color: #969696;
 			}
-			view{
+			input,.uni-list-cell-db{
 				float: left;
 				width: 460rpx;
 			}
@@ -84,9 +106,8 @@
 				float: right;
 				width: 20rpx;
 			}
-			input{
+			.code{
 				width: 260rpx;
-				float: left;
 			}
 		}
 		>view:last-child{

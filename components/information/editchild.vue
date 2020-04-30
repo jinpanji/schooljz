@@ -8,24 +8,49 @@
 			</view>
 			<view class="cl">
 				<text>姓名</text>
-				<view class="">张三啊</view>
+				<input type="text" value="" placeholder="请输入姓名" />
+				<!-- <view class="">张三啊</view> -->
 				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 			</view>
-			<view class="cl">
-				<text>性别</text>
-				<view class="">男</view>
-				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+			<view class="uni-list cl">
+				<view class="uni-list-cell">
+					<view class="uni-list-cell-left">
+						性别
+					</view>
+					<view class="uni-list-cell-db">
+						<picker mode="selector" :value="xbcheck" :range="xblist" @change="xbchange">
+							<view class="uni-input">{{xblist[xbcheck]}}</view>
+						</picker>
+					</view>
+					<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+				</view>
 			</view>
-			<view class="cl">
-				<text>年级</text>
-				<view class="">一年级，一班</view>
-				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+			<view class="uni-list cl">
+				<view class="uni-list-cell">
+					<view class="uni-list-cell-left">
+						班级
+					</view>
+					<view class="uni-list-cell-db">
+						<picker mode="multiSelector" @columnchange="bindMultiPickerColumnChange" :range="classlist" :value="classCheck" @change="xbchange">
+							<view class="uni-input">{{classlist[0][classCheck[0]]}}</view>
+						</picker>
+					</view>
+					<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+				</view>
 			</view>
-			<view class="cl">
-				<text>出生年月</text>
-				<view class="">2016-01-01</view>
-				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+			<view class="uni-list cl">
+				<view class="uni-list-cell">
+					<view class="uni-list-cell-left">
+						出生年月
+					</view>
+					<view class="uni-list-cell-db">
+						<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
+							<view class="uni-input">{{date}}</view>
+						</picker>
+					</view>
+				</view>
 			</view>
+			
 			<view class="cl">
 				<text>有效期</text>
 				<view class="red">2020-12-30</view>
@@ -76,14 +101,55 @@
 
 <script>
 	import Buslist from '../../components/common/buslist.vue'
+	function getDate(type) {
+		const date = new Date();
+	
+		let year = date.getFullYear();
+		let month = date.getMonth() + 1;
+		let day = date.getDate();
+	
+		if (type === 'start') {
+			year = year - 60;
+		} else if (type === 'end') {
+			year = year + 2;
+		}
+		month = month > 9 ? month : '0' + month;;
+		day = day > 9 ? day : '0' + day;
+	
+		return `${year}-${month}-${day}`;
+	}
 	export default {	
 		components:{
 			Buslist
 		},
 		data(){
 			return{
-				list:['光谷大道五里湾','光谷大道金融港','光谷大三李陈','光谷大道关南村','光谷大道当代国际花园','光谷大道现代世贸中心']
+				list:['光谷大道五里湾','光谷大道金融港','光谷大三李陈','光谷大道关南村','光谷大道当代国际花园','光谷大道现代世贸中心'],
+				xblist:['男','女'],
+				xbcheck:1,
+				classlist:[
+					["一年级","二年级","三年级","四年级","五年级","六年级"],
+					["一班","二班","三班",'四班']
+				],
+				classCheck:[0,1],
+				// date: getDate({
+				// 	format: true
+				// }),
+				date:'2020-4-28',
+				startDate:getDate('start'),
+				endDate:getDate('end'),
 			}
+		},
+		methods:{
+			xbchange(val){
+				console.log(val)
+			},
+			bindDateChange: function(e) {
+				this.date = e.detail.value
+			},
+			bindTimeChange: function(e) {
+				this.time = e.detail.value
+			},
 		}
 	}
 </script>
@@ -98,12 +164,12 @@
 		>view{
 			padding: 38rpx 0;
 			border-bottom: 1px solid #e7e6ec;
-			text{
+			text,.uni-list-cell-left{
 				float: left;
 				width: 162rpx;		
 				color: #969696;
 			}
-			view{
+			input,.uni-list-cell-db{
 				float: left;
 				width: 510rpx;
 			}

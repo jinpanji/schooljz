@@ -5,38 +5,29 @@
 			<wCalendar
 				ref="calendar"
 				:lunar="true" 
-				:disabledBefore="false" 
-				:disabledAfter="true" 
+				:disabledBefore="true" 
+				:disabledAfter="false" 
 				@confirm="getResult">
 			</wCalendar>
 		</view>
 		 
 		<view class="jilu">
-			<h3>行程记录</h3>
 			<view class="boxlist">
-				<view class="box">
-					<view class="tit">
-						早
-					</view>
-					<view class="times">
-						<text>出发：8：00</text>
-						<text>到达：8：30</text>
-					</view>
-					<image src="../../static/img/left.png" mode="widthFix"></image>
-					<view class="businfo cl">
-						<view>
-							<image src="../../static/img/sy_004.png" mode="widthFix"></image>
-							<text>现代森林小镇</text>
-						</view>
-						
-						<view>
-							<image src="../../static/img/sy_005.png" mode="widthFix"></image>
-							<text>现代世贸中心</text>
-						</view>
-					</view>
+				<h3><text>请选择请假车次</text></h3>
+				<view class="list">
+					<text class="check_index">早接</text>
+					<text>晚送</text>
+					<text>整天请假</text>
+				</view>	
+			</view>
+			<view class="msgbox">
+				<h3><text>请填写请假备注</text></h3>
+				<textarea value="" placeholder="例:生病了" />
+				<view class="tis">
+					提示：当前请假共10天，请假20车次。
 				</view>
 			</view>
-			<button type="primary">返回</button>
+			<button type="primary">提交</button>
 		</view>
 		
 	</view>
@@ -73,12 +64,64 @@
 		// height: ;
 	}
 	.jilu{
-		padding: 20rpx;
 		position: relative;
 		padding-bottom:100rpx ;
 		h3{
 			line-height: 100rpx;
-			
+			border-bottom: 1px solid #ccc;
+			text{
+				padding: 0 30rpx;
+				border-left: 2px solid #FF6C00;
+			}
+		}
+		.boxlist{
+			padding:0 20rpx;
+			background: #fff;
+			margin: 20rpx 0;
+			.list{
+				text{
+					display: inline-block;
+					width: 215rpx;
+					text-align: center;
+					line-height: 60rpx;
+					border-radius: 50rpx;
+					border: 1px solid #FF6C00;
+					color: #FF6C00;
+					margin: 15rpx;
+					font-size: 14px;
+				}
+				text:first-child{
+					margin-left: 0;
+				}
+				text:last-child{
+					margin-right: 0;
+				}
+				.check_index{
+					background: #FF6C00;
+					color: #fff;
+				}
+			}
+		}
+		.msgbox{
+			padding:0 20rpx;
+			background: #fff;
+			h3{
+				border: 0;
+			}
+			textarea{
+				background: #eee;
+				border-radius: 20rpx;
+				border: 1px solid #ccc;
+				height: 350rpx;
+				padding:30rpx;
+				box-sizing: border-box;
+				margin-top: 30rpx;
+			}
+			.tis{
+				color: red;
+				line-height: 100rpx;
+				font-size: 14px;
+			}
 		}
 		.box{
 			background: #fff;
@@ -114,18 +157,5 @@
 			width: 100%;
 		}
 	}
-	.businfo{
-		>view{
-			float: left;
-			width: 50%;
-			font-size: 28rpx;
-			margin: 10rpx 0;
-			padding: 0 29rpx;
-			box-sizing: border-box;
-			image{
-				width: 80rpx;
-				margin-right: 20rpx;
-			}
-		}
-	}
+
 </style>

@@ -1,137 +1,137 @@
 <template>
-	<view class="">
-		<view class="list_box">
-			<view class="box cl" @click="goDetails()">
-				<view class="img">
-					<image src="../../static/img/xxzx_009.png" mode="widthFix"></image>
-				</view>
-				<view class="textbox">
-					<h3>
-						<view class="statusbox">
-							<image src="../../static/img/weide001.png" mode="widthFix"></image>
-							<text>未读</text>
-						</view>
-						<text>投诉信息</text>
-						<text class="times">2019年8月21日</text>
-					</h3>
-					<text>报名已提交弟弟顶顶顶顶顶订单顶顶顶顶的点点滴滴</text>
-				</view>
+	<view class="page">		
+		<view class="jilu">
+			<view class="boxlist">
+				<h3><text>请选择投诉范围（单选）</text></h3>
+				<view class="list">
+					<text class="check_index">学校名+孩子名+线路名</text>
+					<text>平台</text>
+				</view>	
 			</view>
-			<view class="box cl">
-				<view class="img">
-					<image src="../../static/img/xxzx_009.png" mode="widthFix"></image>
-				</view>
-				<view class="textbox">
-					<h3>
-						<view class="statusbox">
-							<image src="../../static/img/xxzx_006.png" mode="widthFix"></image>
-							<text>未回复</text>
-						</view>
-						<text>投诉信息</text>
-						<text class="times">2019年8月21日</text>
-					</h3>
-					<text>报名已提交弟弟顶顶顶顶顶订单顶顶顶顶的点点滴滴</text>
-				</view>
+			<view class="msgbox">
+				<h3><text>投诉内容</text></h3>
+				<textarea value="" placeholder="请您将意见填写在这里" />
+				
 			</view>
-			<view class="box cl">
-				<view class="img">
-					<image src="../../static/img/xxzx_009.png" mode="widthFix"></image>
-				</view>
-				<view class="textbox">
-					<h3>
-						<view class="statusbox">
-							<image src="../../static/img/xxzx_007.png" mode="widthFix"></image>
-							<text>已回复</text>
-						</view>
-						<text>投诉信息</text>
-						<text class="times">2019年8月21日</text>
-					</h3>
-					<text>报名已提交弟弟顶顶顶顶顶订单顶顶顶顶的点点滴滴</text>
-				</view>
-			</view>
+			<button type="primary">提交</button>
 		</view>
+		
 	</view>
 </template>
 
 <script>
+	// import Rili from "../common/dark-calendar/dark-calendar.vue"
 	export default{
+		components:{
+
+		},
+		data(){
+			return{
+				result:{}
+			}
+		},
+		mounted(){
+			this.$refs.calendar.show();
+		},
 		methods:{
-			goDetails(){
-				uni.navigateTo({
-					url:"./info"
-				})
+			getResult(val){
+				console.log(val)
+				// this.result=val;
+				// this.$refs.calendar.show();
 			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
-	.list_box{
-		padding: 0 30rpx;
-		background: #fff;
-		// padding-bottom: 50rpx;
-		border-bottom: 1px solid #ccc;
-		.box{
-			padding: 25rpx 0;
+	.page{
+		// height: ;
+	}
+	.jilu{
+		position: relative;
+		padding-bottom:100rpx ;
+		h3{
+			line-height: 100rpx;
 			border-bottom: 1px solid #ccc;
-			.img{
-				float: left;
-				width: 90rpx;
-				margin-right: 20rpx;
-				margin-top: 15rpx;
-				image{
-					width: 100%;
-				}
-			}
-			.textbox{
-				float: left;
-				width: 580rpx;
-				font-size: 28rpx;
-				// font-weight: ;
-				line-height:60rpx;
-				h3{
-					width: 100%;
-					.times{
-						float: right;
-						font-weight: normal;
-						color: #ccc;
-					}
-					image{
-						width: 80rpx;
-						margin-right: 20rpx;
-					}
-				}
-				>text{
-					display: inline-block;
-					width: 100%;
-					overflow: hidden;
-					text-overflow:ellipsis;
-					white-space: nowrap;
-					color: #646464;
-				}
-			}
-		}
-		.box:last-child{
-			border: 0;
-		}
-		.statusbox{
-			float:left;
-			position: relative;
-			image{
-				width: 80rpx;
-				// position: absolute;			
-			}
 			text{
-				position: absolute;
-				top: 0;
-				color: #fff;
-				left: 0;
-				width: 80rpx;
-				text-align: center;
-				font-size: 8px;
-				// padding:  0 10rpx;
+				padding: 0 30rpx;
+				border-left: 2px solid #FF6C00;
 			}
+		}
+		.boxlist{
+			padding:0 20rpx;
+			background: #fff;
+			margin-bottom: 20rpx;
+			.list{
+				text{
+					display: inline-block;
+					// width: 215rpx;
+					padding: 0 40rpx;
+					text-align: center;
+					line-height: 60rpx;
+					border-radius: 50rpx;
+					border: 1px solid #FF6C00;
+					color: #FF6C00;
+					margin: 20rpx;
+					font-size: 14px;
+				}
+			
+				.check_index{
+					background: #FF6C00;
+					color: #fff;
+				}
+			}
+		}
+		.msgbox{
+			padding:0 20rpx;
+			background: #fff;
+			padding-bottom: 100rpx;
+			h3{
+				border: 0;
+			}
+			textarea{
+				background: #eee;
+				border-radius: 20rpx;
+				border: 1px solid #ccc;
+				height: 600rpx;
+				padding:30rpx;
+				box-sizing: border-box;
+				margin-top: 30rpx;
+			}
+		}
+		.box{
+			background: #fff;
+			padding: 20rpx 0;
+			border-radius: 10rpx;
+			border: 1px solid #ccc;
+			margin-bottom: 30rpx;
+			position: relative;
+			font-size: 30rpx;
+			.tit{
+				margin-left: 20rpx;
+			}
+			.times{
+				position: absolute;
+				right: 20rpx;
+				top: 20rpx;
+				background: #eee;
+				padding: 5rpx 0rpx;
+				border-radius: 30rpx;
+				text{
+					margin: 0 20rpx;
+				}
+			}
+			>image{
+				width: 100%;
+			}
+		}
+		button{
+			background: #FF6C00;
+			border-radius: 0;
+			position: fixed;
+			bottom: 0;
+			width: 100%;
 		}
 	}
-	
+
 </style>
