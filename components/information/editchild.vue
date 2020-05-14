@@ -95,7 +95,16 @@
 				</view>
 			</view>
 		</view>
-		<button type="primary" class="preservation">保存</button>
+		<button type="primary" v-if="!isInfo" class="preservation">保存</button>
+		<view class="footer" v-else>			
+			<view class="right">
+				<button type="primary" @click="Settlement()">结算</button>
+				<view class="msg">
+					合计:
+					<text>￥998.00</text>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -121,7 +130,7 @@
 	export default {	
 		components:{
 			Buslist
-		},
+		},		
 		data(){
 			return{
 				list:['光谷大道五里湾','光谷大道金融港','光谷大三李陈','光谷大道关南村','光谷大道当代国际花园','光谷大道现代世贸中心'],
@@ -138,6 +147,17 @@
 				date:'2020-4-28',
 				startDate:getDate('start'),
 				endDate:getDate('end'),
+				isInfo:false,//false:编辑孩子信息  true详情
+			}
+		},
+		onLoad(e){
+			console.log("type")
+			console.log(e.type)
+			if(e.type==2){
+				this.isInfo=true
+				uni.setNavigationBarTitle({
+				title:'详情'
+				})
 			}
 		},
 		methods:{
@@ -155,6 +175,7 @@
 </script>
 
 <style lang="scss" scoped>
+	
 	.tit{
 		padding: 0 20rpx;
 	}
@@ -192,6 +213,7 @@
 	}
 	.pick{
 		margin-bottom: 20rpx;
+		padding-bottom:120rpx ;
 		.box{
 			width: 210rpx;
 			height: 148rpx;
@@ -231,5 +253,32 @@
 	}
 	button:after{
 		border: 0;
+	}
+	.footer{
+		position: fixed;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		background: #fff;
+		border-top: 1px solid #ccc;
+		z-index: 1000000;
+		.right{
+			float: right;
+			width: 550rpx;
+			line-height: 100rpx;
+			.msg{
+				float: right;
+			}
+			button{
+				width: 180rpx;
+				background: #FF6C00;
+				float: right;
+				border-radius: 0;
+			}
+			text{
+				color: red;
+				margin: 0 20rpx;
+			}
+		}
 	}
 </style>

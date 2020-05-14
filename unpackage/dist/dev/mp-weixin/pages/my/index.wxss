@@ -59,8 +59,7 @@
   margin-top: 100rpx;
 }
 .usermsg .msgbox .txbox image.data-v-374bf708 {
-  width: 150%;
-  margin-left: -50%;
+  width: 100%;
 }
 .usermsg .msgbox .username.data-v-374bf708 {
   line-height: 80rpx;

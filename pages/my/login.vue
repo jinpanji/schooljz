@@ -2,39 +2,35 @@
 	<view class="login_page cl">
 		<h3>注册</h3>
 		<view class="inputbox">
-			<input type="text" placeholder="请输入姓名" />
+			<input type="text" v-model="userName" placeholder="请输入姓名" />
 		</view>
 		<view class="inputbox">
-			<input type="text" placeholder="请输入手机号" />
+			<input type="text"v-model="phone" placeholder="请输入手机号" />
 		</view>
 		<view class="inputbox">
-			<input type="text" placeholder="请输入验证码" />
-			<button type="primary" @click.stop="getCodenum()">{{btnStr}}</button>
+			<input type="text" class="codeinput" v-model="regCode" placeholder="请输入验证码" />
+			<button type="primary" @click="getCodenum()">{{btnStr}}</button>
 		</view>
 		<view class="tit" >
 			<text>省、市、区</text>
 		</view>
 		<view class="content">
-			<button class="btns" type="default" @tap="openAddres2">{{addressList[0]+"-"+addressList[1]+"-"+addressList[2]}}</button>
+			<button class="btns" type="default" @tap="openAddres2">{{addressList[0]?(addressList[0]+"-"+addressList[1]+"-"+addressList[2]):"请选择省市区"}}</button>
 			<simple-address ref="simpleAddress" :pickerValueDefault="cityPickerValueDefault" @onConfirm="onConfirm" themeColor="#007AFF"></simple-address>
 		</view>
 		<view class="inputbox">
-			<input type="text" placeholder="请输入详细地址" />
+			<input type="text" v-model="address" placeholder="请输入详细地址" />
 		</view>
 		
 		
-		<button type="primary" class="login" @click="login()">注册</button>
-		<!-- <view class="footer cl">
-			<h4><text>第三方登录</text></h4>
-			<view class="sflogo">
-				<image src="../../static/img/img/dl_003.png" mode="widthFix"></image>
-			</view>
-		</view> -->
+		<button type="primary" class="login" @click="login()">注册</button>		
 	</view>
 </template>
 
 <script>
 	import simpleAddress from '@/components/common/simple-address/simple-address.vue';
+	var QQMapWX = require("../../components/unitls/qqmap-wx-jssdk.js")
+	var qqmapsdk
 	export default {
 		data(){
 			return{
@@ -46,17 +42,70 @@
 				// },
 				cityPickerValueDefault: [0, 0, 1],
 				pickerText: '',
-				addressList:['湖北省','武汉市','江夏区'],
-				codeList:[]
+				// addressList:['湖北省','武汉市','江夏区'],
+				// addressList:['北京市','市辖区','东城区'],
+				addressList:[],
+				codeList:[],
+				userName:"",//姓名
+				phone:"",//电话
+				regCode:"",//验证码
+				address:"",//详细地址
+				avatar:"",//头像
+				openid:"",//微信用户openId
 			}
 		},
 	   components: {
 			simpleAddress
 		},
-		onShow(){
-			// this.getAddress()
+		onLoad(opt){
+			qqmapsdk = new QQMapWX({
+			  key: 'SX7BZ-DJI6G-G5OQK-IDBI4-RZ6TO-33FBA' //这里自己的key秘钥进行填充
+			});
+			this.avatar=opt.avatar
+			this.openId=opt.openid
 		},
-		methods: {		
+		onShow(){
+			let that=this
+			// this.getAddress()
+			uni.getLocation({
+				success:(res1)=>{
+					console.log(res1)
+					let latitude=res1.latitude
+					let longitude=res1.longitude
+					qqmapsdk.reverseGeocoder({
+					  location: {
+					    latitude: latitude,
+					    longitude: longitude
+					  },
+					  success: function (res) {
+							let data=res.result.address_component
+							that.addressList[0]=data.province
+							that.addressList[1]=data.city
+							that.addressList[2]=data.district
+							that.getDwCode()
+					  },
+					  fail: function (res) {
+						 // that.debug="获取中文位置失败"+JSON.stringify(res)
+					    console.log(res);
+					  },
+					  complete: function (res) {
+					    // console.log(res);
+					  }
+					});
+				}
+			})
+			
+		},
+		methods:{			
+			getDwCode(){
+				var index = this.$refs.simpleAddress.queryIndex(this.addressList, 'label');
+				console.log(index);
+				var data=index.data
+				this.codeList[0]=data.province.value
+				this.codeList[1]=data.city.value
+				this.codeList[2]=data.area.value
+				console.log(this.codeList)
+			},
 			openAddres2() {
 				// 根据 label 获取
 				var index = this.$refs.simpleAddress.queryIndex(this.addressList, 'label');
@@ -89,31 +138,134 @@
 			// 	})
 			// },
 			login(){
-				console.log("登录")
+				console.log("注册")
+				if(this.phone&&this.regCode&&this.address&&this.userName){
+					//请求验证，验证码是否正确,验证码正确再提交注册
+					this.$http.post("puparent/verification",{
+						phone:this.phone,
+						code:this.regCode
+					}).then(res=>{
+						if(res.code==100){
+							this.submitInfo()
+						}else if(res.code==250){
+							uni.showToast({
+								icon:"none",
+								title:res.msg
+							})
+						}
+					})
+				}else{
+					uni.showToast({
+						icon:"none",
+						title:"请填写完整的信息！"
+					})
+				}
+			},
+			submitInfo(){
+				// 提交注册信息
+				this.$http.post("puparent/register",{
+					wechatOpenid:this.openId,//微信openid
+					photo:this.avatar,//头像
+					detailAddreee:this.address,//详细地址
+					name:this.userName,//用户名称
+					//phone:this.regCode,//验证码？？？？
+					phone:this.phone,//电话？？？？
+					relation:"",//关系？？？？
+					provinceCode:this.codeList[0],//省
+					provinceName:this.addressList[0],
+					cityCode:this.codeList[1],//市
+					cityName:this.addressList[1],
+					areaCode:this.codeList[2],//区
+					areaName:this.addressList[2],
+				}).then(res=>{
+					if(res.code==100){
+						let usertInfo=res.info
+						usertInfo=JSON.stringify(usertInfo)
+						uni.setStorageSync('userinfo',usertInfo)
+						uni.showToast({
+							icon:"none",
+							title:"注册成功，请前去登录！"
+						})
+						setTimeout(()=>{
+							uni.navigateBack({})
+						},2000)
+					}else{
+						uni.showToast({
+							icon:"none",
+							title:res.msg
+						})
+					}
+				})
 			},
 			getCodenum(){
 				//获取验证码
-			console.log("获取验证码")
+				console.log("获取验证码")
+				if(this.codeFlag){
+					console.log('验证')
+					console.log(/^1[3456789]\d{9}$/.test(this.phone))
+					 if(!(/^1[3456789]\d{9}$/.test(this.phone))){ 
+						 this.codeFlag=false
+						 uni.showToast({
+							 icon:"none",
+							 title:"请输入正确的手机号码！"
+						 })
+					 }
+				}
 				if(this.codeFlag){
 					//可以获取
 					this.codeFlag=false
-					let timer=null
-					let count=60
-					timer=setInterval(()=>{
-							this.btnStr=count+'s后重新获取'
-							count--
-							if(count==0){
-								clearInterval(timer)
-								this.codeFlag=true
-								this.btnStr="获取验证码"
-							}
-					},1000)
+					uni.showLoading({
+						icon:"loading",
+						title:"正在发送！"
+					})
+					this.$http.post("puparent/produceCode",{
+						phone:this.phone
+					}).then(res=>{
+							uni.hideLoading();
+						if(res.code==100){
+							uni.showLoading({
+								icon:"success",
+								title:"发送成功！",
+								success:()=>{
+									setTimeout(()=>{
+										uni.hideLoading();
+									},2000)
+								}
+							})
+							//获取成功倒计时
+							let timer=null
+							let count=60
+							timer=setInterval(()=>{
+									this.btnStr=count+'s后重新获取'
+									count--
+									if(count==0){
+										clearInterval(timer)
+										this.codeFlag=true
+										this.btnStr="获取验证码"
+									}
+							},1000)
+							
+						}else{
+							// 发送失败
+							uni.hideLoading()
+							uni.showToast({
+								icon:"none",
+								title:"发送验证码失败！"
+							})
+							this.codeFlag=true
+						}
+					})
+					
 				}else{
 					//不可以获取
-					uni.showToast({
-						title:'正在获取，请稍后！',
-						icon:'none'
-					})
+					 if((/^1[3456789]\d{9}$/.test(this.phone))){ 
+						 uni.showToast({
+						 	title:'正在获取，请稍后！',
+						 	icon:'none'
+						 })
+					 }else{
+						 this.codeFlag=true
+					 }				
 				}
 			}
 		}
@@ -137,7 +289,7 @@
 		margin: auto;
 		width: 95%;
 		border-bottom: 1px solid #ccc;
-		color: #ccc;
+		color: #333;
 		position: relative;
 		button{
 			position: absolute;
@@ -153,6 +305,9 @@
 			font-size: 14px;
 			background: #fff;
 			z-index: 1;
+		}
+		.codeinput{
+			width: 50%;
 		}
 	}
 	.login{
@@ -214,4 +369,5 @@
 		border-right: 0;	
 	}
 }
+
 </style>

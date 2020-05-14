@@ -103,6 +103,7 @@
 .footerbox.data-v-b9b316e8 {
   background: #fff;
   padding: 40rpx 0;
+  padding-bottom: 140rpx;
 }
 .footerbox image.data-v-b9b316e8 {
   width: 210rpx;

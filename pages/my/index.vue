@@ -19,7 +19,7 @@
 					</view>
 				</h5>
 				<view class="txbox" @click="lookInfo()">
-					<image src="../../static/img/img/sy_001.png" mode="widthFix"></image>
+					<image :src="avatarUrl?avatarUrl:'../../static/img/img/sy_001.png'" mode="widthFix"></image>
 				</view>
 				<view v-if="isLogin" class="username">
 					{{userName}}
@@ -152,26 +152,63 @@
 				ischeck:false,
 				isLogin:false,
 				isShow:false,
+				avatarUrl:'',
+				userInfo:{},
 			}
 		},
 		methods:{
 			bindGetUserInfo(val){
 				console.log("获取微信用户数据")
 				console.log(val)
+				let that=this
 				wx.login({
 					success:(e)=>{
 						console.log('获取code')
 						console.log(e)
+						let code=e.code
 						wx.getUserInfo({
 							success:(res)=>{
 								console.log("获取用户信息")
 								// 获取头像
-								console.log(res.userInfo.avatarUrl)
+								console.log(res.userInfo.avatarUrl)	
+								this.avatarUrl=res.userInfo.avatarUrl
+								// uni.setStorageSync('userAvatar',res.userInfo.avatarUrl)
+							}
+						})
+						that.$http.post("puparent/wxGrant",{
+							type:0,
+							code:code,
+							parentId:''
+						}).then(res=>{
+							if(res.code==300){								
 								uni.navigateTo({
-									url:"login"
+									url:"login?avatar="+this.avatarUrl+"&openid="+res.info.openId
+								})
+							}else if(res.code==100){
+								uni.showToast({
+									icon:"none",
+									title:"登录成功！"
 								})
 							}
 						})
+					}
+				})
+			},
+			getUserList(){
+				//获取孩子信息，
+				this.$http.post("puchildren/listChildrenLineByParentId",{
+					parentId:1,//家长id
+				}).then(res=>{
+					if(res.code==100){
+						
+					}
+				})
+				// 家长组信息
+				this.$http.post("puchildren/listChildrenLineByParentId",{
+					parentId:1,//家长id
+				}).then(res=>{
+					if(res.code==100){
+						
 					}
 				})
 			},
@@ -272,8 +309,8 @@
 				box-shadow: 0px 0px 5px 0px #999999;
 				margin-top: 100rpx;
 				image{
-					width: 150%;
-					margin-left: -50%;
+					width: 100%;
+					// margin-left: -50%;
 				}
 			}
 			.username{

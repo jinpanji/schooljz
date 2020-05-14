@@ -1,4 +1,4 @@
-const baseUrl='https://www.soupuxia.com/api/'
+const baseUrl='http://192.168.0.109:3326/'
 // const baseUrl='http://47.111.141.24/api/'
 // const baseUrl='http://192.168.0.125/api/'
 
@@ -53,13 +53,13 @@ http.get=(url,data)=>{
 	})
 }
 http.post=(url,data)=>{
-	var token=''
+	// var token=''
 	var userInfo=uni.getStorageSync('userinfo')
 	if(userInfo){
 		userInfo=JSON.parse(userInfo)
-		token=userInfo.token
+		// token=userInfo.token
 	}
-	data['token']=token
+	// data['token']=token
 	headers['Content-type']="application/x-www-form-urlencoded"
 	return uni.request({
 		url:baseUrl+url,

@@ -94,21 +94,16 @@
 				scope:'userInfo'
 			})
 		},
+		onShow(){
+			this.getuserinfo()
+		},
 		methods: {
 			getuserinfo(){
-				// uni.getUserInfo({
-				// 	success:(res)=>{
-				// 		console.log(res)
-				// 	},
-				// 	fail:(err)=>{
-				// 		console.log(err)
-				// 	}
-				// })
-				// wx.login({
-				// 	success:(res)=>{
-				// 		console.log(res)
-				// 	}
-				// }) 
+				this.$http.post("puchildren/listByParentId",{
+					parentId:1
+				}).then(res=>{
+					
+				})
 			},
 			goRouter(){
 				if(this.isLogin){
@@ -268,6 +263,7 @@
 	.footerbox{
 		background: #fff;
 		padding: 40rpx 0;
+		padding-bottom: 140rpx;
 		image{
 			width: 210rpx;
 			margin-left: 30rpx;

@@ -61,6 +61,7 @@
 }
 .pick.data-v-035fc8e4 {
   margin-bottom: 20rpx;
+  padding-bottom: 120rpx;
 }
 .pick .box.data-v-035fc8e4 {
   width: 210rpx;
@@ -106,5 +107,32 @@
 }
 button.data-v-035fc8e4:after {
   border: 0;
+}
+.footer.data-v-035fc8e4 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ccc;
+  z-index: 1000000;
+}
+.footer .right.data-v-035fc8e4 {
+  float: right;
+  width: 550rpx;
+  line-height: 100rpx;
+}
+.footer .right .msg.data-v-035fc8e4 {
+  float: right;
+}
+.footer .right button.data-v-035fc8e4 {
+  width: 180rpx;
+  background: #FF6C00;
+  float: right;
+  border-radius: 0;
+}
+.footer .right text.data-v-035fc8e4 {
+  color: red;
+  margin: 0 20rpx;
 }
 

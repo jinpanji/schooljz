@@ -47,7 +47,7 @@
 				<text>全选</text>	
 			</view>
 			<view class="right">
-				<button type="primary">结算</button>
+				<button type="primary" @click="Settlement()">结算</button>
 				<view class="msg">
 					合计:
 					<text>￥998.00</text>
@@ -126,7 +126,13 @@
 				console.log(val)
 				// this.checknum=val
 				
-			}
+			},
+			Settlement(){
+				// 结算
+				uni.navigateTo({
+					url:"../information/editchild?type=2"
+				})
+			},
 		}
 	}
 </script>

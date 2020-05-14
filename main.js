@@ -3,6 +3,9 @@ import App from './App'
 
 Vue.config.productionTip = false
 
+import http from '@/components/unitls/http.js'
+Vue.prototype.$http=http
+
 import "@/components/style/resetm.css"
 
 

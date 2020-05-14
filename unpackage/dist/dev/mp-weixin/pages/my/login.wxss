@@ -39,7 +39,7 @@
   margin: auto;
   width: 95%;
   border-bottom: 1px solid #ccc;
-  color: #ccc;
+  color: #333;
   position: relative;
 }
 .login_page .inputbox button.data-v-00f39a1f {
@@ -56,6 +56,9 @@
   font-size: 14px;
   background: #fff;
   z-index: 1;
+}
+.login_page .inputbox .codeinput.data-v-00f39a1f {
+  width: 50%;
 }
 .login_page .login.data-v-00f39a1f {
   width: 95%;
