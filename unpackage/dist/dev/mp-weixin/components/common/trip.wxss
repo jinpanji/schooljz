@@ -24,29 +24,29 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.trip_page.data-v-c68dfc84 {
+.trip_page.data-v-716b0349 {
   padding: 40rpx;
 }
-.trip_page > view.data-v-c68dfc84 {
+.trip_page > view.data-v-716b0349 {
   border-left: 1px solid #ccc;
 }
-.trip_page > view ._h3.data-v-c68dfc84 {
+.trip_page > view ._h3.data-v-716b0349 {
   margin-left: -20rpx;
   position: relative;
   overflow: hidden;
 }
-.trip_page > view ._h3 image.data-v-c68dfc84 {
+.trip_page > view ._h3 image.data-v-716b0349 {
   position: absolute;
   top: 0rpx;
   width: 40rpx;
 }
-.trip_page > view ._h3 text.data-v-c68dfc84 {
+.trip_page > view ._h3 text.data-v-716b0349 {
   font-weight: bold;
   margin-left: 60rpx;
   position: absolute;
   top: -5rpx;
 }
-.trip_page > view ._h3 view.data-v-c68dfc84 {
+.trip_page > view ._h3 view.data-v-716b0349 {
   color: #666;
   padding: 0 50rpx;
   font-size: 12px;
@@ -54,14 +54,14 @@
   margin-bottom: 10rpx;
   margin-top: 35rpx;
 }
-.trip_page > view .msgs.data-v-c68dfc84 {
+.trip_page > view .msgs.data-v-716b0349 {
   padding: 0 30rpx;
   position: relative;
   font-size: 14px;
   line-height: 50rpx;
   padding-bottom: 20rpx;
 }
-.trip_page > view .msgs ._i.data-v-c68dfc84 {
+.trip_page > view .msgs ._i.data-v-716b0349 {
   position: absolute;
   left: -10rpx;
   top: 20rpx;
@@ -70,10 +70,10 @@
   background: #ccc;
   border-radius: 50%;
 }
-.trip_page > view .msgs .red.data-v-c68dfc84 {
+.trip_page > view .msgs .red.data-v-716b0349 {
   color: red;
 }
-.trip_page > view .msgs .green.data-v-c68dfc84 {
+.trip_page > view .msgs .green.data-v-716b0349 {
   color: green;
 }
 

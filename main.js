@@ -6,6 +6,8 @@ Vue.config.productionTip = false
 import http from '@/components/unitls/http.js'
 Vue.prototype.$http=http
 
+Vue.prototype.$imgurl="http://192.168.0.112:3326/"
+
 import "@/components/style/resetm.css"
 
 

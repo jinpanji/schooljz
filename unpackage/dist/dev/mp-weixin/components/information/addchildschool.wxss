@@ -24,24 +24,27 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.pages.data-v-db833ca6 {
+.pages.data-v-e1448e7c {
   background: #fb832c;
 }
-button.data-v-db833ca6 {
+button.data-v-e1448e7c {
   background: #fb832c;
 }
-.head.data-v-db833ca6 {
+.check_text.data-v-e1448e7c {
+  color: #FF6C00;
+}
+.head.data-v-e1448e7c {
   padding: 50rpx 30rpx;
   padding-top: 150rpx;
 }
-.head image.data-v-db833ca6 {
+.head image.data-v-e1448e7c {
   float: left;
   width: 30rpx;
   margin-top: 10rpx;
 }
-.head input.data-v-db833ca6 {
+.head input.data-v-e1448e7c {
   float: left;
-  width: 530rpx;
+  width: 510rpx;
   text-align: center;
   padding: 10rpx;
   background: #fff;
@@ -49,7 +52,7 @@ button.data-v-db833ca6 {
   border-radius: 50rpx;
   margin-left: 30rpx;
 }
-.head button.data-v-db833ca6 {
+.head button.data-v-e1448e7c {
   width: 90rpx;
   float: right;
   color: #fff;
@@ -59,45 +62,45 @@ button.data-v-db833ca6 {
   font-size: 16px;
   text-align: right;
 }
-.head button.data-v-db833ca6:after {
+.head button.data-v-e1448e7c:after {
   border: 0;
 }
-.schoolbox.data-v-db833ca6, .school_null.data-v-db833ca6 {
+.schoolbox.data-v-e1448e7c, .school_null.data-v-e1448e7c {
   height: 1060rpx;
   background: #fff;
   border-top-right-radius: 30rpx;
   border-top-left-radius: 30rpx;
 }
-.schoolbox .listbox.data-v-db833ca6 {
+.schoolbox .listbox.data-v-e1448e7c {
   height: 920rpx;
   overflow-x: hidden;
   overflow-y: scroll;
   padding: 20rpx 30rpx;
 }
-.schoolbox .listbox .li.data-v-db833ca6 {
+.schoolbox .listbox .li.data-v-e1448e7c {
   padding: 30rpx 0;
   border-bottom: 1px solid #e6e6e6;
 }
-.schoolbox button.data-v-db833ca6 {
+.schoolbox button.data-v-e1448e7c {
   color: #fff;
   position: fixed;
   bottom: 0;
   width: 100%;
 }
-.school_null.data-v-db833ca6 {
+.school_null.data-v-e1448e7c {
   overflow: hidden;
 }
-.school_null image.data-v-db833ca6 {
+.school_null image.data-v-e1448e7c {
   display: block;
   width: 230rpx;
   margin: auto;
   margin-top: 150rpx;
 }
-.school_null view.data-v-db833ca6 {
+.school_null view.data-v-e1448e7c {
   text-align: center;
   margin: 20rpx 0;
 }
-.school_null button.data-v-db833ca6 {
+.school_null button.data-v-e1448e7c {
   width: 680rpx;
   border-radius: 50rpx;
 }

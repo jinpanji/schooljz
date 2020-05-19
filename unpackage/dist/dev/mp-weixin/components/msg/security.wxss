@@ -24,29 +24,29 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.report.data-v-43588369 {
+.report.data-v-04e6b33e {
   padding: 0 20rpx;
   background: #fff;
 }
-.report > view.data-v-43588369 {
+.report > view.data-v-04e6b33e {
   padding: 20rpx 0;
   border-bottom: 1px solid #ccc;
 }
-.report > view Select.data-v-43588369 {
+.report > view Select.data-v-04e6b33e {
   float: right;
 }
-.report > view ._h4.data-v-43588369 {
+.report > view ._h4.data-v-04e6b33e {
   color: #ccc;
   font-size: 30rpx;
 }
-.report > button.data-v-43588369 {
+.report > button.data-v-04e6b33e {
   width: 100%;
   margin-top: 40rpx;
 }
-button.data-v-43588369 {
+button.data-v-04e6b33e {
   background: #FF6C00;
 }
-.shadow.data-v-43588369 {
+.shadow.data-v-04e6b33e {
   position: fixed;
   top: 0;
   left: 0;
@@ -56,7 +56,7 @@ button.data-v-43588369 {
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000000;
 }
-.shadow .box.data-v-43588369 {
+.shadow .box.data-v-04e6b33e {
   border-radius: 20rpx;
   background: #fff;
   width: 560rpx;
@@ -65,12 +65,12 @@ button.data-v-43588369 {
   padding: 40rpx;
   line-height: 74rpx;
 }
-.shadow .box ._h3.data-v-43588369 {
+.shadow .box ._h3.data-v-04e6b33e {
   text-align: center;
   font-weight: bold;
   line-height: 60rpx;
 }
-.shadow .box button.data-v-43588369 {
+.shadow .box button.data-v-04e6b33e {
   margin-top: 30rpx;
   border-radius: 50rpx;
 }

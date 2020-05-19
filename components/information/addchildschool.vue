@@ -2,17 +2,17 @@
 	<view class="pages">
 		<view class="head cl">
 			<image src="../../static/img/dl_002.png" mode="widthFix" @click="goBack()"></image>
-			<input type="text" value="" placeholder="请输入学校名称" />
-			<button type="primary">搜索</button>
+			<input type="text" v-model="serachStr" @input="strChange()" value="" placeholder="请输入学校名称" />
+			<button type="primary" @click="getSchoolList()">搜索</button>
 		</view>
 		<!-- 搜索有结果 -->
 		<view class="schoolbox cl" v-if="schoolShow">
 			<view class="listbox">
-				<view class="li" v-for="(item,index) in list">
-					<text>光谷第{{item}}小学</text>
+				<view class="li" v-for="(item,index) in list" @click="checkSchool(item.id)">
+					<text :class="schoolId==item.id?'check_text':''">{{item.name}}</text>
 				</view>
 			</view>
-			<button type="primary">下一步</button>
+			<button type="primary" @click="nextStep()">下一步</button>
 		</view>
 		<!-- 搜索结果 -->
 		<view class="school_null" v-else>
@@ -27,8 +27,10 @@
 	export default{
 		data(){
 			return{
-				list:[1,2,3,4,5,6,7,8,9,10,11,12,13],
-				schoolShow:false,
+				list:[],
+				schoolShow:true,
+				serachStr:"",
+				schoolId:null,
 			}
 		},
 		methods:{
@@ -40,9 +42,66 @@
 			},
 			goBack(){
 				uni.navigateBack({
-					
 				})
-			}
+			},
+			getSchoolList(){
+				uni.showLoading({
+					icon:"loading",
+					title:"正在搜索"
+				})
+				this.$http.post("puSchool/list",{name:this.serachStr}).then(res=>{
+					if(res.code==100){
+						uni.hideLoading()
+						if(res.info.length==0){
+							this.schoolShow=false
+						}else{
+							this.schoolShow=true
+							this.list=res.info
+							if(res.info.length==1){
+								this.schoolId=res.info[0].id
+							}
+							// var data={
+							// 	id:2,
+							// 	name:"测试",
+								
+							// }
+							// this.list.push(data)
+						}
+					}else{
+						uni.showToast({
+							icon:"none",
+							title:res.msg
+						})
+					}
+				})
+			},
+			strChange(){
+				// console.log('输入框变化')
+				// console.log(this.serachStr)
+			},
+			checkSchool(id){
+				// 选择学校
+				this.schoolId=id
+			},
+			nextStep(){
+				// 下一步
+				if(this.schoolId){
+					let data={
+						schoolId:this.schoolId
+					}
+					data=JSON.stringify(data)
+					uni.setStorageSync("addchildinfo",data)
+					uni.navigateTo({
+						url:"addchildmsg"
+					})
+					// components/information/addchildmsg
+				}else{
+					uni.showToast({
+						icon:"none",
+						title:"请选择学校！"
+					})
+				}
+			},
 		}
 	}
 </script>
@@ -54,6 +113,9 @@
 	button{
 		background: #fb832c;
 	}
+	.check_text{
+		color: #FF6C00;
+	}
 	.head{
 		padding: 50rpx 30rpx;	
 		padding-top: 150rpx;
@@ -64,7 +126,7 @@
 		}
 		input{
 			float: left;
-			width:530rpx;
+			width:510rpx;
 			text-align: center;
 			padding: 10rpx;
 			background: #fff;

@@ -2,12 +2,12 @@
 	<view class="box">
 		<view class="grouplist cl" :style="'width:'+(list.length*150+150)+'rpx'">
 			<view class="li cl" v-for="(item,index) in list">
-				<view class="cl"> 
-				<image v-if="checkList.indexOf(index)!=-1" src="../../static/img/img/sy_005.png" mode="widthFix"></image>
-					<i :class="checkList.indexOf(index)!=-1?'check':''">
+				<view class="cl" @click="changeNum(item.id)"> 
+				<image v-if="checkList.indexOf(item.id)!=-1" src="../../static/img/img/sy_005.png" mode="widthFix"></image>
+					<i :class="checkList.indexOf(item.id)!=-1?'check':''">
 						<!-- <em></em> -->
 					</i>
-					<text>{{item}}</text>
+					<text>{{item.name}}</text>
 				</view>
 			</view>
 			<view class="li endli">
@@ -25,13 +25,21 @@
 		data(){
 			return{
 				boxWidth:100,
-				checkList:[2]
+				checkList:[]
 			}
 		},
 		mounted(){
 			// let listLen=this.$props.list.length
 			// console.log(lis\)
 			// this.boxWidth=listLen*140
+		},
+		methods:{
+			changeNum(id){
+				console.log("选择站点")
+				console.log(id)
+				this.checkList=[id]
+				
+			}
 		}
 	}
 </script>
@@ -58,7 +66,7 @@
 			position: relative;
 			border-top: 30rpx solid #7fc1f5;
 			width: 150rpx;
-			height: 500rpx;
+			height: 200rpx;
 			>view{
 				
 				position: absolute;

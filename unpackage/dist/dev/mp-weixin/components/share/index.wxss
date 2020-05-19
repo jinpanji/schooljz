@@ -24,13 +24,13 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.share_page.data-v-53f17217 {
+.share_page.data-v-28a373a2 {
   position: relative;
 }
-.share_page image.data-v-53f17217 {
+.share_page image.data-v-28a373a2 {
   width: 100%;
 }
-.share_page .box.data-v-53f17217 {
+.share_page .box.data-v-28a373a2 {
   position: absolute;
   top: 0;
   left: 0;
@@ -38,7 +38,7 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.share_page .head.data-v-53f17217 {
+.share_page .head.data-v-28a373a2 {
   height: 100rpx;
   line-height: 100rpx;
   text-align: center;
@@ -46,32 +46,32 @@
   margin-top: 30rpx;
   padding: 0 30rpx;
 }
-.share_page .head image.data-v-53f17217 {
+.share_page .head image.data-v-28a373a2 {
   width: 20rpx;
   float: left;
   margin-top: 37rpx;
 }
-.share_page .numbox.data-v-53f17217 {
+.share_page .numbox.data-v-28a373a2 {
   color: #fff;
   position: relative;
   padding: 0 30rpx;
   padding-top: 40rpx;
   text-align: center;
 }
-.share_page .numbox ._h4.data-v-53f17217 {
+.share_page .numbox ._h4.data-v-28a373a2 {
   font-size: 14px;
 }
-.share_page .numbox ._h3.data-v-53f17217 {
+.share_page .numbox ._h3.data-v-28a373a2 {
   font-size: 20px;
   line-height: 84rpx;
 }
-.share_page .numbox image.data-v-53f17217 {
+.share_page .numbox image.data-v-28a373a2 {
   width: 200rpx;
   position: absolute;
   right: 20rpx;
   top: 0;
 }
-.share_page .listbox.data-v-53f17217 {
+.share_page .listbox.data-v-28a373a2 {
   margin-top: 40rpx;
   border-top-right-radius: 20rpx;
   border-top-left-radius: 20rpx;
@@ -81,19 +81,19 @@
   min-height: 950rpx;
   position: relative;
 }
-.share_page .listbox .li.data-v-53f17217 {
+.share_page .listbox .li.data-v-28a373a2 {
   padding: 30rpx 0;
   border-bottom: 1px solid #ccc;
 }
-.share_page .listbox .li view.data-v-53f17217 {
+.share_page .listbox .li view.data-v-28a373a2 {
   line-height: 60rpx;
   font-size: 16px;
 }
-.share_page .listbox .li text.data-v-53f17217 {
+.share_page .listbox .li text.data-v-28a373a2 {
   color: #666;
   font-size: 12px;
 }
-.share_page .listbox .msg.data-v-53f17217 {
+.share_page .listbox .msg.data-v-28a373a2 {
   position: absolute;
   bottom: 30rpx;
   color: red;
@@ -101,7 +101,7 @@
   width: 100%;
   left: 0;
 }
-.shadow.data-v-53f17217 {
+.shadow.data-v-28a373a2 {
   position: fixed;
   top: 0;
   left: 0;
@@ -111,7 +111,7 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 10;
 }
-.shadow .box.data-v-53f17217 {
+.shadow .box.data-v-28a373a2 {
   padding: 30rpx;
   background: #fff;
   border-radius: 30rpx;
@@ -119,16 +119,16 @@
   margin-left: 80rpx;
   margin-top: 150rpx;
 }
-.shadow .box .tits.data-v-53f17217 {
+.shadow .box .tits.data-v-28a373a2 {
   text-align: center;
   line-height: 90rpx;
 }
-.shadow .box .txt.data-v-53f17217 {
+.shadow .box .txt.data-v-28a373a2 {
   color: #666;
   text-indent: 20rpx;
   line-height: 54rpx;
 }
-.shadow .box button.data-v-53f17217 {
+.shadow .box button.data-v-28a373a2 {
   border-radius: 50rpx;
   margin-top: 60rpx;
   background: #FF6C00;

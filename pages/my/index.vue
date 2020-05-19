@@ -19,10 +19,10 @@
 					</view>
 				</h5>
 				<view class="txbox" @click="lookInfo()">
-					<image :src="avatarUrl?avatarUrl:'../../static/img/img/sy_001.png'" mode="widthFix"></image>
+					<image :src="userInfo.photo?userInfo.photo:'../../static/img/img/sy_001.png'" mode="widthFix"></image>
 				</view>
 				<view v-if="isLogin" class="username">
-					{{userName}}
+					{{userInfo.name}}
 				</view>
 				<button v-else class="getuserbtn" open-type="getUserInfo" @getuserinfo="bindGetUserInfo" >登录</button>
 				<view class="js">
@@ -40,45 +40,45 @@
 				<view class="page-section swiper">
 					<view class="page-section-spacing">
 						<swiper class="swiper" indicator-active-color="#fe6b01" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-							<swiper-item>
+							<swiper-item v-for="(item,index) in childrenList">
 								<view class="swiper-item" @click="goEdit(1)">
 									<h3 class="cl">
-										<text>光谷第二小学</text>
+										<text>{{item.schoolName}}</text>
 										<view class="nj">
-											<text>一年级</text>
+											<text>{{item.grade}}年级</text>
 											<image src="../../static/img/img/wd_008.png" mode="widthFix"></image>
 										</view>
 										<view class="xb">
-											<!-- 女生 -->
-											<text>女生</text>
-											<image src="../../static/img/img/wd_006.png" mode="widthFix"></image>
+											<!--1:男  0：女生 -->
+											<text>{{item.sex==1?'男':'女'}}</text>
+											<image v-if="ite.sex==0" src="../../static/img/img/wd_006.png" mode="widthFix"></image>
 											<!-- 男生 -->
-											<!-- <image src="../../static/img/img/wd_007.png" mode=""></image> -->
+											<image v-else src="../../static/img/img/wd_007.png" mode="widthFix"></image>
 										</view>										
 									</h3>
 									<view class="cl">
 										<text>姓名：</text>
-										<tex>李晓鹏</tex>
-										<i>已录入</i>
+										<tex>{{item.name}}</tex>
+										<i>{{item.isInput?'已录入':'未录入'}}</i>
 									</view>
 									<view class="cl">
 										<text>线路:</text>
 										<view class="xl">
-											<view class="cl">
-												<text>光谷大道金融港</text>
+											<view class="cl" v-for="(lines,index2) in item.lines">
+												<text>{{lines.startSite.name}}</text>
 												<image src="../../static/img/img/wd_002.png" mode="widthFix"></image>
-												<text>光谷大道现代</text>
+												<text>{{lines.endSite.name}}</text>
 											</view>
-											<view class="cl">
-												<text>光谷大道金融港</text>
+											<!-- <view class="cl">
+												<text>{{item.lines.endSite.name}}</text>
 												<image src="../../static/img/img/wd_00202.png" mode="widthFix"></image>
-												<text>光谷大道现代世贸中心</text>
-											</view>
+												<text>{{item.lines.startSite.name}}</text>
+											</view> -->
 										</view>
 									</view>
 									<view class="cl">
 										<text>到期时间：</text>
-										<tex>2020年3月27日</tex>
+										<tex>{{item.endDate}}</tex>
 									</view>
 								</view>
 							</swiper-item>
@@ -153,10 +153,30 @@
 				isLogin:false,
 				isShow:false,
 				avatarUrl:'',
-				userInfo:{},
+				userInfo:{},//用户详情
+				childrenList:[],//孩子信息组
+				parentList:[],//家长信息组
+			}
+		},
+		onLoad(){
+			this.getIsLogin()	
+		},
+		onShow(){
+			if(this.isLogin){
+				this.getUserList()
 			}
 		},
 		methods:{
+			getIsLogin(){
+				let userInfo=uni.getStorageSync("userInfo")
+				if(userInfo){
+					this.isLogin=true
+					userInfo=JSON.parse(userInfo)
+					this.userInfo=userInfo
+					console.log("用户信息")
+					console.log(userInfo)
+				}
+			},
 			bindGetUserInfo(val){
 				console.log("获取微信用户数据")
 				console.log(val)
@@ -179,38 +199,50 @@
 							type:0,
 							code:code,
 							parentId:''
-						}).then(res=>{
-							if(res.code==300){								
+						}).then(res1=>{
+							if(res1.code==300){								
 								uni.navigateTo({
-									url:"login?avatar="+this.avatarUrl+"&openid="+res.info.openId
+									url:"login?avatar="+this.avatarUrl+"&openid="+res1.info
 								})
-							}else if(res.code==100){
+							}else if(res1.code==100){
+								let userInfo=""
+								userInfo=JSON.stringify(res1.info)
+								uni.setStorageSync('userInfo',userInfo)
+								this.userInfo=res1.info
+								this.isLogin=true
 								uni.showToast({
 									icon:"none",
 									title:"登录成功！"
 								})
 							}
 						})
+					},
+					fail:(err)=>{
+						console.log(err)
 					}
 				})
 			},
 			getUserList(){
 				//获取孩子信息，
 				this.$http.post("puchildren/listChildrenLineByParentId",{
-					parentId:1,//家长id
+					parentId:this.userInfo.id,//家长id
+					// parentId:1
 				}).then(res=>{
 					if(res.code==100){
+						this.childrenList=res.info
+					}else{
 						
 					}
 				})
+			
 				// 家长组信息
-				this.$http.post("puchildren/listChildrenLineByParentId",{
-					parentId:1,//家长id
-				}).then(res=>{
-					if(res.code==100){
+				// this.$http.post("puchildren/listChildrenLineByParentId",{
+				// 	parentId:1,//家长id
+				// }).then(res=>{
+				// 	if(res.code==100){
 						
-					}
-				})
+				// 	}
+				// })
 			},
 			lookInfo(){
 				//个人资料

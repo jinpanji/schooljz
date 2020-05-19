@@ -4,14 +4,15 @@
 		<view class="cl headers">
 			<image src="../../static/img/sy_001bj.png" mode="widthFix"></image>
 			<view class="msgbox">
-				<view  @click="goRouter()">
+				<view >
+					<!--  @click="goRouter()" -->
 					<view v-if="isLogin" class="txboxs cl">
-						<view class="imgbox check">
-							<image src="../../static/img/sy_002.png" mode="widthFix"></image>
+						<view v-for="(item,index) in childrenList" :class="childCheck==item.id?'imgbox check':'imgbox'" @click="changeChild(item)">
+							<image :src="item.photo?imgUrl+item.phone:'../../static/img/sy_002.png'" mode="widthFix"></image>
 						</view>
-						<view class="imgbox">
+						<!-- <view class="imgbox">
 							<image src="../../static/img/sy_002.png" mode="widthFix"></image>
-						</view>
+						</view> -->
 					</view>
 					<view class="teacher" v-else>
 						<image class="teachericon" src="../../static/img/sy_007.png" mode="widthFix"></image>
@@ -76,11 +77,14 @@
 				title: 'Hello',
 				form:{
 				},
-				isLogin:false,
+				isLogin:true,
 				widths:[10,0],
 				width1:0,
 				flag:false,
-				list:['光谷大道五里湾','光谷大道金融港','光谷大三李陈','光谷大道关南村','光谷大道当代国际花园','光谷大道现代世贸中心']
+				list:['光谷大道五里湾','光谷大道金融港','光谷大三李陈','光谷大道关南村','光谷大道当代国际花园','光谷大道现代世贸中心'],
+				childrenList:[],
+				imgUrl:"",
+				childCheck:null,//当前选中的是哪个学生
 			}
 		},
 		watch:{
@@ -90,11 +94,16 @@
 			deep:true
 		},
 		onLoad() {
+			this.imgUrl=this.$imgurl
 			uni.authorize({
 				scope:'userInfo'
 			})
 		},
 		onShow(){
+			let id=uni.getStorageSync("childId")
+			if(id){
+				this.childCheck=id
+			}
 			this.getuserinfo()
 		},
 		methods: {
@@ -102,8 +111,20 @@
 				this.$http.post("puchildren/listByParentId",{
 					parentId:1
 				}).then(res=>{
-					
+					if(res.code==100){
+						this.childrenList=res.info
+						if(!this.childCheck){
+							this.childCheck=res.info[0].id
+							uni.setStorageSync("childId",res.info[0].id)
+						}
+					}
 				})
+			},
+			changeChild(item){
+				// 切换孩子
+				// console.log(item)
+				this.childCheck=item.id
+				uni.setStorageSync("childId",item.id)
 			},
 			goRouter(){
 				if(this.isLogin){

@@ -24,45 +24,54 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.tit.data-v-799f60d0 {
+.tit.data-v-210d58a3 {
   padding: 0 20rpx;
 }
-.information.data-v-799f60d0 {
+.information.data-v-210d58a3 {
   padding: 0 30rpx;
   background: #fff;
 }
-.information > view.data-v-799f60d0 {
+.information > view.data-v-210d58a3 {
   padding: 38rpx 0;
   border-bottom: 1px solid #e7e6ec;
 }
-.information > view text.data-v-799f60d0, .information > view .uni-list-cell-left.data-v-799f60d0 {
+.information > view text.data-v-210d58a3, .information > view .uni-list-cell-left.data-v-210d58a3 {
   float: left;
   width: 162rpx;
   color: #969696;
 }
-.information > view input.data-v-799f60d0, .information > view .uni-list-cell-db.data-v-799f60d0 {
+.information > view input.data-v-210d58a3, .information > view .uni-list-cell-db.data-v-210d58a3 {
   float: left;
   width: 510rpx;
 }
-.information > view .red.data-v-799f60d0 {
+.information > view .red.data-v-210d58a3 {
   color: #fe0000;
 }
-.information > view image.data-v-799f60d0 {
+.information > view image.data-v-210d58a3 {
   float: right;
   width: 20rpx;
 }
-.information > view.data-v-799f60d0:last-child {
+.information > view.data-v-210d58a3:last-child {
   border: 0;
 }
-.selection_route.data-v-799f60d0, .pick.data-v-799f60d0 {
+.information .classcheck .uni-list-cell-db.data-v-210d58a3 {
+  float: left;
+  width: 100rpx;
+}
+.information .classcheck input.data-v-210d58a3 {
+  float: left;
+  width: 190rpx;
+  margin-left: 20rpx;
+}
+.selection_route.data-v-210d58a3, .pick.data-v-210d58a3 {
   background: #fff;
   margin-top: 20rpx;
   padding: 30rpx;
 }
-.selection_route.data-v-799f60d0 {
+.selection_route.data-v-210d58a3 {
   padding-bottom: 130rpx;
 }
-.preservation.data-v-799f60d0 {
+.preservation.data-v-210d58a3 {
   width: 100%;
   background: #FF6C00;
   border-radius: 0;
@@ -71,16 +80,16 @@
   left: 0;
   z-index: 1000;
 }
-button.data-v-799f60d0:after {
+button.data-v-210d58a3:after {
   border: 0;
 }
-.xlnull.data-v-799f60d0 {
+.xlnull.data-v-210d58a3 {
   text-align: center;
 }
-.xlnull image.data-v-799f60d0 {
+.xlnull image.data-v-210d58a3 {
   width: 100%;
 }
-.xlnull text.data-v-799f60d0 {
+.xlnull text.data-v-210d58a3 {
   line-height: 300rpx;
 }
 

@@ -73,7 +73,9 @@
 					require("../../static/img/img/xxzx_011.png"),
 					require("../../static/img/img/xxzx_002.png"),
 					require("../../static/img/img/xxzx_009.png")//投诉回复
-				]
+				],
+				pageNum:1,
+				pageSize:10
 			}
 		},
 		methods:{
@@ -93,6 +95,13 @@
 				//投诉
 				uni.navigateTo({
 					url:"../../components/complaint/index"
+				})
+			},
+			getmsgList(){
+				this.$http.post("puNews/list",{
+					parentId:1,
+					pageNum:this.pageNum,
+					pageSize:this.pageSize
 				})
 			},
 		}

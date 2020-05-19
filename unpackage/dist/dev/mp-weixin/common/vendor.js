@@ -757,7 +757,7 @@ function initData(vueOptions, context) {
     try {
       data = data.call(context); // 支持 Vue.prototype 上挂的数据
     } catch (e) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.warn('根据 Vue 的 data 函数初始化小程序 data 失败，请尽量确保 data 函数中不访问 vm 对象，否则可能影响首次数据渲染速度。', data);
       }
     }
@@ -1560,10 +1560,10 @@ uni$1;exports.default = _default;
 
 /***/ }),
 
-/***/ 134:
-/*!*********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/wd_016.png ***!
-  \*********************************************************************/
+/***/ 133:
+/*!******************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/wd_016.png ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1571,10 +1571,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANIAAADSCAYAAAA/
 
 /***/ }),
 
-/***/ 135:
-/*!*********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/wd_015.png ***!
-  \*********************************************************************/
+/***/ 134:
+/*!******************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/wd_015.png ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1582,10 +1582,10 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANIAAADSCAYAAAA/
 
 /***/ }),
 
-/***/ 136:
-/*!*********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/wd_014.png ***!
-  \*********************************************************************/
+/***/ 135:
+/*!******************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/wd_014.png ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -1723,14 +1723,14 @@ function normalizeComponent (
 /***/ }),
 
 /***/ 15:
-/*!*********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/components/unitls/http.js ***!
-  \*********************************************************************/
+/*!******************************************************!*\
+  !*** E:/aasystem/schooljz/components/unitls/http.js ***!
+  \******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'http://192.168.0.109:3326/';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'http://192.168.0.112:3326/';
 // const baseUrl='http://47.111.141.24/api/'
 // const baseUrl='http://192.168.0.125/api/'
 
@@ -1823,9 +1823,9 @@ http;exports.default = _default;
 /***/ }),
 
 /***/ 16:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/components/style/resetm.css ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/components/style/resetm.css ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1835,10 +1835,10 @@ http;exports.default = _default;
 
 /***/ }),
 
-/***/ 193:
-/*!*******************************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/components/unitls/qqmap-wx-jssdk.js ***!
-  \*******************************************************************************/
+/***/ 192:
+/*!****************************************************************!*\
+  !*** E:/aasystem/schooljz/components/unitls/qqmap-wx-jssdk.js ***!
+  \****************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -8500,7 +8500,7 @@ function type(obj) {
 
 function flushCallbacks$1(vm) {
     if (vm.__next_tick_callbacks && vm.__next_tick_callbacks.length) {
-        if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+        if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:flushCallbacks[' + vm.__next_tick_callbacks.length + ']');
@@ -8521,14 +8521,14 @@ function nextTick$1(vm, cb) {
     //1.nextTick 之前 已 setData 且 setData 还未回调完成
     //2.nextTick 之前存在 render watcher
     if (!vm.__next_tick_pending && !hasRenderWatcher(vm)) {
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + vm._uid +
                 ']:nextVueTick');
         }
         return nextTick(cb, vm)
     }else{
-        if(Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG){
+        if(Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG){
             var mpInstance$1 = vm.$scope;
             console.log('[' + (+new Date) + '][' + (mpInstance$1.is || mpInstance$1.route) + '][' + vm._uid +
                 ']:nextMPTick');
@@ -8604,7 +8604,7 @@ var patch = function(oldVnode, vnode) {
     });
     var diffData = this.$shouldDiffData === false ? data : diff(data, mpData);
     if (Object.keys(diffData).length) {
-      if (Object({"VUE_APP_PLATFORM":"mp-weixin","NODE_ENV":"development","BASE_URL":"/"}).VUE_APP_DEBUG) {
+      if (Object({"NODE_ENV":"development","VUE_APP_PLATFORM":"mp-weixin","BASE_URL":"/"}).VUE_APP_DEBUG) {
         console.log('[' + (+new Date) + '][' + (mpInstance.is || mpInstance.route) + '][' + this._uid +
           ']差量更新',
           JSON.stringify(diffData));
@@ -8998,10 +8998,10 @@ internalMixin(Vue);
 
 /***/ }),
 
-/***/ 262:
-/*!**************************************************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/components/common/simple-address/city-data/province.js ***!
-  \**************************************************************************************************/
+/***/ 261:
+/*!***********************************************************************************!*\
+  !*** E:/aasystem/schooljz/components/common/simple-address/city-data/province.js ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9152,10 +9152,10 @@ provinceData;exports.default = _default;
 
 /***/ }),
 
-/***/ 263:
-/*!**********************************************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/components/common/simple-address/city-data/city.js ***!
-  \**********************************************************************************************/
+/***/ 262:
+/*!*******************************************************************************!*\
+  !*** E:/aasystem/schooljz/components/common/simple-address/city-data/city.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10670,10 +10670,10 @@ cityData;exports.default = _default;
 
 /***/ }),
 
-/***/ 264:
-/*!**********************************************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/components/common/simple-address/city-data/area.js ***!
-  \**********************************************************************************************/
+/***/ 263:
+/*!*******************************************************************************!*\
+  !*** E:/aasystem/schooljz/components/common/simple-address/city-data/area.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23229,10 +23229,10 @@ areaData;exports.default = _default;
 
 /***/ }),
 
-/***/ 272:
-/*!************************************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/components/common/w-calendar/calendar.js ***!
-  \************************************************************************************/
+/***/ 271:
+/*!*********************************************************************!*\
+  !*** E:/aasystem/schooljz/components/common/w-calendar/calendar.js ***!
+  \*********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23818,9 +23818,9 @@ module.exports = g;
 /***/ }),
 
 /***/ 31:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_001.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_001.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23829,9 +23829,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 32:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_003.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_003.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23840,9 +23840,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 33:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_004.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_004.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23851,9 +23851,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 34:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_010.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_010.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23862,9 +23862,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 35:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_008.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_008.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23873,9 +23873,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 36:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_013.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_013.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23884,9 +23884,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 37:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_005.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_005.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23895,9 +23895,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 38:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_006.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_006.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23906,9 +23906,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 39:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_012.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_012.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23917,9 +23917,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 4:
-/*!******************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/pages.json ***!
-  \******************************************************/
+/*!***************************************!*\
+  !*** E:/aasystem/schooljz/pages.json ***!
+  \***************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23928,9 +23928,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 40:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_014.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_014.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23939,9 +23939,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 41:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_007.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_007.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23950,9 +23950,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 42:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_011.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_011.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23961,9 +23961,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 43:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_002.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_002.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -23972,9 +23972,9 @@ module.exports = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAABYCAYAAABx
 /***/ }),
 
 /***/ 44:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/static/img/img/xxzx_009.png ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/static/img/img/xxzx_009.png ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -24881,9 +24881,9 @@ module.exports = {"_from":"@dcloudio/uni-stat@next","_id":"@dcloudio/uni-stat@2.
 /***/ }),
 
 /***/ 7:
-/*!***********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/pages.json?{"type":"style"} ***!
-  \***********************************************************************/
+/*!********************************************************!*\
+  !*** E:/aasystem/schooljz/pages.json?{"type":"style"} ***!
+  \********************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24893,9 +24893,9 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 /***/ }),
 
 /***/ 8:
-/*!**********************************************************************!*\
-  !*** F:/BaiduNetdiskDownload/schoolbusjz/pages.json?{"type":"stat"} ***!
-  \**********************************************************************/
+/*!*******************************************************!*\
+  !*** E:/aasystem/schooljz/pages.json?{"type":"stat"} ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 

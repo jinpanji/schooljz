@@ -24,43 +24,43 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.list_box.data-v-581ec2ef {
+.list_box.data-v-2cd0c47a {
   padding: 0 30rpx;
   background: #fff;
   border-bottom: 1px solid #ccc;
 }
-.list_box .box.data-v-581ec2ef {
+.list_box .box.data-v-2cd0c47a {
   padding: 25rpx 0;
   border-bottom: 1px solid #ccc;
 }
-.list_box .box .img.data-v-581ec2ef {
+.list_box .box .img.data-v-2cd0c47a {
   float: left;
   width: 90rpx;
   margin-right: 20rpx;
   margin-top: 15rpx;
 }
-.list_box .box .img image.data-v-581ec2ef {
+.list_box .box .img image.data-v-2cd0c47a {
   width: 100%;
 }
-.list_box .box .textbox.data-v-581ec2ef {
+.list_box .box .textbox.data-v-2cd0c47a {
   float: left;
   width: 580rpx;
   font-size: 28rpx;
   line-height: 60rpx;
 }
-.list_box .box .textbox ._h3.data-v-581ec2ef {
+.list_box .box .textbox ._h3.data-v-2cd0c47a {
   width: 100%;
 }
-.list_box .box .textbox ._h3 .times.data-v-581ec2ef {
+.list_box .box .textbox ._h3 .times.data-v-2cd0c47a {
   float: right;
   font-weight: normal;
   color: #ccc;
 }
-.list_box .box .textbox ._h3 image.data-v-581ec2ef {
+.list_box .box .textbox ._h3 image.data-v-2cd0c47a {
   width: 80rpx;
   margin-right: 20rpx;
 }
-.list_box .box .textbox > text.data-v-581ec2ef {
+.list_box .box .textbox > text.data-v-2cd0c47a {
   display: inline-block;
   width: 100%;
   overflow: hidden;
@@ -68,7 +68,7 @@
   white-space: nowrap;
   color: #646464;
 }
-.list_box .box.data-v-581ec2ef:last-child {
+.list_box .box.data-v-2cd0c47a:last-child {
   border: 0;
 }
 

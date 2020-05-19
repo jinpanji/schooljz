@@ -2,11 +2,12 @@
 	<view class="addpage">
 		<view class="li cl">
 			<text>学校名称</text>
-			<input type="text" value="" placeholder="请输入学校名称" />
+			<input type="text" value="" v-model="form.schoolName" placeholder="请输入学校名称" />
 			<image src="../../static/img/wd_018.png" mode="widthFix"></image>
 		</view>
 		<view class="li cl" @click="gomap()">
 			<text>学校定位</text>
+			<text>{{address}}</text>
 			<image src="../../static/img/wd_018.png" mode="widthFix"></image>
 			<image src="../../static/img/sy_015.png" class="dticon" mode="widthFix"></image>
 		</view>
@@ -16,19 +17,45 @@
 
 <script>
 	export default{
+		data(){
+			return{
+				form:{
+					longitude:null,
+					latitude:null,
+					schoolName:"",
+					schoolId:""
+				},
+				address:''
+				
+			}
+		},
 		methods:{
 			gomap(){
 				//地图定位
 				uni.chooseLocation({
-					success:(err)=>{
-						console.log(err)
+					success:(res)=>{
+						console.log(res)
+						this.form.longitude=res.longitude
+						this.form.latitude=res.latitude
+						this.address=res.address
 					}
 				})
 			},
 			goRouter(){
-				uni.navigateTo({
-					url:"addchildmsg"
-				})
+				if(this.form.schoolName&&this.form.longitude){
+					let data=this.form
+					data=JSON.stringify(data)
+					uni.setStorageSync("addchildinfo",data)
+					uni.navigateTo({
+						url:"addchildmsg"
+					})
+				}else{
+					uni.showToast({
+						icon:"none",
+						title:"请填写学校名称及学校定位信息！"
+					})
+				}
+				
 			}
 		}
 	}
@@ -44,6 +71,9 @@
 				float:left;
 				width: 190rpx;
 				color: #ccc;
+			}
+			text:nth-child(2){
+				width: 380rpx;
 			}
 			input{
 				float: left;

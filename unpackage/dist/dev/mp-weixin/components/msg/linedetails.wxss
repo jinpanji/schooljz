@@ -24,44 +24,44 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.carbox.data-v-5d6a9435 {
+.carbox.data-v-c24a4f80 {
   width: 700rpx;
   margin: 20rpx auto;
   background: #fff;
   border-radius: 20rpx;
   border: 1px solid #ccc;
 }
-.carbox .tits.data-v-5d6a9435 {
+.carbox .tits.data-v-c24a4f80 {
   padding: 30rpx;
 }
-.carbox .tits text.data-v-5d6a9435:nth-child(1) {
+.carbox .tits text.data-v-c24a4f80:nth-child(1) {
   float: left;
   padding: 0 22rpx;
   border-left: 2px solid #ec6400;
   font-size: 30rpx;
   font-weight: bold;
 }
-.carbox .tits text.data-v-5d6a9435:nth-child(2) {
+.carbox .tits text.data-v-c24a4f80:nth-child(2) {
   float: right;
   padding: 0 22rpx;
   background: #f0f0f0;
   border-radius: 20rpx;
   font-size: 28rpx;
 }
-.carbox .status.data-v-5d6a9435 {
+.carbox .status.data-v-c24a4f80 {
   position: relative;
   margin-bottom: 30rpx;
 }
-.carbox .status .bjimg.data-v-5d6a9435 {
+.carbox .status .bjimg.data-v-c24a4f80 {
   width: 100%;
 }
-.carbox .car.data-v-5d6a9435 {
+.carbox .car.data-v-c24a4f80 {
   width: 150rpx;
   position: absolute;
   top: -15rpx;
   left: 0;
 }
-.carbox .businfo > view.data-v-5d6a9435 {
+.carbox .businfo > view.data-v-c24a4f80 {
   float: left;
   width: 50%;
   font-size: 28rpx;
@@ -70,34 +70,34 @@
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
-.carbox .businfo > view image.data-v-5d6a9435 {
+.carbox .businfo > view image.data-v-c24a4f80 {
   width: 80rpx;
   margin-right: 20rpx;
 }
-.carbox .infos.data-v-5d6a9435 {
+.carbox .infos.data-v-c24a4f80 {
   padding: 20rpx;
   border-top: 1px solid #ccc;
   line-height: 80rpx;
 }
-.carbox .infos text.data-v-5d6a9435 {
+.carbox .infos text.data-v-c24a4f80 {
   float: left;
 }
-.carbox .infos switch.data-v-5d6a9435 {
+.carbox .infos switch.data-v-c24a4f80 {
   float: left;
   margin-left: 40rpx;
 }
-.carbox .infos text.data-v-5d6a9435:nth-child(2) {
+.carbox .infos text.data-v-c24a4f80:nth-child(2) {
   float: right;
 }
-.txbox.data-v-5d6a9435 {
+.txbox.data-v-c24a4f80 {
   padding: 20rpx 10rpx;
   background: #fff;
   padding-bottom: 100rpx;
 }
-.txbox .tit.data-v-5d6a9435 {
+.txbox .tit.data-v-c24a4f80 {
   margin-left: 20rpx;
 }
-.txbox .tx.data-v-5d6a9435 {
+.txbox .tx.data-v-c24a4f80 {
   margin: 20rpx;
   width: 110rpx;
   height: 110rpx;
@@ -106,10 +106,10 @@
   float: left;
   position: relative;
 }
-.txbox .tx image.data-v-5d6a9435 {
+.txbox .tx image.data-v-c24a4f80 {
   width: 100%;
 }
-.txbox .tx view.data-v-5d6a9435 {
+.txbox .tx view.data-v-c24a4f80 {
   background: rgba(255, 255, 255, 0.8);
   position: absolute;
   top: 0;
@@ -118,16 +118,16 @@
   left: 0;
   margin: auto;
 }
-> button.data-v-5d6a9435 {
+> button.data-v-c24a4f80 {
   position: fixed;
   width: 100%;
   left: 0;
   bottom: 0;
 }
-button.data-v-5d6a9435 {
+button.data-v-c24a4f80 {
   background: #FF6C00;
 }
-.shadow.data-v-5d6a9435 {
+.shadow.data-v-c24a4f80 {
   position: fixed;
   top: 0;
   left: 0;
@@ -137,7 +137,7 @@ button.data-v-5d6a9435 {
   background: rgba(0, 0, 0, 0.5);
   z-index: 1000000;
 }
-.shadow .box.data-v-5d6a9435 {
+.shadow .box.data-v-c24a4f80 {
   border-radius: 20rpx;
   background: #fff;
   width: 560rpx;
@@ -146,7 +146,7 @@ button.data-v-5d6a9435 {
   padding: 40rpx;
   line-height: 60rpx;
 }
-.shadow .box .tx.data-v-5d6a9435 {
+.shadow .box .tx.data-v-c24a4f80 {
   width: 126rpx;
   height: 126rpx;
   margin: auto;
@@ -154,14 +154,14 @@ button.data-v-5d6a9435 {
   overflow: hidden;
   margin-bottom: 30rpx;
 }
-.shadow .box image.data-v-5d6a9435 {
+.shadow .box image.data-v-c24a4f80 {
   width: 100%;
 }
-.shadow .box button.data-v-5d6a9435 {
+.shadow .box button.data-v-c24a4f80 {
   margin-top: 30rpx;
   border-radius: 50rpx;
 }
-.shadow .box textarea.data-v-5d6a9435 {
+.shadow .box textarea.data-v-c24a4f80 {
   background: #ccc;
   height: 200rpx;
   width: 100%;

@@ -24,7 +24,7 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.selectbox.data-v-22b022d5 {
+.selectbox.data-v-da3024c0 {
   position: relative;
   padding: 0rpx 40rpx;
   background: #eee;
@@ -34,12 +34,12 @@
   line-height: 50rpx;
   font-size: 12px;
 }
-.selectbox image.data-v-22b022d5 {
+.selectbox image.data-v-da3024c0 {
   width: 20rpx;
   float: right;
   margin-top: 20rpx;
 }
-.selectbox .opts.data-v-22b022d5 {
+.selectbox .opts.data-v-da3024c0 {
   position: absolute;
   top: 60rpx;
   background: #eee;
@@ -51,7 +51,7 @@
   border-bottom-right-radius: 40rpx;
   border-bottom-left-radius: 40rpx;
 }
-.selectbox .opts ._h3.data-v-22b022d5 {
+.selectbox .opts ._h3.data-v-da3024c0 {
   border-top: 1px solid #999;
 }
 

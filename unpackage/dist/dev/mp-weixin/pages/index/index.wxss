@@ -24,31 +24,31 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.index_page.data-v-b9b316e8 {
+.index_page.data-v-10932fbe {
   width: 100%;
   height: 516rpx;
   background: #fff;
 }
-.index_page > image.data-v-b9b316e8 {
+.index_page > image.data-v-10932fbe {
   width: 100%;
 }
-.index_page .headers.data-v-b9b316e8 {
+.index_page .headers.data-v-10932fbe {
   position: relative;
 }
-.index_page .headers image.data-v-b9b316e8 {
+.index_page .headers image.data-v-10932fbe {
   width: 100%;
 }
-.index_page .msgbox.data-v-b9b316e8 {
+.index_page .msgbox.data-v-10932fbe {
   position: absolute;
   top: 40rpx;
   padding: 0 30rpx;
 }
-.index_page .msgbox .teachericon.data-v-b9b316e8 {
+.index_page .msgbox .teachericon.data-v-10932fbe {
   width: 30rpx;
   margin-right: 10rpx;
   margin-top: 5rpx;
 }
-.index_page .msgbox .teacher.data-v-b9b316e8 {
+.index_page .msgbox .teacher.data-v-10932fbe {
   padding: 0 30rpx;
   margin: 34rpx 0;
   border-radius: 20rpx;
@@ -56,7 +56,7 @@
   color: #fff;
   line-height: 50rpx;
 }
-.index_page .msgbox .txboxs view.data-v-b9b316e8 {
+.index_page .msgbox .txboxs view.data-v-10932fbe {
   float: left;
   width: 80rpx;
   height: 80rpx;
@@ -65,29 +65,29 @@
   margin-right: 40rpx;
   margin-top: 30rpx;
 }
-.index_page .msgbox .txboxs view image.data-v-b9b316e8 {
+.index_page .msgbox .txboxs view image.data-v-10932fbe {
   width: 100%;
 }
-.index_page .msgbox .txboxs .check.data-v-b9b316e8 {
+.index_page .msgbox .txboxs .check.data-v-10932fbe {
   border: 2px solid #fff;
 }
-.bus_list.data-v-b9b316e8 {
+.bus_list.data-v-10932fbe {
   background: #fff;
   margin-bottom: 20rpx;
 }
-.bus_list > image.data-v-b9b316e8 {
+.bus_list > image.data-v-10932fbe {
   width: 100%;
 }
-.translate.data-v-b9b316e8 {
+.translate.data-v-10932fbe {
   background: #fff;
   padding: 20rpx 0;
   margin-bottom: 20rpx;
 }
-.translate > view.data-v-b9b316e8 {
+.translate > view.data-v-10932fbe {
   padding-left: 20rpx;
   margin-left: 20rpx;
 }
-.translate .times.data-v-b9b316e8 {
+.translate .times.data-v-10932fbe {
   background: #eee;
   border-radius: 40rpx;
   width: 710rpx;
@@ -95,17 +95,17 @@
   line-height: 60rpx;
   margin-bottom: 20rpx;
 }
-.translate .times text.data-v-b9b316e8 {
+.translate .times text.data-v-10932fbe {
   display: inline-block;
   width: 50%;
   text-align: center;
 }
-.footerbox.data-v-b9b316e8 {
+.footerbox.data-v-10932fbe {
   background: #fff;
   padding: 40rpx 0;
   padding-bottom: 140rpx;
 }
-.footerbox image.data-v-b9b316e8 {
+.footerbox image.data-v-10932fbe {
   width: 210rpx;
   margin-left: 30rpx;
 }

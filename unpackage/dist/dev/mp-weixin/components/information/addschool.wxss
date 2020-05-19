@@ -24,32 +24,35 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.addpage.data-v-a0f12d32 {
+.addpage.data-v-eacd8d9c {
   background: #fff;
   padding: 0 30rpx;
 }
-.addpage .li.data-v-a0f12d32 {
+.addpage .li.data-v-eacd8d9c {
   padding: 30rpx 0;
 }
-.addpage .li text.data-v-a0f12d32 {
+.addpage .li text.data-v-eacd8d9c {
   float: left;
   width: 190rpx;
   color: #ccc;
 }
-.addpage .li input.data-v-a0f12d32 {
+.addpage .li text.data-v-eacd8d9c:nth-child(2) {
+  width: 380rpx;
+}
+.addpage .li input.data-v-eacd8d9c {
   float: left;
   width: 475rpx;
   border: 0;
 }
-.addpage .li image.data-v-a0f12d32 {
+.addpage .li image.data-v-eacd8d9c {
   width: 30rpx;
   float: right;
 }
-.addpage .li .dticon.data-v-a0f12d32 {
+.addpage .li .dticon.data-v-eacd8d9c {
   width: 50rpx;
   margin-right: 30rpx;
 }
-.addpage button.data-v-a0f12d32 {
+.addpage button.data-v-eacd8d9c {
   width: 100%;
   background: #FF6C00;
   position: fixed;
