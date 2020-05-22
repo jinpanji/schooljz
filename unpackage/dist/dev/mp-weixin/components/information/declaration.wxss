@@ -39,7 +39,8 @@
 .page button {
   margin-top: 20rpx;
   background: #FF6C00;
-  border-radius: 50rpx;
+  -webkit-border-radius: 50rpx;
+          border-radius: 50rpx;
 }
 .page button:after {
   border: 0;

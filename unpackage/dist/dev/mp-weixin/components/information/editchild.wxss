@@ -54,6 +54,15 @@
 .information > view.data-v-431ccea2:last-child {
   border: 0;
 }
+.information .classcheck .uni-list-cell-db.data-v-431ccea2 {
+  float: left;
+  width: 100rpx;
+}
+.information .classcheck input.data-v-431ccea2 {
+  float: left;
+  width: 190rpx;
+  margin-left: 20rpx;
+}
 .selection_route.data-v-431ccea2, .pick.data-v-431ccea2 {
   background: #fff;
   margin-top: 20rpx;
@@ -69,7 +78,8 @@
   float: left;
   margin-left: 20rpx;
   color: #fff;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
 }
 .pick .box image.data-v-431ccea2 {
   width: 40rpx;
@@ -103,7 +113,8 @@
 .preservation.data-v-431ccea2 {
   width: 100%;
   background: #FF6C00;
-  border-radius: 0;
+  -webkit-border-radius: 0;
+          border-radius: 0;
 }
 button.data-v-431ccea2:after {
   border: 0;
@@ -129,7 +140,8 @@ button.data-v-431ccea2:after {
   width: 180rpx;
   background: #FF6C00;
   float: right;
-  border-radius: 0;
+  -webkit-border-radius: 0;
+          border-radius: 0;
 }
 .footer .right text.data-v-431ccea2 {
   color: red;

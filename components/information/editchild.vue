@@ -3,12 +3,12 @@
 		<view class="information">
 			<view class="cl">
 				<text>学校名</text>
-				<view class="">光谷第二小学</view>
+				<view class="">{{form.schoolName}}</view>
 				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 			</view>
 			<view class="cl">
 				<text>姓名</text>
-				<input type="text" value="" placeholder="请输入姓名" />
+				<input type="text" value="" v-model="form.name" placeholder="请输入姓名" />
 				<!-- <view class="">张三啊</view> -->
 				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 			</view>
@@ -28,13 +28,27 @@
 			<view class="uni-list cl">
 				<view class="uni-list-cell">
 					<view class="uni-list-cell-left">
+						关系
+					</view>
+					<view class="uni-list-cell-db">
+						<picker mode="selector" :value="gxcheck" :range="gxlist" @change="gxchange">
+							<view class="uni-input">{{gxlist[gxcheck]}}</view>
+						</picker>
+					</view>
+					<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+				</view>
+			</view>
+			<view class="uni-list classcheck cl">
+				<view class="uni-list-cell">
+					<view class="uni-list-cell-left">
 						班级
 					</view>
 					<view class="uni-list-cell-db">
-						<picker mode="multiSelector" @columnchange="bindMultiPickerColumnChange" :range="classlist" :value="classCheck" @change="xbchange">
-							<view class="uni-input">{{classlist[0][classCheck[0]]}}</view>
+						<picker mode="selector" :range="classlist" :value="classCheck" @change="classchange">
+							<view class="uni-input">{{classlist[classCheck]}}</view>
 						</picker>
 					</view>
+					<input type="number" v-model="form.crazz" placeholder="请输入班级" value="" />
 					<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 				</view>
 			</view>
@@ -53,13 +67,28 @@
 			
 			<view class="cl">
 				<text>有效期</text>
-				<view class="red">2020-12-30</view>
+				<view class="red">{{form.closeDate?form.closeDate:""}}</view>
 				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 			</view>
 		</view>		
 		<!-- 选择路线 -->
 		<view class="selection_route">
 			<view class="tit">选择路线</view>
+			<view class="lines_list">
+				<xfl-select 
+					:list="lineStrlist"
+					:clearable="false"
+					:showItemNum="5" 
+					:listShow="false"
+					:isCanInput="true"  
+					:style_Container="'height: 50px; font-size: 16px;'"
+					:placeholder = "'请选择'"
+					:initValue="selectValue"
+					:selectHideType="'hideAll'"
+					@change="selectChange"
+				>
+				</xfl-select>
+			</view>
 			<Buslist :list="list"/>
 		</view>
 		<view class="pick cl">
@@ -95,7 +124,7 @@
 				</view>
 			</view>
 		</view>
-		<button type="primary" v-if="!isInfo" class="preservation">保存</button>
+		<button type="primary" v-if="!isInfo" class="preservation" @click="preservation()">保存</button>
 		<view class="footer" v-else>			
 			<view class="right">
 				<button type="primary" @click="Settlement()">结算</button>
@@ -110,6 +139,7 @@
 
 <script>
 	import Buslist from '../../components/common/buslist.vue'
+	import xflSelect from '../common/xfl-select/xfl-select.vue';
 	function getDate(type) {
 		const date = new Date();
 	
@@ -129,25 +159,29 @@
 	}
 	export default {	
 		components:{
-			Buslist
+			Buslist,xflSelect
 		},		
 		data(){
 			return{
 				list:['光谷大道五里湾','光谷大道金融港','光谷大三李陈','光谷大道关南村','光谷大道当代国际花园','光谷大道现代世贸中心'],
-				xblist:['男','女'],
+				xblist:['女','男'],
 				xbcheck:1,
-				classlist:[
-					["一年级","二年级","三年级","四年级","五年级","六年级"],
-					["一班","二班","三班",'四班']
-				],
-				classCheck:[0,1],
-				// date: getDate({
-				// 	format: true
-				// }),
+				classlist:["一年级","二年级","三年级","四年级","五年级","六年级"],
+				classCheck:0,
+				gxlist:["父亲","母亲","爷爷","奶奶","叔叔","阿姨"],
+				gxcheck:0,
 				date:'2020-4-28',
 				startDate:getDate('start'),
 				endDate:getDate('end'),
 				isInfo:false,//false:编辑孩子信息  true详情
+				childId:null,
+				form:{},
+				linesList:[],//线路组
+				lineStrlist:[],//线路名称集合
+				lineInfo:{
+					linesId:0,
+					sitesId:0,
+				},
 			}
 		},
 		onLoad(e){
@@ -159,16 +193,97 @@
 				title:'详情'
 				})
 			}
+			if(e.id){
+				this.childId=e.id
+			}
+			this.getChildInfo()
+			this.getchildLines()
 		},
 		methods:{
-			xbchange(val){
-				console.log(val)
+			getChildInfo(){
+				//获取学生信息
+				this.$http.post("puchildren/detail",{
+					id:this.childId
+				}).then(res=>{
+					if(res.code==100){
+						this.form=res.info
+						this.date=this.form.birthDate
+						this.xbcheck=this.form.sex
+						if(this.form.relation){
+							this.gxcheck=this.form.relation
+						}
+						this.classCheck=(this.form.grade)*1-1
+					}
+				})
+			},
+			getchildLines(){
+				this.$http.post("puProduct/getProductByChildrenId",{
+					childrenId:this.childId
+				}).then(res=>{
+					let list=res.info
+					this.linesList=res.info
+					if(list.length>0){
+						this.lineStrlist=[]
+						list.forEach((item,index)=>{
+							this.lineStrlist.push(item.name)
+						})
+					}
+				})
 			},
 			bindDateChange: function(e) {
 				this.date = e.detail.value
+				this.form.birthDate=e.detail.value
+				console.log(this.form.birthDate)
 			},
 			bindTimeChange: function(e) {
 				this.time = e.detail.value
+			},
+			xbchange(val){
+				console.log(val)
+				// 性别改变
+				this.xbcheck=val.detail.value
+				this.form.sex=val.detail.value
+			},
+			gxchange(val){
+				// 关系改变
+				console.log(val)
+				this.form.relation=this.gxlist[val.detail.value]
+				this.gxcheck=val.detail.value
+				console.log(this.form.relation)
+			},
+			classchange(val){
+				// 年级改变
+				this.form.grade=(val.detail.value*1)+1
+				this.classCheck=val.detail.value
+			},
+			selectChange(val){
+				// 选择线路，线路改变
+				console.log("选择线路")
+				console.log(val)
+				this.lineInfo.linesId=this.linesList[val.index].id
+				console.log(this.lineInfo.linesId)
+				// this.list=this.linesList[val.index].sites
+				// console.log(this.list)
+				this.$http.post("puline/lineDetail",{
+					childrenId:this.childId,
+					lineId:this.lineInfo.linesId
+				}).then(res=>{
+					if(res.code==100){
+						this.list=res.info
+					}
+				})
+			},
+			preservation(){
+				//保存
+				console.log(this.form)
+				this.$http.post("puchildren/update",this.form).then(res=>{
+					if(res.code==100){
+						uni.showToast({
+							icon:"success",
+							title:"修改成功"
+						})
+					}
+				})
 			},
 		}
 	}
@@ -204,6 +319,17 @@
 		}
 		>view:last-child{
 			border: 0;
+		}
+		.classcheck{
+			.uni-list-cell-db{
+				float: left;
+				width: 100rpx;
+			}
+			input{
+				float: left;
+				width: 190rpx;
+				margin-left: 20rpx;
+			}
 		}
 	}
 	.selection_route,.pick{

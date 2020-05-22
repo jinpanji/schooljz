@@ -8,7 +8,7 @@
 		<!-- 搜索有结果 -->
 		<view class="schoolbox cl" v-if="schoolShow">
 			<view class="listbox">
-				<view class="li" v-for="(item,index) in list" @click="checkSchool(item.id)">
+				<view class="li" v-for="(item,index) in list" @click="checkSchool(item)">
 					<text :class="schoolId==item.id?'check_text':''">{{item.name}}</text>
 				</view>
 			</view>
@@ -59,6 +59,7 @@
 							this.list=res.info
 							if(res.info.length==1){
 								this.schoolId=res.info[0].id
+								this.schoolName=res.info[0].name
 							}
 							// var data={
 							// 	id:2,
@@ -79,15 +80,17 @@
 				// console.log('输入框变化')
 				// console.log(this.serachStr)
 			},
-			checkSchool(id){
+			checkSchool(item){
 				// 选择学校
-				this.schoolId=id
+				this.schoolId=item.id
+				this.schoolName=item.name
 			},
 			nextStep(){
 				// 下一步
 				if(this.schoolId){
 					let data={
-						schoolId:this.schoolId
+						schoolId:this.schoolId,
+						schoolName:this.schoolName
 					}
 					data=JSON.stringify(data)
 					uni.setStorageSync("addchildinfo",data)

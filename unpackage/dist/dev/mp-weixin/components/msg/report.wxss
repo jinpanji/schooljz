@@ -59,7 +59,8 @@ button.data-v-e980ce9c {
   z-index: 1000000;
 }
 .shadow .box.data-v-e980ce9c {
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
   background: #fff;
   width: 560rpx;
   margin: auto;
@@ -74,6 +75,7 @@ button.data-v-e980ce9c {
 }
 .shadow .box button.data-v-e980ce9c {
   margin-top: 30rpx;
-  border-radius: 50rpx;
+  -webkit-border-radius: 50rpx;
+          border-radius: 50rpx;
 }
 

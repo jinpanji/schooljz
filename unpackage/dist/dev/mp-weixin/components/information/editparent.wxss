@@ -68,7 +68,8 @@
 .btns button.data-v-d9f352b2 {
   width: 50%;
   float: left;
-  border-radius: 0;
+  -webkit-border-radius: 0;
+          border-radius: 0;
   background: #F0AD4E;
   margin: 0;
 }
@@ -84,7 +85,8 @@ button.data-v-d9f352b2:after {
   background: #fff;
   float: right;
   font-size: 12px;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
 }
 .shadow.data-v-d9f352b2 {
   position: fixed;
@@ -103,7 +105,8 @@ button.data-v-d9f352b2:after {
   background: #fff;
   margin: auto;
   margin-top: 100rpx;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
 }
 .shadow .box image.data-v-d9f352b2 {
   width: 150rpx;

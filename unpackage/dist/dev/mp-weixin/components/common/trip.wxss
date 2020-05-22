@@ -68,7 +68,8 @@
   width: 20rpx;
   height: 20rpx;
   background: #ccc;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
 }
 .trip_page > view .msgs .red.data-v-716b0349 {
   color: red;

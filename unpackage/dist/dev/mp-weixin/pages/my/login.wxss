@@ -52,7 +52,8 @@
   margin: auto;
   color: #FF6C00;
   border: 1px solid #FF6C00;
-  border-radius: 40rpx;
+  -webkit-border-radius: 40rpx;
+          border-radius: 40rpx;
   font-size: 14px;
   background: #fff;
   z-index: 1;
@@ -62,7 +63,8 @@
 }
 .login_page .login.data-v-300d52ac {
   width: 95%;
-  border-radius: 80rpx;
+  -webkit-border-radius: 80rpx;
+          border-radius: 80rpx;
   background: #FF6C00;
   margin-top: 40rpx;
 }

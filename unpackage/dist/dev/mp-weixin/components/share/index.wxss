@@ -73,8 +73,10 @@
 }
 .share_page .listbox.data-v-28a373a2 {
   margin-top: 40rpx;
-  border-top-right-radius: 20rpx;
-  border-top-left-radius: 20rpx;
+  -webkit-border-top-right-radius: 20rpx;
+          border-top-right-radius: 20rpx;
+  -webkit-border-top-left-radius: 20rpx;
+          border-top-left-radius: 20rpx;
   background: #fff;
   padding: 0 30rpx;
   padding-bottom: 50rpx;
@@ -114,7 +116,8 @@
 .shadow .box.data-v-28a373a2 {
   padding: 30rpx;
   background: #fff;
-  border-radius: 30rpx;
+  -webkit-border-radius: 30rpx;
+          border-radius: 30rpx;
   width: 600rpx;
   margin-left: 80rpx;
   margin-top: 150rpx;
@@ -129,7 +132,8 @@
   line-height: 54rpx;
 }
 .shadow .box button.data-v-28a373a2 {
-  border-radius: 50rpx;
+  -webkit-border-radius: 50rpx;
+          border-radius: 50rpx;
   margin-top: 60rpx;
   background: #FF6C00;
 }

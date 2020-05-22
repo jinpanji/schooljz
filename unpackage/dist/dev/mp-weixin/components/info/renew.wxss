@@ -122,7 +122,8 @@
   width: 180rpx;
   background: #FF6C00;
   float: right;
-  border-radius: 0;
+  -webkit-border-radius: 0;
+          border-radius: 0;
 }
 .footer .right text.data-v-635d821c {
   color: red;

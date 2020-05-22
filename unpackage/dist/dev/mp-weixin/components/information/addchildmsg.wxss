@@ -74,7 +74,8 @@
 .preservation.data-v-210d58a3 {
   width: 100%;
   background: #FF6C00;
-  border-radius: 0;
+  -webkit-border-radius: 0;
+          border-radius: 0;
   position: fixed;
   bottom: 0;
   left: 0;

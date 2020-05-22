@@ -3,11 +3,20 @@
 		<image src="../../static/img/img/wd_028.png" mode="widthFix"></image>
 		<view>您的申请已提交</view>
 		<view>请耐心等待管理员开启线路</view>
-		<button type="primary">确认</button>
+		<button type="primary" @click="isOk()">确认</button>
 	</view>
 </template>
 
 <script>
+	export default{
+		methods:{
+			isOk(){
+				uni.switchTab({
+					url:"../../pages/my/index"
+				})
+			}	
+		}
+	}
 </script>
 
 <style lang="scss" scope>

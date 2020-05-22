@@ -50,7 +50,8 @@
 .usermsg .msgbox .txbox.data-v-1e51b393 {
   width: 120rpx;
   height: 120rpx;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   border: 2px solid #FFFFFF;
   margin: auto;
   overflow: hidden;
@@ -74,7 +75,8 @@
   line-height: 44rpx;
   font-size: 12px;
   margin: auto;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
 }
 .usermsg .msgbox .js image.data-v-1e51b393 {
   width: 35rpx;
@@ -90,7 +92,8 @@
 .swiper-item.data-v-1e51b393 {
   background: #fff;
   border: 1px solid #eee;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
   -webkit-box-shadow: 0px 0px 1px 1px #ccc;
           box-shadow: 0px 0px 1px 1px #ccc;
   margin-bottom: 20rpx;
@@ -104,9 +107,6 @@
 .swiper-item ._h3.data-v-1e51b393 {
   padding-bottom: 20rpx;
   border-bottom: 1px solid #ccc;
-}
-.childmsg .swiper.data-v-1e51b393 {
-  height: 470rpx;
 }
 .childmsg .swiper .swiper-item ._h3 > text.data-v-1e51b393 {
   float: left;
@@ -145,7 +145,8 @@
 .childmsg .swiper .swiper-item > view ._i.data-v-1e51b393 {
   float: right;
   padding: 5rpx 20rpx;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
   background: #ccc;
 }
 .childmsg .swiper .swiper-item > view .xl.data-v-1e51b393 {

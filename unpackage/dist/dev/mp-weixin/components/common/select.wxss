@@ -29,7 +29,8 @@
   padding: 0rpx 40rpx;
   background: #eee;
   color: #666;
-  border-radius: 50rpx;
+  -webkit-border-radius: 50rpx;
+          border-radius: 50rpx;
   height: 50rpx;
   line-height: 50rpx;
   font-size: 12px;
@@ -48,8 +49,10 @@
   z-index: 100;
   left: 0;
   text-align: center;
-  border-bottom-right-radius: 40rpx;
-  border-bottom-left-radius: 40rpx;
+  -webkit-border-bottom-right-radius: 40rpx;
+          border-bottom-right-radius: 40rpx;
+  -webkit-border-bottom-left-radius: 40rpx;
+          border-bottom-left-radius: 40rpx;
 }
 .selectbox .opts ._h3.data-v-da3024c0 {
   border-top: 1px solid #999;

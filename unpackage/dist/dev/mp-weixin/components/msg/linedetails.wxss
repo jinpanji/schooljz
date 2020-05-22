@@ -28,7 +28,8 @@
   width: 700rpx;
   margin: 20rpx auto;
   background: #fff;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
   border: 1px solid #ccc;
 }
 .carbox .tits.data-v-c24a4f80 {
@@ -45,7 +46,8 @@
   float: right;
   padding: 0 22rpx;
   background: #f0f0f0;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
   font-size: 28rpx;
 }
 .carbox .status.data-v-c24a4f80 {
@@ -101,7 +103,8 @@
   margin: 20rpx;
   width: 110rpx;
   height: 110rpx;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   overflow: hidden;
   float: left;
   position: relative;
@@ -138,7 +141,8 @@ button.data-v-c24a4f80 {
   z-index: 1000000;
 }
 .shadow .box.data-v-c24a4f80 {
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
   background: #fff;
   width: 560rpx;
   margin: auto;
@@ -150,7 +154,8 @@ button.data-v-c24a4f80 {
   width: 126rpx;
   height: 126rpx;
   margin: auto;
-  border-radius: 50%;
+  -webkit-border-radius: 50%;
+          border-radius: 50%;
   overflow: hidden;
   margin-bottom: 30rpx;
 }
@@ -159,7 +164,8 @@ button.data-v-c24a4f80 {
 }
 .shadow .box button.data-v-c24a4f80 {
   margin-top: 30rpx;
-  border-radius: 50rpx;
+  -webkit-border-radius: 50rpx;
+          border-radius: 50rpx;
 }
 .shadow .box textarea.data-v-c24a4f80 {
   background: #ccc;
@@ -168,6 +174,7 @@ button.data-v-c24a4f80 {
   padding: 20rpx;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
 }
 

@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "编辑孩子信息",
   "usingComponents": {
-    "buslist": "/components/common/buslist"
+    "buslist": "/components/common/buslist",
+    "xfl-select": "/components/common/xfl-select/xfl-select"
   }
 }

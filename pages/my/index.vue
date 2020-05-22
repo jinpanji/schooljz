@@ -41,7 +41,7 @@
 					<view class="page-section-spacing">
 						<swiper class="swiper" indicator-active-color="#fe6b01" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
 							<swiper-item v-for="(item,index) in childrenList">
-								<view class="swiper-item" @click="goEdit(1)">
+								<view class="swiper-item" @click="goEdit(1,item.id)">
 									<h3 class="cl">
 										<text>{{item.schoolName}}</text>
 										<view class="nj">
@@ -254,11 +254,11 @@
 				// console.log(val.detail.value)
 				this.ischeck=val.detail.value
 			},
-			goEdit(val){
+			goEdit(val,id){
 				if(val==1){
 					//编辑孩子信息
 					uni.navigateTo({
-						url:"../../components/information/editchild"
+						url:"../../components/information/editchild?id="+id
 					})
 				}else{
 					//编辑家长信息
@@ -392,7 +392,7 @@
 	}
 	.childmsg{
 		.swiper{
-			height: 470rpx;
+			// height: 470rpx;
 			.swiper-item{
 				// height: 370rpx;				
 				h3{

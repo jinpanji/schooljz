@@ -38,7 +38,7 @@
 				console.log("选择站点")
 				console.log(id)
 				this.checkList=[id]
-				
+				this.$emit("changeLine",id)
 			}
 		}
 	}

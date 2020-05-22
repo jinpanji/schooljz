@@ -28,7 +28,8 @@
   padding: 30rpx;
 }
 .list_box.data-v-29da40a3 {
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
   padding-bottom: 100rpx;
 }
 .list_box .option.data-v-29da40a3 {
@@ -80,7 +81,8 @@
 .list_box .option .times.data-v-29da40a3 {
   width: 300rpx;
   line-height: 50rpx;
-  border-radius: 40rpx;
+  -webkit-border-radius: 40rpx;
+          border-radius: 40rpx;
   color: #fff;
   text-align: center;
   font-size: 14px;
@@ -144,7 +146,8 @@
   float: left;
   line-height: 100rpx;
   padding: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0;
+          border-radius: 0;
 }
 .shadow.data-v-29da40a3 {
   position: fixed;
@@ -160,7 +163,8 @@
   height: 400rpx;
   padding: 30rpx;
   background: #FFFFFF;
-  border-radius: 30rpx;
+  -webkit-border-radius: 30rpx;
+          border-radius: 30rpx;
   position: absolute;
   top: 0;
   right: 0;
@@ -181,6 +185,7 @@
 .shadow .box button.data-v-29da40a3 {
   width: 100%;
   background: #FF6C00;
-  border-radius: 50rpx;
+  -webkit-border-radius: 50rpx;
+          border-radius: 50rpx;
 }
 

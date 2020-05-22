@@ -6,6 +6,19 @@
 				<input type="text" value="" v-model="form.name" placeholder="请输入姓名"/>
 				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 			</view>
+			<view class="uni-list cl">
+				<view class="uni-list-cell">
+					<view class="uni-list-cell-left">
+						关系
+					</view>
+					<view class="uni-list-cell-db">
+						<picker mode="selector" :value="gxcheck" :range="gxlist" @change="gxchange">
+							<view class="uni-input">{{gxlist[gxcheck]}}</view>
+						</picker>
+					</view>
+					<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+				</view>
+			</view>
 			<!-- <view class="cl">
 				<text>性别</text>
 				<view class="">男</view>
@@ -46,7 +59,7 @@
 							<view class="uni-input">{{classlist[classCheck]}}</view>
 						</picker>
 					</view>
-					<input type="number" value="" placeholder="请输入班级" />
+					<input type="number" v-model="form.crazz" value="" placeholder="请输入班级" />
 					<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 				</view>
 			</view>
@@ -55,9 +68,26 @@
 		<!-- 选择路线 -->
 		<view class="selection_route">
 			<view class="tit">选择路线</view>
+			<!-- 下拉选择线路 -->
+			<view class="lines_list">
+				<xfl-select 
+							:list="lineStrlist"
+							:clearable="false"
+							:showItemNum="5" 
+							:listShow="false"
+							:isCanInput="true"  
+							:style_Container="'height: 50px; font-size: 16px;'"
+							:placeholder = "'请选择'"
+							:initValue="selectValue"
+							:selectHideType="'hideAll'"
+							@change="selectChange"
+						>
+				</xfl-select>
+			</view>
 			<!-- 有线路 -->
 			<view class="" v-if="!isNull">
-				<Buslist  v-for="(item,index) in list" :list="item.sites"/>
+				<!--  v-for="(item,index) in list" -->
+				<Buslist  @changeLine="changeLine" :list="list"/>
 			</view>
 			<!-- 无线路 -->
 			<view class="xlnull" v-else>
@@ -72,6 +102,7 @@
 
 <script>
 	import Buslist from '../../components/common/buslist.vue'
+	import xflSelect from '../common/xfl-select/xfl-select.vue';
 	function getDate(type) {
 		const date = new Date();
 	
@@ -91,15 +122,17 @@
 	}
 	export default {	
 		components:{
-			Buslist
+			Buslist,xflSelect
 		},
 		data(){
 			return{
-				list:['光谷大道五里湾','光谷大道金融港','光谷大三李陈','光谷大道关南村','光谷大道当代国际花园','光谷大道现代世贸中心'],
+				list:[],//站点列表
 				xblist:['女','男'],
 				xbcheck:0,
+				gxlist:["父亲","母亲","爷爷","奶奶","叔叔","阿姨"],
+				gxcheck:0,
 				classlist:["一年级","二年级","三年级","四年级","五年级","六年级"],
-				classCheck:5,
+				classCheck:0,
 				date: getDate({
 					format: true
 				}),
@@ -111,13 +144,24 @@
 					name:'',
 					sex:0,
 					grade:1,
-				}
+					relation:"父亲"
+				},
+				selectValue:"",//下拉框值
+				lineInfo:{
+					linesId:0,
+					sitesId:0,
+				},
+				lineStrlist:[],//线路名称列表
+				linesList:[],//线路列表
 			}
 		},
 		onLoad(){
 			let data=uni.getStorageSync("addchildinfo")
 			data=JSON.parse(data)
 			this.form=data
+			this.form.name=""
+			this.form.sex=0
+			this.form.grade=1
 			if(data.schoolId){
 				this.getlinesList()
 			}else{
@@ -135,11 +179,18 @@
 			}
 			
 		},
-		methods:{
+		methods:{			
 			xbchange(val){
 				console.log(val)
 				// 性别改变
 				this.form.sex=val.detail.value
+			},
+			gxchange(val){
+				// 关系改变
+				console.log(val)
+				this.form.relation=this.gxlist[val.detail.value]
+				this.gxcheck=val.detail.value
+				console.log(this.form.relation)
 			},
 			classchange(val){
 				// 年级改变
@@ -155,33 +206,130 @@
 				this.time = e.detail.value
 			},
 			goRouter(){
+				// 下一步，反馈或添加后跳转到付钱
+				console.log(this.form)
 				if(this.isNull){
-					//无线路  申报成功
-					uni.navigateTo({
-						url:"declaration"
-					})
+					//反馈
+						if(this.form.schoolId){
+							// 学校已录入但是没有线路  ：添加学生获取学生id，再反馈
+							this.add(1)
+						}else{
+							// 直接反馈
+							this.feedBack()
+						}
+					
 				}else{
-					// 有线路  支付
-					uni.navigateTo({
-						url:"payment"
+					// 添加学生，记录线路信息：跳转至付款
+					if(this.lineInfo.linesId&&this.lineInfo.sitesId){
+						let data=JSON.stringify(this.lineInfo)
+						uni.setStorageSync("userlinesInfo",data)
+						this.add(2)
+					}else{
+						if(this.lineInfo.linesId){
+							uni.showToast({
+								icon:"none",
+								title:"请选择站点"
+							})
+						}else{
+							uni.showToast({
+								icon:"none",
+								title:"请选择线路及站点"
+							})
+						}
+					}
+				}
+			},
+			selectChange(val){
+				// 选择线路，线路改变
+				console.log("选择线路")
+				console.log(val)
+				this.lineInfo.linesId=this.linesList[val.index].id
+				console.log(this.lineInfo.linesId)
+				this.list=this.linesList[val.index].sites
+				console.log(this.list)
+			},
+			changeLine(val){
+				// 选择站点
+				console.log('父组件获取')
+				console.log(val)
+				this.lineInfo.sitesId=val
+			},
+			feedBack(){
+				// 反馈
+				if(!this.form.childrenId){
+					this.form.childrenId=""
+				}
+				this.$http.post("puFeedback/add",this.form).then(res=>{
+					if(res.code==100){
+						uni.navigateTo({
+							url:"declaration"
+						})
+					}
+				})
+			},
+			add(type){
+				// 添加
+				if(!this.form.name&&!this.form.crazz&&!this.form.birthDate){
+					uni.showToast({
+						icon:"none",
+						title:"请填写完整的信息！"
+					})
+				}else {
+					// if(!this.lineForm&&!this.isNull){
+					// 	uni.showToast({
+					// 		icon:"none",
+					// 		title:"请选择线路、站点"
+					// 	})					
+					// }else
+					this.$http.post("puchildren/add",this.form).then(res=>{
+						if(res.code==100){
+							// 存学生id
+							this.form.childrenId=res.info
+							uni.showToast({
+								icon:"success",
+								title:"添加成功！"
+							})
+							if(type==1){
+								// 反馈
+								this.feedBack()
+								uni.navigateTo({
+									url:"declaration"
+								})
+							}else{
+								uni.navigateTo({
+									url:"payment"
+								})
+							}
+						}
 					})
 				}
+				
 			},
 			getlinesList(){
 				// 获取线路
 				this.$http.post("puProduct/getProductBySchoolId",{
 					schoolId:this.form.schoolId
+					// schoolId:1
 				}).then(res=>{
 					if(res.code==100){
 						if(res.code.length==0){
 							this.isNull=true
 						}else{
 							this.isNull=false
-							this.list=res.info
+							this.list=[]
+							let list=res.info
+							this.linesList=res.info
+							if(list.length>0){
+								this.lineStrlist=[]
+								list.forEach((item,index)=>{
+									this.lineStrlist.push(item.name)
+								})
+							}
 						}
 					}
 				})
 			},
+			
 		}
 	}
 </script>
