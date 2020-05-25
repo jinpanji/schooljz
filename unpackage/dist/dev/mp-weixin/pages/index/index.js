@@ -223,8 +223,9 @@ __webpack_require__.r(__webpack_exports__);
       list: ['光谷大道五里湾', '光谷大道金融港', '光谷大三李陈', '光谷大道关南村', '光谷大道当代国际花园', '光谷大道现代世贸中心'],
       childrenList: [],
       imgUrl: "",
-      childCheck: null //当前选中的是哪个学生
-    };
+      childCheck: null, //当前选中的是哪个学生
+      parentInfo: {} };
+
   },
   watch: {
     widths: function widths(oldval, newval) {
@@ -239,6 +240,22 @@ __webpack_require__.r(__webpack_exports__);
 
   },
   onShow: function onShow() {
+    var parentInfo = uni.getStorageSync("userInfo");
+    if (parentInfo) {
+      parentInfo = JSON.parse(parentInfo);
+      this.parentInfo = parentInfo;
+    } else {
+      //未登录
+      uni.showToast({
+        icon: "none",
+        title: "您还未登录，请先登录!" });
+
+      setTimeout(function () {
+        uni.switchTab({
+          url: "../my/index" });
+
+      }, 1000);
+    }
     var id = uni.getStorageSync("childId");
     if (id) {
       this.childCheck = id;
@@ -248,7 +265,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getuserinfo: function getuserinfo() {var _this = this;
       this.$http.post("puchildren/listByParentId", {
-        parentId: 1 }).
+        parentId: this.parentInfo.id }).
       then(function (res) {
         if (res.code == 100) {
           _this.childrenList = res.info;

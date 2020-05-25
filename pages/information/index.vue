@@ -2,42 +2,22 @@
 	<view class="information">
 		<!-- 通知列表 -->
 		<view class="list_box footerbox"v-if="!isNone">
-			<view class="box cl" @click="goLeave()">
+			<view class="box cl" v-for="(item,index) in msgList" @click="goLeave(item.id)" @touchstart="touchStart($event)" @touchend="touchEnd($event,index)">
 				<view class="img">
 					<image src="../../static/img/xxzx_009.png" mode="widthFix"></image>
 				</view>
 				<view class="textbox">
 					<h3>
-						<text>投诉通知</text>
-						<text>2019年8月21日</text>
+						<text>{{item.content}}</text>
+						<text>{{item.createTime}}</text>
 					</h3>
-					<text>报名已提</text>
+					<text>{{item.content}}</text>
+				</view>
+				<view :class="deleCheck==index?'deletebox show':'deletebox'">
+					删除
 				</view>
 			</view>
-			<view class="box cl">
-				<view class="img">
-					<image src="../../static/img/xxzx_002.png" mode="widthFix"></image>
-				</view>
-				<view class="textbox">
-					<h3>
-						<text>学校通知</text>
-						<text>2019年8月21日</text>
-					</h3>
-					<text>报名已提</text>
-				</view>
-			</view>
-			<view class="box cl">
-				<view class="img">
-					<image src="../../static/img/xxzx_003.png" mode="widthFix"></image>
-				</view>
-				<view class="textbox">
-					<h3>
-						<text>投诉通知</text>
-						<text>2019年8月21日</text>
-					</h3>
-					<text>报名已我嫩文件恩人叫我二年级胃口就让你就问人家口味提</text>
-				</view>
-			</view>
+			
 		</view>
 		
 		<!-- 悬浮框 -->
@@ -75,9 +55,20 @@
 					require("../../static/img/img/xxzx_009.png")//投诉回复
 				],
 				pageNum:1,
-				pageSize:10
+				pageSize:10,
+				userInfo:{},
+				msgList:[],
+				total:null,
+				deleCheck:null,
+				startNum:null,
 			}
 		},
+		onShow(){
+			let userInfo=uni.getStorageSync("userInfo")
+			this.userInfo=JSON.parse(userInfo)
+			this.getmsgList()
+		},
+		// 需要 下拉刷新，上拉加载
 		methods:{
 			goLeave(){
 				//今日请假
@@ -100,10 +91,38 @@
 			getmsgList(){
 				this.$http.post("puNews/list",{
 					parentId:1,
+					// parentId:this.userInfo.id,
 					pageNum:this.pageNum,
 					pageSize:this.pageSize
+				}).then(res=>{
+					if(res.code==100){
+						if(res.info.total==0){
+							this.isNone=true
+						}else{
+							this.isNone=false
+							this.msgList=res.info.rows
+							this.total=res.info.total
+						}
+						
+					}
 				})
 			},
+			touchStart(e){
+				// 滑动显示
+				console.log(e)
+				this.startNum=e.changedTouches[0].pageX
+				console.log(this.startNum)
+			},
+			touchEnd(e,index){
+				let endNum=e.changedTouches[0].pageX
+				console.log(this.startNum-endNum)
+				if(this.startNum-endNum>30){
+					// console.log()
+					this.deleCheck=index
+				}else{
+					this.deleCheck=null
+				}
+			}
 		}
 	}
 </script>
@@ -151,6 +170,7 @@
 		.box{
 			padding: 25rpx 0;
 			border-bottom: 1px solid #ccc;
+			position: relative;
 			.img{
 				float: left;
 				width: 90rpx;
@@ -182,6 +202,21 @@
 					text-overflow: ellipsis;
 					white-space: nowrap;
 				}
+			}
+			.deletebox{
+				width: 150rpx;
+				height: 100%;
+				line-height: 158rpx;
+				position: absolute;
+				top: 0;
+				right: -180rpx;
+				background: #FF6C00;
+				color: #fff;
+				text-align: center;
+				transition: 0.5;
+			}
+			.show{
+				right: 0;
 			}
 		}
 		.box:last-child{

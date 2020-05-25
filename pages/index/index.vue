@@ -85,6 +85,7 @@
 				childrenList:[],
 				imgUrl:"",
 				childCheck:null,//当前选中的是哪个学生
+				parentInfo:{}
 			}
 		},
 		watch:{
@@ -100,6 +101,22 @@
 			})
 		},
 		onShow(){
+			let parentInfo=uni.getStorageSync("userInfo")
+			if(parentInfo){
+				parentInfo=JSON.parse(parentInfo)
+				this.parentInfo=parentInfo
+			}else{
+				//未登录
+				uni.showToast({
+					icon:"none",
+					title:"您还未登录，请先登录!"
+				})
+				setTimeout(()=>{
+					uni.switchTab({
+						url:"../my/index"
+					})
+				},1000)
+			}
 			let id=uni.getStorageSync("childId")
 			if(id){
 				this.childCheck=id
@@ -109,7 +126,7 @@
 		methods: {
 			getuserinfo(){
 				this.$http.post("puchildren/listByParentId",{
-					parentId:1
+					parentId:this.parentInfo.id
 				}).then(res=>{
 					if(res.code==100){
 						this.childrenList=res.info

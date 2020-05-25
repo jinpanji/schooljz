@@ -130,7 +130,13 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var wCalendar = function wCalendar() {Promise.all(/*! require.ensure | components/common/w-calendar/w-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common/w-calendar/w-calendar")]).then((function () {return resolve(__webpack_require__(/*! ../common/w-calendar/w-calendar.vue */ 269));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var wCalendar = function wCalendar() {Promise.all(/*! require.ensure | components/common/w-calendar/w-calendar */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common/w-calendar/w-calendar")]).then((function () {return resolve(__webpack_require__(/*! ../common/w-calendar/w-calendar.vue */ 269));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
+
+
 
 
 
@@ -175,18 +181,121 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
   data: function data() {
     return {
-      result: {} };
+      result: {},
+      startTime: "",
+      endTime: '',
+      type: 1, //1早，2晚，3全天
+      msgStr: {
+        day: 1,
+        count: 1 },
 
+      id: null,
+      remarks: "" //备注
+    };
   },
+  watch: {},
+
+
   mounted: function mounted() {
     this.$refs.calendar.show();
+    var id = uni.getStorageSync("childId");
+    this.id = id;
+    // 当前时间
+    var time = new Date();
+    var timeStr = "";
+    timeStr = time.getFullYear() + "-";
+    var month = time.getMonth() + 1;
+    if (month < 10) {
+      timeStr += "0" + month + "-";
+    } else {
+      timeStr += month + "-";
+    }
+    var day = time.getDate();
+    if (day < 10) {
+      timeStr += "0" + day;
+    } else {
+      timeStr += day;
+    }
+    this.startTime = timeStr;
   },
   methods: {
     getResult: function getResult(val) {
       console.log(val);
-      // this.result=val;
-      // this.$refs.calendar.show();
+      var that = this;
+      uni.showModal({
+        title: '提示',
+        content: '请选择时间类型',
+        confirmText: "开始时间",
+        cancelText: "结束时间",
+        success: function success(res) {
+          if (res.confirm) {
+            // console.log('用户点击确定');
+            that.startTime = val.fullDate;
+          } else if (res.cancel) {
+            if (val.fullDate < that.startTime) {
+              uni.showToast({
+                icon: "none",
+                title: "结束日期不能小于开始日期" });
+
+            } else {
+              that.endTime = val.fullDate;
+              that.msgStr.day = (that.startTime - that.endTime) * 1 + 1;
+            }
+            that.getDays();
+          }
+        } });
+
+    },
+    submitInfo: function submitInfo() {
+      if (this.remarks) {
+        this.$http.post("puLeaveApply/add", {
+          childrenId: this.id,
+          startTime: this.startTime,
+          endTime: this.endTime,
+          type: this.type,
+          remarks: this.remarks }).
+        then(function (res) {
+          if (res.code == 100) {
+            uni.showToast({
+              icon: "success",
+              title: "提交成功！" });
+
+            setTimeout(function () {
+              uni.navigateBack({});
+
+
+            }, 2000);
+          }
+        });
+      } else {
+        uni.showToast({
+          icon: "none",
+          title: "请填写备注！" });
+
+      }
+    },
+    getDays: function getDays() {
+      // 得到天数
+      var starTime = new Date(this.startTime);
+      var endTime = new Date(this.endTime);
+      var days = endTime - starTime;
+      days = days / 1000 / 60 / 60 / 24;
+      console.log(days);
+      if (!this.endTime) {
+        days = 0;
+      }
+      this.msgStr.day = days + 1;
+      if (this.type == 3) {
+        this.msgStr.count = (days + 1) * 2;
+      } else {
+        this.msgStr.count = days + 1;
+      }
+    },
+    changeType: function changeType(type) {
+      this.type = type;
+      this.getDays();
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

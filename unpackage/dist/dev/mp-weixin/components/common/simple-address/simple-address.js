@@ -288,6 +288,7 @@ var _area = _interopRequireDefault(__webpack_require__(/*! ./city-data/area.js *
       this.cityDataList = _city.default[this.pickerValueDefault[0]];
       this.areaDataList = _area.default[this.pickerValueDefault[0]][this.pickerValueDefault[1]];
       this.pickerValue = this.pickerValueDefault;
+      // console.log("不是假的不减肥时代峻峰")
     },
     handPickValueDefault: function handPickValueDefault() {
       if (this.pickerValueDefault !== [0, 0, 0]) {

@@ -9,25 +9,31 @@
 				:disabledAfter="false" 
 				@confirm="getResult">
 			</wCalendar>
+			<view class="timebox">
+				开始时间：{{startTime}}
+			</view>
+			<view class="timebox">
+			结束时间：{{endTime}}
+			</view>
 		</view>
 		 
 		<view class="jilu">
 			<view class="boxlist">
 				<h3><text>请选择请假车次</text></h3>
 				<view class="list">
-					<text class="check_index">早接</text>
-					<text>晚送</text>
-					<text>整天请假</text>
+					<text :class="type==1?'check_index':''" @click="changeType(1)">早接</text>
+					<text :class="type==2?'check_index':''" @click="changeType(2)">晚送</text>
+					<text :class="type==3?'check_index':''" @click="changeType(3)">整天请假</text>
 				</view>	
 			</view>
 			<view class="msgbox">
 				<h3><text>请填写请假备注</text></h3>
-				<textarea value="" placeholder="例:生病了" />
+				<textarea value="" v-model="remarks" placeholder="例:生病了" />
 				<view class="tis">
-					提示：当前请假共10天，请假20车次。
+					提示：当前请假共{{msgStr.day}}天，请假{{msgStr.count}}车次。
 				</view>
 			</view>
-			<button type="primary">提交</button>
+			<button type="primary" @click="submitInfo()">提交</button>
 		</view>
 		
 	</view>
@@ -43,18 +49,120 @@
 		},
 		data(){
 			return{
-				result:{}
+				result:{},
+				startTime:"",
+				endTime:'',
+				type:1,//1早，2晚，3全天
+				msgStr:{
+					day:1,
+					count:1
+				},
+				id:null,
+				remarks:"",//备注
 			}
+		},
+		watch:{
+			
 		},
 		mounted(){
 			this.$refs.calendar.show();
+			let id=uni.getStorageSync("childId")
+			this.id=id
+			// 当前时间
+			let time=new Date()
+			let timeStr=""
+			timeStr=time.getFullYear()+"-"
+			let month=time.getMonth()+1
+			if(month<10){
+				timeStr+="0"+month+"-"
+			}else{
+				timeStr+=month+"-"
+			}
+			let day=time.getDate()
+			if(day<10){
+				timeStr+="0"+day
+			}else{
+				timeStr+=day
+			}
+			this.startTime=timeStr
 		},
 		methods:{
 			getResult(val){
 				console.log(val)
-				// this.result=val;
-				// this.$refs.calendar.show();
-			}
+				let that=this				
+				uni.showModal({
+				    title: '提示',
+				    content: '请选择时间类型',
+					confirmText:"开始时间",
+					cancelText:"结束时间",
+				    success: function (res) {
+				        if (res.confirm) {
+				            // console.log('用户点击确定');
+							that.startTime=val.fullDate
+				        } else if (res.cancel) {							
+							if(val.fullDate<that.startTime){
+								uni.showToast({
+									icon:"none",
+									title:"结束日期不能小于开始日期"
+								})
+							}else{
+								that.endTime=val.fullDate
+								that.msgStr.day=(that.startTime-that.endTime)*1+1
+							}
+							that.getDays()
+				        }
+				    }
+				})
+			},
+			submitInfo(){
+				if(this.remarks){
+					this.$http.post("puLeaveApply/add",{
+						childrenId:this.id,
+						startTime:this.startTime,
+						endTime:this.endTime,
+						type:this.type,
+						remarks:this.remarks
+					}).then(res=>{
+						if(res.code==100){
+							uni.showToast({
+								icon:"success",
+								title:"提交成功！"
+							})
+							setTimeout(()=>{
+								uni.navigateBack({
+									
+								})
+							},2000)
+						}
+					})
+				}else{
+					uni.showToast({
+						icon:"none",
+						title:"请填写备注！"
+					})
+				}
+			},
+			getDays(){
+				// 得到天数
+				let starTime=new Date(this.startTime)
+				let endTime=new Date(this.endTime)
+				let days=endTime-starTime
+				days=days/1000/60/60/24
+				console.log(days)
+				if(!this.endTime){
+					days=0
+				}
+				this.msgStr.day=days+1
+				if(this.type==3){
+					this.msgStr.count=(days+1)*2
+				}else{
+					this.msgStr.count=days+1
+				}
+			},
+			changeType(type){
+				this.type=type
+				this.getDays()
+			},
 		}
 	}
 </script>
@@ -156,6 +264,10 @@
 			bottom: 0;
 			width: 100%;
 		}
+	}
+	.timebox{
+		padding: 10rpx;
+		background: #fff;
 	}
 
 </style>

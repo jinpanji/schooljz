@@ -130,57 +130,83 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var simpleAddress = function simpleAddress() {Promise.all(/*! require.ensure | components/common/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common/simple-address/simple-address")]).then((function () {return resolve(__webpack_require__(/*! @/components/common/simple-address/simple-address.vue */ 259));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import simpleAddress from"../common/simple-address/simple-address.vue"
 function getDate(type) {
   var date = new Date();
 
@@ -199,6 +225,9 @@ function getDate(type) {
   return "".concat(year, "-").concat(month, "-").concat(day);
 }var _default =
 {
+  components: {
+    simpleAddress: simpleAddress },
+
   data: function data() {
     return {
       xblist: ['男', '女'],
@@ -207,19 +236,172 @@ function getDate(type) {
         format: true }),
 
       startDate: getDate('start'),
-      endDate: getDate('end') };
+      endDate: getDate('end'),
+      userId: null,
+      userInfo: {},
+      imgUrl: '',
+      photo: "",
+      cityPickerValueDefault: [0, 0, 1],
+      // addressList:["湖北省","武汉市","江夏区"],
+      addressList: [],
+      codeList: [],
+      pickerText: "",
+      gxlist: ["父亲", "母亲", "爷爷", "奶奶", "叔叔", "阿姨"],
+      gxcheck: null,
+      btnStr: '获取验证码',
+      codeFlag: true };
 
   },
+  onLoad: function onLoad(e) {
+    console.log(e.id);
+    this.imgUrl = this.$imgurl;
+    this.userId = e.id;
+    var userInfo = uni.getStorageSync("userInfo");
+    userInfo = JSON.parse(userInfo);
+    this.photo = userInfo.photo;
+    this.getUserInfo();
+  },
+  created: function created() {
+  },
+  onShow: function onShow() {
+  },
   methods: {
+    getDwCode: function getDwCode() {
+      var index = this.$refs.simpleAddress.queryIndex(this.addressList, 'label');
+      console.log(index);
+      var data = index.data;
+      this.codeList[0] = data.province.value;
+      this.codeList[1] = data.city.value;
+      this.codeList[2] = data.area.value;
+      console.log(this.codeList);
+    },
+    openAddres2: function openAddres2() {
+      // 根据 label 获取
+      var index = this.$refs.simpleAddress.queryIndex(this.addressList, 'label');
+      console.log(index);
+      this.cityPickerValueDefault = index.index;
+      this.$refs.simpleAddress.open();
+    },
+
+    onConfirm: function onConfirm(e) {
+      this.pickerText = JSON.stringify(e);
+      console.log("这呃呃呃呃呃呃");
+      console.log(e);
+      this.addressList = e.labelArr;
+      this.codeList[0] = e.provinceCode;
+      this.codeList[1] = e.cityCode;
+      this.codeList[2] = e.areaCode;
+      console.log(this.codeList);
+    },
     xbchange: function xbchange(val) {
       console.log(val);
+    },
+    gxchange: function gxchange(val) {
+      // 关系改变
+      console.log(val);
+      this.userInfo.relation = this.gxlist[val.detail.value];
+      this.gxcheck = val.detail.value;
+      console.log(this.userInfo.relation);
     },
     bindDateChange: function bindDateChange(e) {
       this.date = e.detail.value;
     },
     bindTimeChange: function bindTimeChange(e) {
       this.time = e.detail.value;
+    },
+    getUserInfo: function getUserInfo() {var _this = this;
+      this.$http.post("puparent/detail", {
+        parentId: this.userId }).
+      then(function (res) {
+        if (res.code == 100) {
+          _this.userInfo = res.info;
+          var data = res.info;
+          // this.addressList=[]
+          _this.addressList[0] = data.province.name;
+          _this.addressList[1] = data.city.name;
+          _this.addressList[2] = data.area.name;
+          _this.getDwCode();
+          // this.gxcheck
+          var index = 0;
+          if (data.relation) {
+            index = _this.gxlist.indexOf(data.relation);
+          }
+          _this.gxcheck = index == -1 ? 0 : index;
+        }
+      });
+    },
+    getCodenum: function getCodenum() {var _this2 = this;
+      //获取验证码
+      console.log("获取验证码");
+      if (this.codeFlag) {
+        console.log('验证');
+        console.log(/^1[3456789]\d{9}$/.test(this.userInfo.phone));
+        if (!/^1[3456789]\d{9}$/.test(this.userInfo.phone)) {
+          this.codeFlag = false;
+          uni.showToast({
+            icon: "none",
+            title: "请输入正确的手机号码！" });
+
+        }
+      }
+      if (this.codeFlag) {
+        //可以获取
+        this.codeFlag = false;
+        uni.showLoading({
+          icon: "loading",
+          title: "正在发送！" });
+
+        this.$http.post("puparent/produceCode", {
+          phone: this.userInfo.phone }).
+        then(function (res) {
+          uni.hideLoading();
+          if (res.code == 100) {
+            uni.showLoading({
+              icon: "success",
+              title: "发送成功！",
+              success: function success() {
+                setTimeout(function () {
+                  uni.hideLoading();
+                }, 2000);
+              } });
+
+            //获取成功倒计时
+            var timer = null;
+            var count = 60;
+            timer = setInterval(function () {
+              _this2.btnStr = count + 's后重新获取';
+              count--;
+              if (count == 0) {
+                clearInterval(timer);
+                _this2.codeFlag = true;
+                _this2.btnStr = "获取验证码";
+              }
+            }, 1000);
+
+          } else {
+            // 发送失败
+            uni.hideLoading();
+            uni.showToast({
+              icon: "none",
+              title: "发送验证码失败！" });
+
+            _this2.codeFlag = true;
+          }
+        });
+
+      } else {
+        //不可以获取
+        if (/^1[3456789]\d{9}$/.test(this.phone)) {
+          uni.showToast({
+            title: '正在获取，请稍后！',
+            icon: 'none' });
+
+        } else {
+          this.codeFlag = true;
+        }
+      }
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

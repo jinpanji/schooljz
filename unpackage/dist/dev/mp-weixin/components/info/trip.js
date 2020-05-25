@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Trip = function Trip() {__webpack_require__.e(/*! require.ensure | components/common/trip */ "components/common/trip").then((function () {return resolve(__webpack_require__(/*! ../../components/common/trip.vue */ 231));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Trip = function Trip() {__webpack_require__.e(/*! require.ensure | components/common/trip */ "components/common/trip").then((function () {return resolve(__webpack_require__(/*! ../../components/common/trip.vue */ 231));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -142,7 +142,32 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 
 {
   components: {
-    Trip: Trip } };exports.default = _default;
+    Trip: Trip },
+
+  data: function data() {
+    return {
+      info: {},
+      id: null };
+
+  },
+  onShow: function onShow() {
+    var id = uni.getStorageSync("childId");
+    this.id = id ? id : "";
+    this.getTrip();
+  },
+  methods: {
+    getTrip: function getTrip() {var _this = this;
+      //孩子id
+      this.$http.post("puridingrecord/yestList", {
+        childrenId: 1
+        // childrenId:this.id
+      }).then(function (res) {
+        if (res.code == 100) {
+          _this.info = res.info;
+        }
+      });
+    } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

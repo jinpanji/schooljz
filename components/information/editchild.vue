@@ -93,34 +93,34 @@
 		</view>
 		<view class="pick cl">
 			<view class="tit">接送</view>
-			<view class="box zao">
+			<view class="box zao" v-if="productList.productType==1">
 				<!-- 早接 -->
 				<view class="tits">
 					<image src="../../static/img/img/wd_021.png" mode="widthFix"></image>
 					<text>早接</text>
 				</view>
 				<view class="money">
-					998.00元
+					{{productList.price}}元
 				</view>
 			</view>
-			<view class="box wan">
+			<view class="box wan" v-if="productList.productType==2">
 				<!-- 晚送 -->
 				<view class="tits">
 					<image src="../../static/img/img/wd_022.png" mode="widthFix"></image>
 					<text>晚送</text>
 				</view>
 				<view class="money">
-					998.00元
+					{{productList.price}}元
 				</view>
 			</view>
-			<view class="box quan">
+			<view class="box quan" v-if="productList.productType==3">
 				<!-- 全包 -->
 				<view class="tits">
 					<image src="../../static/img/img/wd_023.png" mode="widthFix"></image>
 					<text>全包</text>
 				</view>
 				<view class="money">
-					998.00元
+					{{productList.price}}元
 				</view>
 			</view>
 		</view>
@@ -182,6 +182,7 @@
 					linesId:0,
 					sitesId:0,
 				},
+				productList:{}
 			}
 		},
 		onLoad(e){
@@ -198,6 +199,7 @@
 			}
 			this.getChildInfo()
 			this.getchildLines()
+			this.getProduct()
 		},
 		methods:{
 			getChildInfo(){
@@ -227,6 +229,16 @@
 						list.forEach((item,index)=>{
 							this.lineStrlist.push(item.name)
 						})
+					}
+				})
+			},
+			getProduct(){
+				// 查找孩子购买的产品
+				this.$http.post("puProduct/getProductByChildrenId",{
+					childrenId:this.childId
+				}).then(res=>{
+					if(res.code==100){
+						this.productList=res.info
 					}
 				})
 			},

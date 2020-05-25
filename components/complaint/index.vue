@@ -4,13 +4,13 @@
 			<view class="boxlist">
 				<h3><text>请选择投诉范围（单选）</text></h3>
 				<view class="list">
-					<text class="check_index">学校名+孩子名+线路名</text>
-					<text>平台</text>
+					<text :class="type==1?'check_index':''">学校名+孩子名+线路名</text>
+					<text :class="type==2?'check_index':''">平台</text>
 				</view>	
 			</view>
 			<view class="msgbox">
 				<h3><text>投诉内容</text></h3>
-				<textarea value="" placeholder="请您将意见填写在这里" />
+				<textarea value="" v-model="content" placeholder="请您将意见填写在这里" />
 				
 			</view>
 			<button type="primary">提交</button>
@@ -27,7 +27,9 @@
 		},
 		data(){
 			return{
-				result:{}
+				result:{},
+				type:0,//1线路  2：平台
+				content:""
 			}
 		},
 		mounted(){

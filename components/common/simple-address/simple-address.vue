@@ -172,6 +172,7 @@ export default {
 			this.cityDataList = cityData[this.pickerValueDefault[0]];
 			this.areaDataList = areaData[this.pickerValueDefault[0]][this.pickerValueDefault[1]];
 			this.pickerValue = this.pickerValueDefault;
+			// console.log("不是假的不减肥时代峻峰")
 		},
 		handPickValueDefault() {
 			if (this.pickerValueDefault !== [0, 0, 0]) {

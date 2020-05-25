@@ -63,6 +63,7 @@
 .list_box .box.data-v-27ea960a {
   padding: 25rpx 0;
   border-bottom: 1px solid #ccc;
+  position: relative;
 }
 .list_box .box .img.data-v-27ea960a {
   float: left;
@@ -94,6 +95,22 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+.list_box .box .deletebox.data-v-27ea960a {
+  width: 150rpx;
+  height: 100%;
+  line-height: 158rpx;
+  position: absolute;
+  top: 0;
+  right: -180rpx;
+  background: #FF6C00;
+  color: #fff;
+  text-align: center;
+  -webkit-transition: 0.5;
+  transition: 0.5;
+}
+.list_box .box .show.data-v-27ea960a {
+  right: 0;
 }
 .list_box .box.data-v-27ea960a:last-child {
   border: 0;

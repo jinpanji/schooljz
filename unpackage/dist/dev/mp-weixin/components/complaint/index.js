@@ -159,7 +159,9 @@ var _default = {
 
   data: function data() {
     return {
-      result: {} };
+      result: {},
+      type: 0, //1线路  2：平台
+      content: "" };
 
   },
   mounted: function mounted() {

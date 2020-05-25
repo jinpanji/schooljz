@@ -328,7 +328,7 @@ var _default =
             } });
 
           that.$http.post("puparent/wxGrant", {
-            type: 0,
+            type: 0, //0:自己   1：别人介绍  2：主账号分享的
             code: code,
             parentId: '' }).
           then(function (res1) {
@@ -368,18 +368,27 @@ var _default =
       });
 
       // 家长组信息
-      // this.$http.post("puchildren/listChildrenLineByParentId",{
-      // 	parentId:1,//家长id
-      // }).then(res=>{
-      // 	if(res.code==100){
-
-      // 	}
-      // })
+      this.$http.post("puparent/getSubList", {
+        // parentId:1,//家长id
+        parentId: this.userInfo.id //家长id
+      }).then(function (res) {
+        if (res.code == 100) {
+          _this2.parentList = res.info;
+        }
+      });
     },
     lookInfo: function lookInfo() {
       //个人资料
-      uni.navigateTo({
-        url: "../../components/msg/userinfo" });
+      if (this.isLogin) {
+        uni.navigateTo({
+          url: "../../components/msg/userinfo?id=" + this.userInfo.id });
+
+      } else {
+        uni.showToast({
+          icon: "none",
+          title: "请登录后操作！" });
+
+      }
 
     },
     switch1Change: function switch1Change(val) {

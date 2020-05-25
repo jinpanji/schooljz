@@ -97,27 +97,27 @@
 				<view class="page-section swiper">
 					<view class="page-section-spacing">
 						<swiper class="swiper" indicator-active-color="#fe6b01" :indicator-dots="indicatorDots" :autoplay="autoplay" :interval="interval" :duration="duration">
-							<swiper-item>
-								<view class="swiper-item" @click="goEdit(2)">
+							<swiper-item v-for="(item,index) in parentList">
+								<view class="swiper-item" @click="goEdit(2,item.id)">
 									<h3 class="cl">
-										<text>妈妈</text>
+										<text>{{item.relation}}</text>
 									</h3>
 									<view class="msgs">
 										<text>姓名：</text>
-										<text>张三</text>
+										<text>{{item.name}}</text>
 										<view class="switchbox cl">
 											<text class="status" :style="ischeck?'left: 0rpx;color:#fff;':'right: -30rpx;'">{{ischeck?'开':'关'}}</text>
-											<switch :checked="ischeck" @change="switch1Change" />
+											<switch :checked="item.status==0?true:false" @change="switch1Change" />
 										</view>
 										
 									</view>
 									<view class="msgs">
 										<text>性别：</text>
-										<text>女</text>									
+										<text>{{item.sex?item.sex:""}}</text>									
 									</view>
 									<view class="msgs">
 										<text>联系方式：</text>
-										<text>1854585254</text>									
+										<text>{{item.phone}}</text>									
 									</view>
 								</view>
 							</swiper-item>
@@ -196,7 +196,7 @@
 							}
 						})
 						that.$http.post("puparent/wxGrant",{
-							type:0,
+							type:0,//0:自己   1：别人介绍  2：主账号分享的
 							code:code,
 							parentId:''
 						}).then(res1=>{
@@ -236,19 +236,28 @@
 				})
 			
 				// 家长组信息
-				// this.$http.post("puchildren/listChildrenLineByParentId",{
-				// 	parentId:1,//家长id
-				// }).then(res=>{
-				// 	if(res.code==100){
-						
-				// 	}
-				// })
+				this.$http.post("puparent/getSubList",{
+					// parentId:1,//家长id
+					parentId:this.userInfo.id,//家长id
+				}).then(res=>{
+					if(res.code==100){
+						this.parentList=res.info
+					}
+				})
 			},
 			lookInfo(){
 				//个人资料
-				uni.navigateTo({
-					url:"../../components/msg/userinfo"
-				})
+				if(this.isLogin){
+					uni.navigateTo({
+						url:"../../components/msg/userinfo?id="+this.userInfo.id
+					})
+				}else{
+					uni.showToast({
+						icon:"none",
+						title:"请登录后操作！"
+					})
+				}
+				
 			},
 			switch1Change(val){
 				// console.log(val.detail.value)

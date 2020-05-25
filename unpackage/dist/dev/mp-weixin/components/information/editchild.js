@@ -312,8 +312,9 @@ function getDate(type) {
       lineStrlist: [], //线路名称集合
       lineInfo: {
         linesId: 0,
-        sitesId: 0 } };
+        sitesId: 0 },
 
+      productList: {} };
 
   },
   onLoad: function onLoad(e) {
@@ -330,6 +331,7 @@ function getDate(type) {
     }
     this.getChildInfo();
     this.getchildLines();
+    this.getProduct();
   },
   methods: {
     getChildInfo: function getChildInfo() {var _this = this;
@@ -362,6 +364,16 @@ function getDate(type) {
         }
       });
     },
+    getProduct: function getProduct() {var _this3 = this;
+      // 查找孩子购买的产品
+      this.$http.post("puProduct/getProductByChildrenId", {
+        childrenId: this.childId }).
+      then(function (res) {
+        if (res.code == 100) {
+          _this3.productList = res.info;
+        }
+      });
+    },
     bindDateChange: function bindDateChange(e) {
       this.date = e.detail.value;
       this.form.birthDate = e.detail.value;
@@ -388,7 +400,7 @@ function getDate(type) {
       this.form.grade = val.detail.value * 1 + 1;
       this.classCheck = val.detail.value;
     },
-    selectChange: function selectChange(val) {var _this3 = this;
+    selectChange: function selectChange(val) {var _this4 = this;
       // 选择线路，线路改变
       console.log("选择线路");
       console.log(val);
@@ -401,7 +413,7 @@ function getDate(type) {
         lineId: this.lineInfo.linesId }).
       then(function (res) {
         if (res.code == 100) {
-          _this3.list = res.info;
+          _this4.list = res.info;
         }
       });
     },

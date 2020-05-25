@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<h3><text>2020年4月26日</text></h3>
-		<Trip></Trip>
+		<Trip :info="info"></Trip>
 		<button type="primary">确认</button>
 	</view>
 </template>
@@ -12,6 +12,30 @@
 		components:{
 			Trip,
 		},
+		data(){
+			return{
+				info:{},
+				id:null,
+			}
+		},
+		onShow(){
+			let id=uni.getStorageSync("childId")
+			this.id=id?id:""
+			this.getTrip()
+		},
+		methods:{
+			getTrip(){
+			//孩子id
+				this.$http.post("puridingrecord/yestList",{
+					childrenId:1
+					// childrenId:this.id
+				}).then(res=>{
+					if(res.code==100){
+						this.info=res.info
+					}
+				})
+			},
+		}
 	}
 </script>
 

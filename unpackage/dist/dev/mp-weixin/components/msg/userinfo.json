@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "个人资料",
-  "usingComponents": {}
+  "usingComponents": {
+    "simple-address": "/components/common/simple-address/simple-address"
+  }
 }

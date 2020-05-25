@@ -165,26 +165,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default =
 {
   data: function data() {
@@ -207,9 +187,20 @@ var _default =
       __webpack_require__(/*! ../../static/img/img/xxzx_009.png */ 40) //投诉回复
       ],
       pageNum: 1,
-      pageSize: 10 };
+      pageSize: 10,
+      userInfo: {},
+      msgList: [],
+      total: null,
+      deleCheck: null,
+      startNum: null };
 
   },
+  onShow: function onShow() {
+    var userInfo = uni.getStorageSync("userInfo");
+    this.userInfo = JSON.parse(userInfo);
+    this.getmsgList();
+  },
+  // 需要 下拉刷新，上拉加载
   methods: {
     goLeave: function goLeave() {
       //今日请假
@@ -229,12 +220,40 @@ var _default =
         url: "../../components/complaint/index" });
 
     },
-    getmsgList: function getmsgList() {
+    getmsgList: function getmsgList() {var _this = this;
       this.$http.post("puNews/list", {
         parentId: 1,
+        // parentId:this.userInfo.id,
         pageNum: this.pageNum,
-        pageSize: this.pageSize });
+        pageSize: this.pageSize }).
+      then(function (res) {
+        if (res.code == 100) {
+          if (res.info.total == 0) {
+            _this.isNone = true;
+          } else {
+            _this.isNone = false;
+            _this.msgList = res.info.rows;
+            _this.total = res.info.total;
+          }
 
+        }
+      });
+    },
+    touchStart: function touchStart(e) {
+      // 滑动显示
+      console.log(e);
+      this.startNum = e.changedTouches[0].pageX;
+      console.log(this.startNum);
+    },
+    touchEnd: function touchEnd(e, index) {
+      var endNum = e.changedTouches[0].pageX;
+      console.log(this.startNum - endNum);
+      if (this.startNum - endNum > 30) {
+        // console.log()
+        this.deleCheck = index;
+      } else {
+        this.deleCheck = null;
+      }
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

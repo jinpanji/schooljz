@@ -122,4 +122,8 @@
   bottom: 0;
   width: 100%;
 }
+.timebox.data-v-609da524 {
+  padding: 10rpx;
+  background: #fff;
+}
 
