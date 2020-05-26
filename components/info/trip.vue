@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
-		<h3><text>2020年4月26日</text></h3>
-		<Trip :info="info"></Trip>
+		<h3><text>{{date}}</text></h3>
+		<Trip :schoolInfo="schoolInfo" :homeInfo="homeInfo" @goReport="goReport"></Trip>
 		<button type="primary">确认</button>
 	</view>
 </template>
@@ -16,23 +16,47 @@
 			return{
 				info:{},
 				id:null,
+				schoolInfo:{},
+				homeInfo:{},
+				date:""
 			}
 		},
 		onShow(){
 			let id=uni.getStorageSync("childId")
 			this.id=id?id:""
 			this.getTrip()
+			let date=new Date()
+			let dateStr=""
+			dateStr=date.getFullYear()+"年"
+			dateStr+=(date.getMonth()+1)+"月"
+			dateStr+=date.getDate()-1+"日"
+			this.date=dateStr
 		},
 		methods:{
 			getTrip(){
 			//孩子id
 				this.$http.post("puridingrecord/yestList",{
-					childrenId:1
-					// childrenId:this.id
+					// childrenId:1
+					childrenId:this.id
 				}).then(res=>{
 					if(res.code==100){
-						this.info=res.info
+						// this.info=res.info
+						let list=res.info
+						list.forEach((item,index)=>{
+							if(item.type==1){
+								this.schoolInfo=item
+							}else{
+								this.homeInfo=item
+							}
+						})
 					}
+				})
+			},
+			goReport(id){
+				console.log('查看行车报告')
+				console.log(id)
+				uni.navigateTo({
+					url:"../msg/security?id="+id
 				})
 			},
 		}
@@ -54,7 +78,7 @@
 			padding:30rpx 0;
 			border-bottom: 1px solid #ccc;
 			text{
-				padding: 20rpx;
+				padding-left: 20rpx;
 				border-left: 2px solid #FF6C00;
 			}
 		}

@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "线路详情",
+  "navigationBarTitleText": "行车报告",
   "usingComponents": {
     "select": "/components/common/select"
   }

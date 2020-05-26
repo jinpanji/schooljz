@@ -48,7 +48,7 @@
 							<view class="uni-input">{{classlist[classCheck]}}</view>
 						</picker>
 					</view>
-					<input type="number" v-model="form.crazz" placeholder="请输入班级" value="" />
+					<input type="number" v-model="form.clazz" placeholder="请输入班级" value="" />
 					<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 				</view>
 			</view>

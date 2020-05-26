@@ -30,9 +30,11 @@
 		},
 		mounted(){
 			// let listLen=this.$props.list.length
-			// console.log(lis\)
+			// console.log("车站列表")
+			// console.log(this.$props.list)
 			// this.boxWidth=listLen*140
 		},
+		
 		methods:{
 			changeNum(id){
 				console.log("选择站点")

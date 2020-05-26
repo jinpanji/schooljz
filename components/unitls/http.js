@@ -52,7 +52,7 @@ http.get=(url,data)=>{
 		console.log(parmas)
 	})
 }
-http.post=(url,data)=>{
+http.post=(url,data,type)=>{
 	// var token=''
 	var userInfo=uni.getStorageSync('userinfo')
 	if(userInfo){
@@ -60,7 +60,11 @@ http.post=(url,data)=>{
 		// token=userInfo.token
 	}
 	// data['token']=token
-	headers['Content-type']="application/x-www-form-urlencoded"
+	if(type){
+		headers['Content-type']=type
+	}else{
+		headers['Content-type']="application/x-www-form-urlencoded"
+	}
 	return uni.request({
 		url:baseUrl+url,
 		method:'POST',

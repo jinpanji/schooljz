@@ -63,6 +63,12 @@
 .userinfopage > view .touxiang image.data-v-a495ab12 {
   width: 100%;
 }
+.userinfopage .logout.data-v-a495ab12 {
+  text-align: center;
+  padding: 20rpx 0;
+  color: #FF6C00;
+  font-size: 14px;
+}
 .userinfopage > button.data-v-a495ab12 {
   background: #FF6C00;
   position: fixed;
@@ -96,6 +102,6 @@
   width: 230rpx;
 }
 .inputbox .codeinput.data-v-a495ab12 {
-  width: 50%;
+  width: 28%;
 }
 

@@ -137,7 +137,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Trip = function Trip() {__webpack_require__.e(/*! require.ensure | components/common/trip */ "components/common/trip").then((function () {return resolve(__webpack_require__(/*! ../../components/common/trip.vue */ 231));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Buslist = function Buslist() {__webpack_require__.e(/*! require.ensure | components/common/buslist */ "components/common/buslist").then((function () {return resolve(__webpack_require__(/*! ../../components/common/buslist.vue */ 238));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Trip = function Trip() {__webpack_require__.e(/*! require.ensure | components/common/trip */ "components/common/trip").then((function () {return resolve(__webpack_require__(/*! ../../components/common/trip.vue */ 217));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Buslist = function Buslist() {__webpack_require__.e(/*! require.ensure | components/common/buslist */ "components/common/buslist").then((function () {return resolve(__webpack_require__(/*! ../../components/common/buslist.vue */ 224));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -224,7 +224,10 @@ __webpack_require__.r(__webpack_exports__);
       childrenList: [],
       imgUrl: "",
       childCheck: null, //当前选中的是哪个学生
-      parentInfo: {} };
+      parentInfo: {},
+      childLines: {}, //当前线路信息
+      siteInfo: {}, //车辆实时位置信息
+      sxFlag: true };
 
   },
   watch: {
@@ -260,6 +263,7 @@ __webpack_require__.r(__webpack_exports__);
     if (id) {
       this.childCheck = id;
     }
+    // this.childCheck=1
     this.getuserinfo();
   },
   methods: {
@@ -273,6 +277,30 @@ __webpack_require__.r(__webpack_exports__);
             _this.childCheck = res.info[0].id;
             uni.setStorageSync("childId", res.info[0].id);
           }
+
+          _this.getLineInfo();
+          _this.getmainList();
+        }
+      });
+    },
+    getLineInfo: function getLineInfo() {var _this2 = this;
+      console.log('获取当前线路');
+      this.$http.post("puline/currentLine", {
+        childrenId: this.childCheck
+        // childrenId:1
+      }).then(function (res) {
+        if (res.code == 100) {
+          _this2.childLines = res.info;
+        }
+      });
+    },
+    getmainList: function getmainList() {var _this3 = this;
+      // 车辆实时位置
+      this.$http.post("puridingrecord/mainList", {
+        childrenId: this.childCheck }).
+      then(function (res) {
+        if (res.code == 100) {
+          _this3.siteInfo = res.info;
         }
       });
     },
@@ -281,6 +309,8 @@ __webpack_require__.r(__webpack_exports__);
       // console.log(item)
       this.childCheck = item.id;
       uni.setStorageSync("childId", item.id);
+      this.getLineInfo();
+      this.getmainList();
     },
     goRouter: function goRouter() {
       if (this.isLogin) {
@@ -342,7 +372,7 @@ __webpack_require__.r(__webpack_exports__);
           // this.goRouter()
           //投诉上传
           uni.navigateTo({
-            url: "../../components/complaint/index" });
+            url: "../../components/complaint/index?id=" + this.childCheck });
 
           break;
         case 3:

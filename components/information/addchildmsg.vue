@@ -59,7 +59,7 @@
 							<view class="uni-input">{{classlist[classCheck]}}</view>
 						</picker>
 					</view>
-					<input type="number" v-model="form.crazz" value="" placeholder="请输入班级" />
+					<input type="number" v-model="form.clazz" value="" placeholder="请输入班级" />
 					<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 				</view>
 			</view>
@@ -312,18 +312,22 @@
 					// schoolId:1
 				}).then(res=>{
 					if(res.code==100){
-						if(res.code.length==0){
+						if(res.info.length==0){
 							this.isNull=true
 						}else{
+							console.log("列表列表")
 							this.isNull=false
 							this.list=[]
 							let list=res.info
 							this.linesList=res.info
+							console.log(list)
 							if(list.length>0){
+								console.log('坎坎坷坷扩')
 								this.lineStrlist=[]
 								list.forEach((item,index)=>{
 									this.lineStrlist.push(item.name)
 								})
+								console.log(this.lineStrlist)
 							}
 						}
 					}

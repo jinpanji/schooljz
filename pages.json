@@ -9,7 +9,8 @@
 		},{
 			"path":"pages/information/index",
 			"style":{
-				"navigationBarTitleText":"信息中心"
+				"navigationBarTitleText":"信息中心",
+				"enablePullDownRefresh":true
 			}
 		},{
 			"path":"pages/my/index",//我的 首页
@@ -138,7 +139,7 @@
 		{
 			"path":"components/msg/security",
 			"style":{
-				"navigationBarTitleText":"线路详情"
+				"navigationBarTitleText":"行车报告"
 			}			
 		}
 	],

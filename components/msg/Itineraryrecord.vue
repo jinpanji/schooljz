@@ -218,6 +218,7 @@
 			}
 			textarea{
 				background: #eee;
+				width: 100%;
 				border-radius: 20rpx;
 				border: 1px solid #ccc;
 				height: 350rpx;

@@ -67,8 +67,10 @@
 			<text>详细地址</text>
 			<input type="text" v-model="userInfo.detailAddreee" value="" placeholder="请输入地址" />
 		</view>
-		
-		<button type="primary">退出登录</button>
+		<view class="logout">
+			退出登录
+		</view>
+		<button type="primary" @click="update()">修改</button>
 	</view>
 </template>
 
@@ -115,9 +117,10 @@
 				codeList:[],
 				pickerText:"",
 				gxlist:["父亲","母亲","爷爷","奶奶","叔叔","阿姨"],
-				gxcheck:null,
+				gxcheck:0,
 				btnStr:'获取验证码',
 				codeFlag:true,
+				regCode:'',
 			}
 		},
 		onLoad(e){
@@ -268,7 +271,64 @@
 						 this.codeFlag=true
 					 }				
 				}
-			}
+			},
+			update(){
+				// 修改  验证验证码是否正确
+				if(this.regCode){
+					this.$http.post("puparent/verification",{
+						phone:this.userInfo.phone,
+						code:this.regCode,						
+					}).then(res=>{
+						if(res.code==100){
+							this.submitInfo()
+						}else{
+							uni.showToast({
+								icon:"none",
+								title:res.msg
+							})
+						}
+					})
+				}else{
+					uni.showToast({
+						icon:"none",
+						title:"请输入验证码"
+					})
+				}
+			},
+			submitInfo(){
+				console.log("提交")
+				this.$http.post("puparent/update",{
+					id:this.userInfo.id,
+					phone:this.userInfo.phone,
+					name:this.userInfo.name,
+					relation:this.gxlist[this.gxcheck],
+					detailAddreee:this.userInfo.detailAddreee,
+					province:{
+						code:this.codeList[0],
+						name:this.addressList[0]
+					},
+					city:{
+						code:this.codeList[1],
+						name:this.addressList[1],
+					},
+					area:{
+						code:this.codeList[2],
+						name:this.addressList[2],
+					}
+				},'application/json').then(res=>{
+					if(res.code==100){
+						uni.showToast({
+							icon:"success",
+							title:"修改成功"
+						})
+						setTimeout(()=>{
+							uni.navigateBack({
+								
+							})
+						},2000)
+					}
+				})
+			},
 		}
 	}
 </script>
@@ -310,6 +370,12 @@
 				}
 			}
 		}
+		.logout{
+			text-align: center;
+			padding: 20rpx 0;
+			color: #FF6C00;
+			font-size: 14px;
+		}
 	}
 	.userinfopage >button{
 		background: #FF6C00;
@@ -344,8 +410,9 @@
 			width: 230rpx;
 		}
 		.codeinput{
-			width: 50%;
+			width: 28%;
 		}
 	}
+	
 
 </style>

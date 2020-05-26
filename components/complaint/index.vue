@@ -4,16 +4,22 @@
 			<view class="boxlist">
 				<h3><text>请选择投诉范围（单选）</text></h3>
 				<view class="list">
-					<text :class="type==1?'check_index':''">学校名+孩子名+线路名</text>
-					<text :class="type==2?'check_index':''">平台</text>
+					<text :class="type==1?'check_index':''" @click="type=1">{{childInfo.name?childInfo.name+"：":""}}学校、线路</text>
+					<text :class="type==2?'check_index':''" @click="type=2">平台</text>
 				</view>	
+				<view class="linebox" v-if="type==1">
+					 <radio-group @change="radioChange">
+						<label class="radio" v-for="(item,index) in lineList"><radio color="#FF6C00" :value="item.lineId" />{{item.lineName}}</label>
+					</radio-group>
+				</view>
 			</view>
+			
 			<view class="msgbox">
 				<h3><text>投诉内容</text></h3>
 				<textarea value="" v-model="content" placeholder="请您将意见填写在这里" />
 				
 			</view>
-			<button type="primary">提交</button>
+			<button type="primary" @click="submitCompalint()">提交</button>
 		</view>
 		
 	</view>
@@ -29,18 +35,92 @@
 			return{
 				result:{},
 				type:0,//1线路  2：平台
-				content:""
+				content:"",
+				id:null,
+				childInfo:{},
+				lineList:[],
+				lineId:'',
+				parentId:null
 			}
 		},
+		onLoad(e){
+			this.id=e.id
+			this.getChildMsg()
+			this.getLines()
+			let userInfo=uni.getStorageSync("userInfo")
+			userInfo=JSON.parse(userInfo)
+			this.parentId=userInfo.id
+		},
 		mounted(){
-			this.$refs.calendar.show();
+			// this.$refs.calendar.show();
 		},
 		methods:{
 			getResult(val){
 				console.log(val)
 				// this.result=val;
 				// this.$refs.calendar.show();
-			}
+			},
+			getChildMsg(){
+				this.$http.post("puchildren/detail",{
+					id:this.id
+				}).then(res=>{
+					if(res.code==100){
+						this.childInfo=res.info
+					}
+				})
+			},
+			getLines(){
+				this.$http.post("puline/getLineByCharendId",{
+					childrenId:this.id
+				}).then(res=>{
+					if(res.code==100){
+						this.lineList=res.info
+					}
+				})
+			},
+			radioChange(val){
+				console.log(val)
+				this.lineId=val.detail.value
+			},
+			submitCompalint(){
+				// 投诉
+				if(!this.type){
+					uni.showToast({
+						icon:"none",
+						title:"请选择投诉的类型"
+					})
+				}else if(!this.content){
+					uni.showToast({
+						icon:"none",
+						title:"请填写投诉的内容"
+					})
+				}else if(this.type==1&&!this.lineId){
+					uni.showToast({
+						icon:"none",
+						title:"请选择线路"
+					})
+				}else{
+					this.$http.post("pucomplaint/add",{
+						childrenId:this.id,
+						type:this.type,
+						content:this.content,
+						parentId:this.parentId,
+						lineId:this.lineId
+					}).then(res=>{
+						if(res.code==100){
+							uni.showToast({
+								icon:"success",
+								title:"提交成功！"
+							})
+							setTimeout(()=>{
+								uni.navigateBack({
+									
+								})
+							},2000)
+						}
+					})
+				}
+			},
 		}
 	}
 </script>
@@ -84,6 +164,9 @@
 				}
 			}
 		}
+		.linebox{
+			padding-bottom: 20rpx;
+		}
 		.msgbox{
 			padding:0 20rpx;
 			background: #fff;
@@ -96,6 +179,7 @@
 				border-radius: 20rpx;
 				border: 1px solid #ccc;
 				height: 600rpx;
+				width: 100%;
 				padding:30rpx;
 				box-sizing: border-box;
 				margin-top: 30rpx;

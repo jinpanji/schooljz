@@ -2,13 +2,13 @@
 	<view class="information">
 		<!-- 通知列表 -->
 		<view class="list_box footerbox"v-if="!isNone">
-			<view class="box cl" v-for="(item,index) in msgList" @click="goLeave(item.id)" @touchstart="touchStart($event)" @touchend="touchEnd($event,index)">
+			<view class="box cl" v-for="(item,index) in msgList" @click="goLeave(item)" @touchstart="touchStart($event)" @touchend="touchEnd($event,index)">
 				<view class="img">
-					<image src="../../static/img/xxzx_009.png" mode="widthFix"></image>
+					<image :src="imgList[(item.type*1)-1]" mode="widthFix"></image>
 				</view>
 				<view class="textbox">
 					<h3>
-						<text>{{item.content}}</text>
+						<text>{{item.type==1?'家长投诉':(item.type==2?'请假':(item.type==3?'回复':'安全员推送'))}}</text>
 						<text>{{item.createTime}}</text>
 					</h3>
 					<text>{{item.content}}</text>
@@ -38,21 +38,27 @@
 		data(){
 			return{
 				isNone:false,//无通知消息：true
+				// imgList:[
+				// 	require("../../static/img/img/xxzx_001.png"),
+				// 	require("../../static/img/img/xxzx_003.png"),
+				// 	require("../../static/img/img/xxzx_004.png"),
+				// 	require("../../static/img/img/xxzx_010.png"),
+				// 	require("../../static/img/img/xxzx_008.png"),
+				// 	require("../../static/img/img/xxzx_013.png"),
+				// 	require("../../static/img/img/xxzx_005.png"),
+				// 	require("../../static/img/img/xxzx_006.png"),
+				// 	require("../../static/img/img/xxzx_012.png"),
+				// 	require("../../static/img/img/xxzx_014.png"),
+				// 	require("../../static/img/img/xxzx_007.png"),
+				// 	require("../../static/img/img/xxzx_011.png"),
+				// 	require("../../static/img/img/xxzx_002.png"),
+				// 	require("../../static/img/img/xxzx_009.png")//投诉回复
+				// ],
 				imgList:[
-					require("../../static/img/img/xxzx_001.png"),
-					require("../../static/img/img/xxzx_003.png"),
-					require("../../static/img/img/xxzx_004.png"),
-					require("../../static/img/img/xxzx_010.png"),
-					require("../../static/img/img/xxzx_008.png"),
-					require("../../static/img/img/xxzx_013.png"),
-					require("../../static/img/img/xxzx_005.png"),
-					require("../../static/img/img/xxzx_006.png"),
-					require("../../static/img/img/xxzx_012.png"),
-					require("../../static/img/img/xxzx_014.png"),
-					require("../../static/img/img/xxzx_007.png"),
-					require("../../static/img/img/xxzx_011.png"),
-					require("../../static/img/img/xxzx_002.png"),
-					require("../../static/img/img/xxzx_009.png")//投诉回复
+					"../../static/img/img/xxzx_004.png",
+					"../../static/img/img/xxzx_012.png",
+					"../../static/img/img/xxzx_009.png",
+					"../../static/img/img/xxzx_007.png"
 				],
 				pageNum:1,
 				pageSize:10,
@@ -61,19 +67,22 @@
 				total:null,
 				deleCheck:null,
 				startNum:null,
+				sxFlag:true
 			}
 		},
-		onShow(){
+		onLoad(){
 			let userInfo=uni.getStorageSync("userInfo")
 			this.userInfo=JSON.parse(userInfo)
 			this.getmsgList()
 		},
 		// 需要 下拉刷新，上拉加载
 		methods:{
-			goLeave(){
+			goLeave(item){
 				//今日请假
+				let str=JSON.stringify(item)
+				uni.setStorageSync("msgdetails",str)
 				uni.navigateTo({
-					url:"../../components/info/index"
+					url:"../../components/info/index?id="+item.id
 				})
 			},
 			goGroup(){
@@ -90,17 +99,21 @@
 			},
 			getmsgList(){
 				this.$http.post("puNews/list",{
-					parentId:1,
-					// parentId:this.userInfo.id,
+					// parentId:1,
+					parentId:this.userInfo.id,
 					pageNum:this.pageNum,
 					pageSize:this.pageSize
 				}).then(res=>{
 					if(res.code==100){
+						this.sxFlag=true
 						if(res.info.total==0){
 							this.isNone=true
 						}else{
 							this.isNone=false
-							this.msgList=res.info.rows
+							let list=res.info.rows
+							list.forEach((item,index)=>{
+								this.msgList.push(item)
+							})
 							this.total=res.info.total
 						}
 						
@@ -116,12 +129,38 @@
 			touchEnd(e,index){
 				let endNum=e.changedTouches[0].pageX
 				console.log(this.startNum-endNum)
-				if(this.startNum-endNum>30){
+				if(this.startNum-endNum>80){
 					// console.log()
 					this.deleCheck=index
 				}else{
 					this.deleCheck=null
 				}
+			}
+		},
+		onReachBottom: function(){
+			//上拉加载
+			if(this.sxFlag&&this.msgList.length<this.total){
+				this.sxFlag=false
+				this.pageNum++
+				this.getmsgList()
+			}
+		},
+		onPullDownRefresh: function(){
+			//下拉刷新
+			let that=this
+			console.log('下拉刷新')
+			if(this.sxFlag){
+				this.sxFlag=false
+				uni.startPullDownRefresh({
+					success:()=>{
+						that.pageNum=1
+						that.pageSize=10
+						that.msgList=[]
+						that.getmsgList()
+					}
+				})
+			}else{
+				uni.stopPullDownRefresh()
 			}
 		}
 	}

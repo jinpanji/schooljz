@@ -40,7 +40,7 @@ button.data-v-2805ede6 {
   border-bottom: 1px solid #ccc;
 }
 .page ._h3 text.data-v-2805ede6 {
-  padding: 20rpx;
+  padding-left: 20rpx;
   border-left: 2px solid #FF6C00;
 }
 

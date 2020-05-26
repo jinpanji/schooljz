@@ -85,7 +85,10 @@
 				childrenList:[],
 				imgUrl:"",
 				childCheck:null,//当前选中的是哪个学生
-				parentInfo:{}
+				parentInfo:{},
+				childLines:{},//当前线路信息
+				siteInfo:{},//车辆实时位置信息
+				sxFlag:true
 			}
 		},
 		watch:{
@@ -121,6 +124,7 @@
 			if(id){
 				this.childCheck=id
 			}
+			// this.childCheck=1
 			this.getuserinfo()
 		},
 		methods: {
@@ -134,6 +138,30 @@
 							this.childCheck=res.info[0].id
 							uni.setStorageSync("childId",res.info[0].id)
 						}
+						
+						this.getLineInfo()
+						this.getmainList()
+					}
+				})
+			},
+			getLineInfo(){
+				console.log('获取当前线路')
+				this.$http.post("puline/currentLine",{
+					childrenId:this.childCheck
+					// childrenId:1
+				}).then(res=>{
+					if(res.code==100){
+						this.childLines=res.info
+					}
+				})				
+			},
+			getmainList(){
+				// 车辆实时位置
+				this.$http.post("puridingrecord/mainList",{
+					childrenId:this.childCheck
+				}).then(res=>{
+					if(res.code==100){
+						this.siteInfo=res.info
 					}
 				})
 			},
@@ -142,6 +170,8 @@
 				// console.log(item)
 				this.childCheck=item.id
 				uni.setStorageSync("childId",item.id)
+				this.getLineInfo()
+				this.getmainList()
 			},
 			goRouter(){
 				if(this.isLogin){
@@ -203,7 +233,7 @@
 						// this.goRouter()
 						//投诉上传
 						uni.navigateTo({
-							url:"../../components/complaint/index"
+							url:"../../components/complaint/index?id="+this.childCheck
 						})
 						break
 					case 3:
@@ -215,6 +245,7 @@
 				
 			}
 		}
+		
 	}
 </script>
  

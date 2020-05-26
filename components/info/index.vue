@@ -1,17 +1,45 @@
 <template>
 	<view class="info_page">
 		<view class="title">
-			早接上车
+			{{msgDetail.type==1?'家长投诉':(msgDetail.type==2?'请假':(msgDetail.type==3?'回复':'安全员推送'))}}
 		</view>
-		<text>2020年1月13日 19:46</text>
+		<text>{{msgDetail.createTime}}</text>
 		<view class="msg">
-			您管理的线路xxx(起点)--yy(终点)，有xxx(孩子名)请假，共提交请假z天，请假y车次！该车次未来上车人数为gg（实际减1）,此信息不作为最终确定人数。
+			<!-- 您管理的线路xxx(起点)--yy(终点)，有xxx(孩子名)请假，共提交请假z天，请假y车次！该车次未来上车人数为gg（实际减1）,此信息不作为最终确定人数。 -->
+			{{msgDetail.content}}
 		</view>
 		<!-- <button>确认</button> -->
 	</view>
 </template>
 
 <script>
+	export default{
+		data(){
+			return{
+				msgDetail:{}
+			}
+		},
+		onLoad(e){
+			let msgDetail=uni.getStorageSync("msgdetails")
+			this.msgDetail=JSON.parse(msgDetail)
+			this.init()
+		},
+		methods:{
+			init(){
+				this.$http.post("puNews/updateState",{
+					id:this.msgDetail.id,
+					state:1,
+				}).then(res=>{
+					if(res.code!=100){
+						uni.showToast({
+							icon:"none",
+							title:res.msg
+						})
+					}
+				})
+			}
+		}
+	}
 </script>
 
 <style lang="scss" scoped>
