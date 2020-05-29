@@ -59,7 +59,7 @@
 									<view class="cl">
 										<text>姓名：</text>
 										<tex>{{item.name}}</tex>
-										<i>{{item.isInput?'已录入':'未录入'}}</i>
+										<i @click="gopay(item.id)">{{item.isInput?'已录入':'未录入'}}</i>
 									</view>
 									<view class="cl">
 										<text>线路:</text>
@@ -313,7 +313,13 @@
 						})
 						break
 				}
-			}
+			},
+			gopay(){
+				// 前去付款测试 ,正式使用时关闭
+				uni.navigateTo({
+					url:"../../components/information/payment"
+				})
+			},
 		}
 	}
 </script>

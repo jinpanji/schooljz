@@ -445,6 +445,12 @@ var _default =
 
           break;}
 
+    },
+    gopay: function gopay() {
+      // 前去付款测试 ,正式使用时关闭
+      uni.navigateTo({
+        url: "../../components/information/payment" });
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -352,9 +352,7 @@ function getDate(type) {
 
       } else {
         // 添加学生，记录线路信息：跳转至付款
-        if (this.lineInfo.linesId && this.lineInfo.sitesId) {
-          var data = JSON.stringify(this.lineInfo);
-          uni.setStorageSync("userlinesInfo", data);
+        if (this.lineInfo.id && this.lineInfo.siteId) {
           this.add(2);
         } else {
           if (this.lineInfo.linesId) {
@@ -375,16 +373,22 @@ function getDate(type) {
       // 选择线路，线路改变
       console.log("选择线路");
       console.log(val);
-      this.lineInfo.linesId = this.linesList[val.index].id;
-      console.log(this.lineInfo.linesId);
+      this.lineInfo = this.linesList[val.index];
+      console.log(this.lineInfo);
       this.list = this.linesList[val.index].sites;
       console.log(this.list);
     },
-    changeLine: function changeLine(val) {
+    changeLine: function changeLine(val) {var _this = this;
       // 选择站点
       console.log('父组件获取');
       console.log(val);
-      this.lineInfo.sitesId = val;
+      this.lineInfo.siteId = val;
+      var list = this.list;
+      list.forEach(function (item, index) {
+        if (item.id == val) {
+          _this.lineInfo.siteName = item.name;
+        }
+      });
     },
     feedBack: function feedBack() {
       // 反馈
@@ -399,7 +403,7 @@ function getDate(type) {
         }
       });
     },
-    add: function add(type) {var _this = this;
+    add: function add(type) {var _this2 = this;
       // 添加
       if (!this.form.name && !this.form.crazz && !this.form.birthDate) {
         uni.showToast({
@@ -416,18 +420,21 @@ function getDate(type) {
         this.$http.post("puchildren/add", this.form).then(function (res) {
           if (res.code == 100) {
             // 存学生id
-            _this.form.childrenId = res.info;
+            _this2.form.childrenId = res.info;
             uni.showToast({
               icon: "success",
               title: "添加成功！" });
 
             if (type == 1) {
               // 反馈
-              _this.feedBack();
+              _this2.feedBack();
               uni.navigateTo({
                 url: "declaration" });
 
             } else {
+              _this2.lineInfo.childrenId = res.info;
+              var data = JSON.stringify(_this2.lineInfo);
+              uni.setStorageSync("userlinesInfo", data);
               uni.navigateTo({
                 url: "payment" });
 
@@ -437,7 +444,7 @@ function getDate(type) {
       }
 
     },
-    getlinesList: function getlinesList() {var _this2 = this;
+    getlinesList: function getlinesList() {var _this3 = this;
       // 获取线路
       this.$http.post("puProduct/getProductBySchoolId", {
         schoolId: this.form.schoolId
@@ -445,21 +452,21 @@ function getDate(type) {
       }).then(function (res) {
         if (res.code == 100) {
           if (res.info.length == 0) {
-            _this2.isNull = true;
+            _this3.isNull = true;
           } else {
             console.log("列表列表");
-            _this2.isNull = false;
-            _this2.list = [];
+            _this3.isNull = false;
+            _this3.list = [];
             var list = res.info;
-            _this2.linesList = res.info;
+            _this3.linesList = res.info;
             console.log(list);
             if (list.length > 0) {
               console.log('坎坎坷坷扩');
-              _this2.lineStrlist = [];
+              _this3.lineStrlist = [];
               list.forEach(function (item, index) {
-                _this2.lineStrlist.push(item.name);
+                _this3.lineStrlist.push(item.name);
               });
-              console.log(_this2.lineStrlist);
+              console.log(_this3.lineStrlist);
             }
           }
         }

@@ -18,6 +18,21 @@
 			<button class="btns" type="default" @tap="openAddres2">{{addressList[0]?(addressList[0]+"-"+addressList[1]+"-"+addressList[2]):"请选择省市区"}}</button>
 			<simple-address ref="simpleAddress" :pickerValueDefault="cityPickerValueDefault" @onConfirm="onConfirm" themeColor="#007AFF"></simple-address>
 		</view>
+		<view class="commbox">
+			<xfl-select
+				:list="communiStr"
+				:clearable="false"
+				:showItemNum="5" 
+				:listShow="false"
+				:isCanInput="true"  
+				:style_Container="'height: 50px; font-size: 16px;'"
+				:placeholder = "'请选择小区'"
+				:initValue="streetNmae"
+				:selectHideType="'hideAll'"
+				@change="selectChange"
+			>
+			</xfl-select>
+		</view>
 		<view class="inputbox">
 			<input type="text" v-model="address" placeholder="请输入详细地址" />
 		</view>
@@ -29,6 +44,7 @@
 
 <script>
 	import simpleAddress from '@/components/common/simple-address/simple-address.vue';
+	import xflSelect from '../../components/common/xfl-select/xfl-select.vue';
 	var QQMapWX = require("../../components/unitls/qqmap-wx-jssdk.js")
 	var qqmapsdk
 	export default {
@@ -52,10 +68,14 @@
 				address:"",//详细地址
 				avatar:"",//头像
 				openid:"",//微信用户openId
+				streetNmae:"",
+				streetId:null,//小区列表
+				communityList:[],//小区列表
+				communiStr:[]
 			}
 		},
 	   components: {
-			simpleAddress
+			simpleAddress,xflSelect
 		},
 		onLoad(opt){
 			qqmapsdk = new QQMapWX({
@@ -104,6 +124,7 @@
 				this.codeList[0]=data.province.value
 				this.codeList[1]=data.city.value
 				this.codeList[2]=data.area.value
+				this.getCommunity()
 				console.log(this.codeList)
 			},
 			openAddres2() {
@@ -123,6 +144,7 @@
 				this.codeList[1]=e.cityCode
 				this.codeList[2]=e.areaCode
 				console.log(this.codeList)
+				this.getCommunity()
 			},
 			// 从腾讯api获取省市区数据
 			// getAddress(){				
@@ -154,7 +176,7 @@
 							})
 						}
 					})
-				}else{
+				}else{					
 					uni.showToast({
 						icon:"none",
 						title:"请填写完整的信息！"
@@ -177,6 +199,8 @@
 					cityName:this.addressList[1],
 					areaCode:this.codeList[2],//区
 					areaName:this.addressList[2],
+					streetNmae:this.streetNmae,//小区名称
+					streetId:this.streetId,
 				}).then(res=>{
 					if(res.code==100){
 						let usertInfo=res.info
@@ -267,7 +291,34 @@
 						 this.codeFlag=true
 					 }				
 				}
-			}
+			},
+			getCommunity(){
+				// 获取小区列表
+				this.$http.post("mgStreet/simpleList",{
+					provinceName:this.addressList[0],
+					provinceCode:this.codeList[0],
+					cityName:this.addressList[1],
+					cityCode:this.codeList[1],
+					areaName:this.addressList[2],
+					areaCode:this.codeList[2],
+					name:""
+				}).then(res=>{
+					if(res.code==100){
+						// this.communityList=re.info
+						let list=res.info
+						list.forEach((item,index)=>{
+							this.communityList[index]=item
+							this.communiStr[index]=item.name
+						})
+					}
+				})
+			},
+			selectChange(val){
+				// 选择小区
+				console.log(val)
+				this.streetNmae=val.newVal
+				this.streetId=this.communityList[val.index].id
+			},
 		}
 	}
 </script>
@@ -370,4 +421,9 @@
 	}
 }
 
+.commbox{
+	width: 95%;
+	margin: auto;
+	margin-top: 20rpx;
+}
 </style>

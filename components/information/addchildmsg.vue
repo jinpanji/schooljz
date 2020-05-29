@@ -220,9 +220,7 @@
 					
 				}else{
 					// 添加学生，记录线路信息：跳转至付款
-					if(this.lineInfo.linesId&&this.lineInfo.sitesId){
-						let data=JSON.stringify(this.lineInfo)
-						uni.setStorageSync("userlinesInfo",data)
+					if(this.lineInfo.id&&this.lineInfo.siteId){						
 						this.add(2)
 					}else{
 						if(this.lineInfo.linesId){
@@ -243,8 +241,8 @@
 				// 选择线路，线路改变
 				console.log("选择线路")
 				console.log(val)
-				this.lineInfo.linesId=this.linesList[val.index].id
-				console.log(this.lineInfo.linesId)
+				this.lineInfo=this.linesList[val.index]
+				console.log(this.lineInfo)
 				this.list=this.linesList[val.index].sites
 				console.log(this.list)
 			},
@@ -252,7 +250,13 @@
 				// 选择站点
 				console.log('父组件获取')
 				console.log(val)
-				this.lineInfo.sitesId=val
+				this.lineInfo.siteId=val
+				let list=this.list
+				list.forEach((item,index)=>{
+					if(item.id==val){
+						this.lineInfo.siteName=item.name
+					}
+				})
 			},
 			feedBack(){
 				// 反馈
@@ -296,6 +300,9 @@
 									url:"declaration"
 								})
 							}else{
+								this.lineInfo.childrenId=res.info
+								let data=JSON.stringify(this.lineInfo)
+								uni.setStorageSync("userlinesInfo",data)
 								uni.navigateTo({
 									url:"payment"
 								})

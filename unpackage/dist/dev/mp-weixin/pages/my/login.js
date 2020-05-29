@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var simpleAddress = function simpleAddress() {Promise.all(/*! require.ensure | components/common/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common/simple-address/simple-address")]).then((function () {return resolve(__webpack_require__(/*! @/components/common/simple-address/simple-address.vue */ 245));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var simpleAddress = function simpleAddress() {Promise.all(/*! require.ensure | components/common/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common/simple-address/simple-address")]).then((function () {return resolve(__webpack_require__(/*! @/components/common/simple-address/simple-address.vue */ 245));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../../components/common/xfl-select/xfl-select.vue */ 231));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
@@ -161,7 +161,23 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var QQMapWX = __webpack_require__(/*! ../../components/unitls/qqmap-wx-jssdk.js */ 174);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var QQMapWX = __webpack_require__(/*! ../../components/unitls/qqmap-wx-jssdk.js */ 295);
 var qqmapsdk;var _default =
 {
   data: function data() {
@@ -183,11 +199,15 @@ var qqmapsdk;var _default =
       regCode: "", //验证码
       address: "", //详细地址
       avatar: "", //头像
-      openid: "" //微信用户openId
-    };
+      openid: "", //微信用户openId
+      streetNmae: "",
+      streetId: null, //小区列表
+      communityList: [], //小区列表
+      communiStr: [] };
+
   },
   components: {
-    simpleAddress: simpleAddress },
+    simpleAddress: simpleAddress, xflSelect: xflSelect },
 
   onLoad: function onLoad(opt) {
     qqmapsdk = new QQMapWX({
@@ -236,6 +256,7 @@ var qqmapsdk;var _default =
       this.codeList[0] = data.province.value;
       this.codeList[1] = data.city.value;
       this.codeList[2] = data.area.value;
+      this.getCommunity();
       console.log(this.codeList);
     },
     openAddres2: function openAddres2() {
@@ -255,6 +276,7 @@ var qqmapsdk;var _default =
       this.codeList[1] = e.cityCode;
       this.codeList[2] = e.areaCode;
       console.log(this.codeList);
+      this.getCommunity();
     },
     // 从腾讯api获取省市区数据
     // getAddress(){				
@@ -308,7 +330,9 @@ var qqmapsdk;var _default =
         cityCode: this.codeList[1], //市
         cityName: this.addressList[1],
         areaCode: this.codeList[2], //区
-        areaName: this.addressList[2] }).
+        areaName: this.addressList[2],
+        streetNmae: this.streetNmae, //小区名称
+        streetId: this.streetId }).
       then(function (res) {
         if (res.code == 100) {
           var usertInfo = res.info;
@@ -399,6 +423,33 @@ var qqmapsdk;var _default =
           this.codeFlag = true;
         }
       }
+    },
+    getCommunity: function getCommunity() {var _this3 = this;
+      // 获取小区列表
+      this.$http.post("mgStreet/simpleList", {
+        provinceName: this.addressList[0],
+        provinceCode: this.codeList[0],
+        cityName: this.addressList[1],
+        cityCode: this.codeList[1],
+        areaName: this.addressList[2],
+        areaCode: this.codeList[2],
+        name: "" }).
+      then(function (res) {
+        if (res.code == 100) {
+          // this.communityList=re.info
+          var list = res.info;
+          list.forEach(function (item, index) {
+            _this3.communityList[index] = item;
+            _this3.communiStr[index] = item.name;
+          });
+        }
+      });
+    },
+    selectChange: function selectChange(val) {
+      // 选择小区
+      console.log(val);
+      this.streetNmae = val.newVal;
+      this.streetId = this.communityList[val.index].id;
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

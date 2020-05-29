@@ -256,26 +256,105 @@ var _default =
   data: function data() {
     return {
       checkNum: 1,
-      money: 998,
-      isShow: false };
-
+      money: 0,
+      isShow: false,
+      form: {},
+      userInfo: {},
+      payInfo: {}, //订单信息
+      payres: {} //支付数据
+    };
+  },
+  onShow: function onShow() {
+    var form = uni.getStorageSync("userlinesInfo");
+    this.form = JSON.parse(form);
+    var userInfo = uni.getStorageSync("userInfo");
+    this.userInfo = JSON.parse(userInfo);
+    this.money = this.form.morningPrice;
   },
   methods: {
     changeNum: function changeNum(index) {
       this.checkNum = index;
-      if (index == 1 || index == 2) {
-        this.money = 998;
+      if (index == 1) {
+        this.money = this.form.morningPrice;
+      } else if (index == 2) {
+        this.money = this.form.nightPrice;
       } else {
-        this.money = 1888;
+        this.money = this.form.wholePrice;
       }
     },
-    goPay: function goPay() {
+    goPay: function goPay() {var _this = this;
       //支付功能
       //取消支付跳转到待支付界面
-      this.isShow = true;
+      // this.isShow=true
+      var data = {};
+      data.parentId = this.userInfo.id; //家长id
+      data.openId = this.userInfo.wechatOpenid; //openid
+      data.productId = this.form.id; //商品id 线路id
+      data.type = this.checkNum; //商品类型  1：早 2晚 3 全包
+      data.childrenId = this.form.childrenId;
+      data.siteId = this.form.siteId;
+      data.siteName = this.form.siteName;
+      data.name = this.form.name;
+      this.payInfo = data;
+      this.$http.post("puProduct/createBuyOrder", data, "application/json").then(function (res) {
+        if (res.code == 100) {
+          // this.payInfo=res.info
+          _this.payres = res.info;
+          _this.wxPay(res.info);
+        }
+      });
+      // this.isShow=true
+    },
+    wxPay: function wxPay(data) {
+      var that = this;
+      uni.requestPayment({
+        provider: 'wxpay',
+        timeStamp: data.timeStamp, //时间戳
+        nonceStr: data.nonceStr, //随机字符串
+        package: data.package, //统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx
+        signType: 'MD5', //签名算法
+        paySign: data.paySign, //签名
+        success: function success(res) {
+          console.log('success:' + JSON.stringify(res));
+          // 支付成功
+        },
+        fail: function fail(err) {
+          console.log('支付失败');
+          console.log('fail:' + JSON.stringify(err));
+          uni.showToast({
+            icon: "none",
+            title: "支付失败" });
+
+          that.isShow = true;
+        } });
+
+    },
+    paySuccess: function paySuccess() {
+      this.$http.post("puProduct//notify/order", {}).
+
+      then(function (res) {
+        if (res.code == 100) {
+          uni.showToast({
+            icon: "success",
+            title: "支付成功" });
+
+          setTimeout(function () {
+            uni.switchTab({
+              url: "../../pages/my/index" });
+
+          }, 2000);
+        }
+      });
     },
     isKonw: function isKonw() {
       //前去待付款界面
+      this.isShow = false;
+      var data = {};
+      this.payInfo.money = this.money;
+      data.payInfo = this.payInfo;
+      data.payres = this.payres;
+      data = JSON.stringify(data);
+      uni.setStorageSync("payInfo", data);
       uni.navigateTo({
         url: "padingpayment" });
 

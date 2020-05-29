@@ -63,6 +63,21 @@
 			<simple-address ref="simpleAddress" :pickerValueDefault="cityPickerValueDefault" @onConfirm="onConfirm" themeColor="#007AFF"></simple-address>
 		
 		</view>
+		<view class="commbox">
+			<xfl-select
+				:list="communiStr"
+				:clearable="false"
+				:showItemNum="5" 
+				:listShow="false"
+				:isCanInput="true"  
+				:style_Container="'height: 50px; font-size: 16px;'"
+				:placeholder = "'请选择小区'"
+				:initValue="streetNmae"
+				:selectHideType="'hideAll'"
+				@change="selectChange"
+			>
+			</xfl-select>
+		</view>
 		<view class="cl">
 			<text>详细地址</text>
 			<input type="text" v-model="userInfo.detailAddreee" value="" placeholder="请输入地址" />
@@ -77,6 +92,7 @@
 <script>
 	import simpleAddress from '@/components/common/simple-address/simple-address.vue';
 	// import simpleAddress from"../common/simple-address/simple-address.vue"
+	import xflSelect from '@/components/common/xfl-select/xfl-select.vue';
 	function getDate(type) {
 		const date = new Date();
 	
@@ -96,7 +112,7 @@
 	}
 	export default{
 		components: {
-			simpleAddress
+			simpleAddress,xflSelect
 		},
 		data(){
 			return{
@@ -121,6 +137,10 @@
 				btnStr:'获取验证码',
 				codeFlag:true,
 				regCode:'',
+				streetNmae:"",
+				streetId:null,//小区列表
+				communityList:[],//小区列表
+				communiStr:[]
 			}
 		},
 		onLoad(e){
@@ -144,6 +164,7 @@
 				this.codeList[0]=data.province.value
 				this.codeList[1]=data.city.value
 				this.codeList[2]=data.area.value
+				this.getCommunity()
 				console.log(this.codeList)
 			},
 			openAddres2() {
@@ -162,6 +183,7 @@
 				this.codeList[0]=e.provinceCode
 				this.codeList[1]=e.cityCode
 				this.codeList[2]=e.areaCode
+				this.getCommunity()
 				console.log(this.codeList)
 			},
 			xbchange(val){
@@ -198,6 +220,8 @@
 							index=this.gxlist.indexOf(data.relation)
 						}
 						this.gxcheck=index==-1?0:index
+						this.streetId=data.streetId
+						this.streetNmae=data.streetNmae
 					}
 				})
 			},
@@ -303,6 +327,8 @@
 					name:this.userInfo.name,
 					relation:this.gxlist[this.gxcheck],
 					detailAddreee:this.userInfo.detailAddreee,
+					streetId:this.streetId,
+					streetNmae:this.streetNmae,
 					province:{
 						code:this.codeList[0],
 						name:this.addressList[0]
@@ -328,6 +354,33 @@
 						},2000)
 					}
 				})
+			},
+			getCommunity(){
+				// 获取小区列表
+				this.$http.post("mgStreet/simpleList",{
+					provinceName:this.addressList[0],
+					provinceCode:this.codeList[0],
+					cityName:this.addressList[1],
+					cityCode:this.codeList[1],
+					areaName:this.addressList[2],
+					areaCode:this.codeList[2],
+					name:""
+				}).then(res=>{
+					if(res.code==100){
+						// this.communityList=re.info
+						let list=res.info
+						list.forEach((item,index)=>{
+							this.communityList[index]=item
+							this.communiStr[index]=item.name
+						})
+					}
+				})
+			},
+			selectChange(val){
+				// 选择小区
+				console.log(val)
+				this.streetNmae=val.newVal
+				this.streetId=this.communityList[val.index].id
 			},
 		}
 	}

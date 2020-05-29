@@ -120,4 +120,9 @@
   border-left: 0;
   border-right: 0;
 }
+.commbox.data-v-300d52ac {
+  width: 95%;
+  margin: auto;
+  margin-top: 20rpx;
+}
 

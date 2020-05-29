@@ -4,14 +4,14 @@
 			<view class="tit">
 				待付款
 			</view>
-			<view class="countdown">
+		<!-- 	<view class="countdown">
 				<image src="../../static/img/zhong.png" mode="widthFix"></image>
 				<text>剩余05:30自动取消</text>
-			</view>
+			</view> -->
 		</view>
 		
 		<view class="list_box">			
-			<view class="option" v-if="checkNum==1">
+			<view class="option" v-if="payInfo.type==1">
 				<image src="../../static/img/img/wd_029.png" mode="widthFix"></image>
 				<view class="msgbox">
 					<view class="tits cl">
@@ -19,7 +19,7 @@
 						<text>早接</text>
 					</view>
 					<view class="money">
-						998.00元
+						{{payInfo.money}}元
 					</view>
 					<view class="times greenbj">
 						默认8:00发车
@@ -41,7 +41,7 @@
 				</view>				
 			</view>
 			<!-- null_check -->
-			<view class="option" v-if="checkNum==2">
+			<view class="option" v-if="payInfo.type==2">
 				<image src="../../static/img/img/wd_030.png" mode="widthFix"></image>
 				<view class="msgbox">
 					<view class="tits cl">
@@ -49,7 +49,7 @@
 						<text>晚送</text>
 					</view>
 					<view class="money">
-						998.00元
+						{{payInfo.money}}元
 					</view>
 					<view class="times bluebj">
 						默认17:00发车
@@ -71,7 +71,7 @@
 				</view>				
 			</view>
 			<!-- null_check -->
-			<view class="option" v-if="checkNum==3">
+			<view class="option" v-if="payInfo.type==3">
 				<image src="../../static/img/img/wd_031.png" mode="widthFix"></image>
 				<view class="msgbox">
 					<view class="tits cl">
@@ -79,7 +79,7 @@
 						<text>全包</text>
 					</view>
 					<view class="money">
-						1888.00元
+						{{payInfo.money}}元
 					</view>
 					<view class="times orangebj">
 						默认早8:00发车，晚17:00发车
@@ -127,7 +127,16 @@
 				checkNum:1,
 				money:998,
 				isShow:false,
+				payInfo:{},
+				payRes:{}
 			}
+		},
+		onLoad(){
+			let data=uni.getStorageSync("payInfo")
+			data=JSON.stringify(data)
+			this.payInfo=data.payInfo
+			this.payRes=data.payres
+			uni.removeStorageSync("payInfo")
 		},
 		methods:{
 			changeNum(index){
@@ -141,7 +150,29 @@
 			goPay(){
 				//支付功能
 				//取消支付跳转到待支付界面
-				this.isShow=true
+				// this.isShow=true
+				let that=this
+				uni.requestPayment({
+				    provider: 'wxpay',
+				    timeStamp: data.timeStamp,//时间戳
+				    nonceStr: data.nonceStr,//随机字符串
+				    package: data.package,//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx
+				    signType: 'MD5',//签名算法
+				    paySign: data.paySign,//签名
+				    success: function (res) {
+				        console.log('success:' + JSON.stringify(res));
+						// 支付成功
+						// uni
+				    },
+				    fail: function (err) {
+				        console.log('fail:' + JSON.stringify(err));
+						uni.showToast({
+							icon:"none",
+							title:"支付失败"
+						})
+						that.isShow=true
+				    }
+				});
 			}
 		}
 	}

@@ -152,7 +152,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0; //
 //
 //
 //
@@ -280,8 +280,17 @@ var _default =
     return {
       checkNum: 1,
       money: 998,
-      isShow: false };
+      isShow: false,
+      payInfo: {},
+      payRes: {} };
 
+  },
+  onLoad: function onLoad() {
+    var data = uni.getStorageSync("payInfo");
+    data = JSON.stringify(data);
+    this.payInfo = data.payInfo;
+    this.payRes = data.payres;
+    uni.removeStorageSync("payInfo");
   },
   methods: {
     changeNum: function changeNum(index) {
@@ -295,8 +304,31 @@ var _default =
     goPay: function goPay() {
       //支付功能
       //取消支付跳转到待支付界面
-      this.isShow = true;
+      // this.isShow=true
+      var that = this;
+      uni.requestPayment({
+        provider: 'wxpay',
+        timeStamp: data.timeStamp, //时间戳
+        nonceStr: data.nonceStr, //随机字符串
+        package: data.package, //统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx
+        signType: 'MD5', //签名算法
+        paySign: data.paySign, //签名
+        success: function success(res) {
+          console.log('success:' + JSON.stringify(res));
+          // 支付成功
+          // uni
+        },
+        fail: function fail(err) {
+          console.log('fail:' + JSON.stringify(err));
+          uni.showToast({
+            icon: "none",
+            title: "支付失败" });
+
+          that.isShow = true;
+        } });
+
     } } };exports.default = _default;
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 
 /***/ }),
 

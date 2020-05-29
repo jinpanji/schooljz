@@ -1,7 +1,7 @@
 <template>
 	<view class="page">
 		<view class="list_box">			
-			<view :class="checkNum==1?'option':'null_check option'" @click="changeNum(1)">
+			<view :class="checkNum==1?'option':'null_check option'" v-if="form.morning==1"  @click="changeNum(1)">
 				<image src="../../static/img/img/wd_029.png" mode="widthFix"></image>
 				<view class="msgbox">
 					<view class="tits cl">
@@ -9,7 +9,7 @@
 						<text>早接</text>
 					</view>
 					<view class="money">
-						998.00元
+						{{form.morningPrice}}元
 					</view>
 					<view class="times greenbj">
 						默认8:00发车
@@ -31,7 +31,7 @@
 				</view>				
 			</view>
 			<!-- null_check -->
-			<view :class="checkNum==2?'option':'null_check option'" @click="changeNum(2)">
+			<view :class="checkNum==2?'option':'null_check option'" v-if="form.night==1" @click="changeNum(2)">
 				<image src="../../static/img/img/wd_030.png" mode="widthFix"></image>
 				<view class="msgbox">
 					<view class="tits cl">
@@ -39,7 +39,7 @@
 						<text>晚送</text>
 					</view>
 					<view class="money">
-						998.00元
+						{{form.nightPrice}}元
 					</view>
 					<view class="times bluebj">
 						默认17:00发车
@@ -61,7 +61,7 @@
 				</view>				
 			</view>
 			<!-- null_check -->
-			<view :class="checkNum==3?'option':'null_check option'" @click="changeNum(3)">
+			<view :class="checkNum==3?'option':'null_check option'"  v-if="form.whole==1" @click="changeNum(3)">
 				<image src="../../static/img/img/wd_031.png" mode="widthFix"></image>
 				<view class="msgbox">
 					<view class="tits cl">
@@ -69,7 +69,7 @@
 						<text>全包</text>
 					</view>
 					<view class="money">
-						1888.00元
+						{{form.wholePrice}}元
 					</view>
 					<view class="times orangebj">
 						默认早8:00发车，晚17:00发车
@@ -115,26 +115,105 @@
 		data(){
 			return{
 				checkNum:1,
-				money:998,
+				money:0,
 				isShow:false,
+				form:{},
+				userInfo:{},
+				payInfo:{},//订单信息
+				payres:{},//支付数据
 			}
+		},
+		onShow(){
+			let form=uni.getStorageSync("userlinesInfo")
+			this.form=JSON.parse(form)
+			let userInfo=uni.getStorageSync("userInfo")
+			this.userInfo=JSON.parse(userInfo)
+			this.money=this.form.morningPrice
 		},
 		methods:{
 			changeNum(index){
 				this.checkNum=index
-				if(index==1||index==2){
-					this.money=998
+				if(index==1){
+					this.money=this.form.morningPrice
+				}else if(index==2){
+					this.money=this.form.nightPrice
 				}else{
-					this.money=1888
+					this.money=this.form.wholePrice
 				}
 			},
 			goPay(){
 				//支付功能
 				//取消支付跳转到待支付界面
-				this.isShow=true
+				// this.isShow=true
+				let data={}
+				data.parentId=this.userInfo.id  //家长id
+				data.openId=this.userInfo.wechatOpenid //openid
+				data.productId=this.form.id //商品id 线路id
+				data.type=this.checkNum  //商品类型  1：早 2晚 3 全包
+				data.childrenId=this.form.childrenId
+				data.siteId=this.form.siteId
+				data.siteName=this.form.siteName
+				data.name=this.form.name
+				this.payInfo=data
+				this.$http.post("puProduct/createBuyOrder",data,"application/json").then(res=>{
+					if(res.code==100){
+						// this.payInfo=res.info
+						this.payres=res.info
+						this.wxPay(res.info)
+					}
+				})
+				// this.isShow=true
+			},
+			wxPay(data){
+				let that=this
+				uni.requestPayment({
+				    provider: 'wxpay',
+				    timeStamp: data.timeStamp,//时间戳
+				    nonceStr: data.nonceStr,//随机字符串
+				    package: data.package,//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx
+				    signType: 'MD5',//签名算法
+				    paySign: data.paySign,//签名
+				    success: function (res) {
+				        console.log('success:' + JSON.stringify(res));
+						// 支付成功
+				    },
+				    fail: function (err) {
+						console.log('支付失败')
+				        console.log('fail:' + JSON.stringify(err));
+						uni.showToast({
+							icon:"none",
+							title:"支付失败"
+						})
+						that.isShow=true
+				    }
+				});
+			},
+			paySuccess(){
+				this.$http.post("puProduct//notify/order",{
+					
+				}).then(res=>{
+					if(res.code==100){
+						uni.showToast({
+							icon:"success",
+							title:"支付成功"
+						})
+						setTimeout(()=>{
+							uni.switchTab({
+								url:"../../pages/my/index"
+							})
+						},2000)
+					}
+				})
 			},
 			isKonw(){
 				//前去待付款界面
+				this.isShow=false
+				let data={}
+				this.payInfo.money=this.money
+				data.payInfo=this.payInfo
+				data.payres=this.payres
+				data=JSON.stringify(data)
+				uni.setStorageSync("payInfo",data)
 				uni.navigateTo({
 					url:"padingpayment"
 				})
