@@ -46,8 +46,7 @@
   width: 215rpx;
   text-align: center;
   line-height: 60rpx;
-  -webkit-border-radius: 50rpx;
-          border-radius: 50rpx;
+  border-radius: 50rpx;
   border: 1px solid #FF6C00;
   color: #FF6C00;
   margin: 15rpx;
@@ -73,13 +72,11 @@
 .jilu .msgbox textarea.data-v-609da524 {
   background: #eee;
   width: 100%;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
   border: 1px solid #ccc;
   height: 350rpx;
   padding: 30rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
   margin-top: 30rpx;
 }
 .jilu .msgbox .tis.data-v-609da524 {
@@ -90,8 +87,7 @@
 .jilu .box.data-v-609da524 {
   background: #fff;
   padding: 20rpx 0;
-  -webkit-border-radius: 10rpx;
-          border-radius: 10rpx;
+  border-radius: 10rpx;
   border: 1px solid #ccc;
   margin-bottom: 30rpx;
   position: relative;
@@ -106,8 +102,7 @@
   top: 20rpx;
   background: #eee;
   padding: 5rpx 0rpx;
-  -webkit-border-radius: 30rpx;
-          border-radius: 30rpx;
+  border-radius: 30rpx;
 }
 .jilu .box .times text.data-v-609da524 {
   margin: 0 20rpx;
@@ -117,8 +112,7 @@
 }
 .jilu button.data-v-609da524 {
   background: #FF6C00;
-  -webkit-border-radius: 0;
-          border-radius: 0;
+  border-radius: 0;
   position: fixed;
   bottom: 0;
   width: 100%;

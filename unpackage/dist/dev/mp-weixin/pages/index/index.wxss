@@ -51,8 +51,7 @@
 .index_page .msgbox .teacher.data-v-10932fbe {
   padding: 0 30rpx;
   margin: 34rpx 0;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
   background: #fa5617;
   color: #fff;
   line-height: 50rpx;
@@ -62,8 +61,7 @@
   width: 80rpx;
   height: 80rpx;
   overflow: hidden;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   margin-right: 40rpx;
   margin-top: 30rpx;
 }
@@ -91,8 +89,7 @@
 }
 .translate .times.data-v-10932fbe {
   background: #eee;
-  -webkit-border-radius: 40rpx;
-          border-radius: 40rpx;
+  border-radius: 40rpx;
   width: 710rpx;
   font-size: 14px;
   line-height: 60rpx;

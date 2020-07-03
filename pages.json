@@ -141,6 +141,12 @@
 			"style":{
 				"navigationBarTitleText":"行车报告"
 			}			
+		},
+		{
+			"path":"components/msg/record",
+			"style":{
+				"navigationBarTitleText":"行程记录"
+			}			
 		}
 	],
 	"tabBar":{

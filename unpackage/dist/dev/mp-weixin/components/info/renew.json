@@ -1,6 +1,7 @@
 {
   "navigationBarTitleText": "快速续费",
   "usingComponents": {
-    "select": "/components/common/select"
+    "select": "/components/common/select",
+    "xfl-select": "/components/common/xfl-select/xfl-select"
   }
 }

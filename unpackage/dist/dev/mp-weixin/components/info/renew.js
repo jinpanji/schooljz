@@ -97,22 +97,6 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  var l0 = _vm.__map(_vm.smList, function(item, index) {
-    var g0 = _vm.checkList.indexOf(index)
-    return {
-      $orig: _vm.__get_orig(item),
-      g0: g0
-    }
-  })
-
-  _vm.$mp.data = Object.assign(
-    {},
-    {
-      $root: {
-        l0: l0
-      }
-    }
-  )
 }
 var recyclableRender = false
 var staticRenderFns = []
@@ -146,7 +130,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Select = function Select() {__webpack_require__.e(/*! require.ensure | components/common/select */ "components/common/select").then((function () {return resolve(__webpack_require__(/*! ../common/select.vue */ 238));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Select = function Select() {__webpack_require__.e(/*! require.ensure | components/common/select */ "components/common/select").then((function () {return resolve(__webpack_require__(/*! ../common/select.vue */ 246));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../common/xfl-select/xfl-select.vue */ 239));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+
 
 
 
@@ -208,77 +196,192 @@ __webpack_require__.r(__webpack_exports__);
 
 
 {
-  components: { Select: Select },
+  components: { Select: Select, xflSelect: xflSelect },
   data: function data() {
     return {
       school: 0,
       current: false, //全选
       checknum: 0,
-      checkList: [], //续费项目选择
+      checkList: null, //续费项目选择
+      childList: [],
+      childStrlist: [],
+      selectValue: '',
+      childrenId: null,
+      form: {},
+      money: "",
       smList: [{
         bj: __webpack_require__(/*! ../../static/img/img/wd_016.png */ 115),
-        value: 1,
+        type: 1,
         text: "早接",
-        childName: "李晓鹏",
-        xlList: ['默认之前选择的线路', '线路1', '线路2', '线路3'],
-        endtime: '2020-12-30',
-        money: '￥998.00' },
+        xlList: ['默认之前选择的线路'],
+        closeDate: '',
+        price: '' },
       {
         bj: __webpack_require__(/*! ../../static/img/img/wd_015.png */ 116),
-        value: 2,
+        type: 2,
         text: "晚送",
-        childName: "李晓鹏",
-        xlList: ['默认之前选择的线路', '线路1', '线路2', '线路3'],
-        endtime: '2020-12-30',
-        money: '￥998.00' },
+        xlList: ['默认之前选择的线路'],
+        closeDate: '',
+        price: '' },
       {
         bj: __webpack_require__(/*! ../../static/img/img/wd_014.png */ 117),
-        value: 3,
+        type: 3,
         text: "全包",
-        childName: "李晓鹏",
-        xlList: ['默认之前选择的线路', '线路1', '线路2', '线路3'],
-        endtime: '2020-12-30',
-        money: '￥998.00' }] };
+        xlList: ['默认之前选择的线路'],
+        closeDate: '',
+        price: '' }],
+
+      linesInfo: {},
+      orderInfo: {
+        type: '',
+        siteId: '',
+        siteName: '',
+        childrenId: '',
+        productId: '',
+        name: '' } };
 
 
   },
+  onLoad: function onLoad() {
+    var info = uni.getStorageSync('userInfo');
+    this.userInfo = JSON.parse(info);
+    this.getList();
+  },
   methods: {
-    allEle: function allEle() {
-      //全选
-      this.current = !this.current;
-      this.checkList = [];
-      if (this.current) {
-        var count = this.smList.length;
-        for (var i = 0; i < count; i++) {
-          this.checkList.push(i);
-        }
-      }
-    },
     changeList: function changeList(val) {
-      console.log(val);
-      if (this.checkList.indexOf(val) == -1) {
-        //选中
-        this.checkList.push(val);
-        if (this.checkList.length == this.smList.length) {
-          this.current = true; //全选
-        }
-      } else {
-        //取消
-        var i = this.checkList.indexOf(val);
-        this.checkList.splice(i, 1);
-        this.current = false; //取消全选
-      }
+      this.checkList = val;
+      this.orderInfo.type = this.smList[val].type;
+      this.money = this.smList[val].price;
+    },
+    selectChange: function selectChange(e) {
+      console.log(e);
+      this.childrenId = this.childList[e.index].id;
+      this.orderInfo.childrenId = this.childrenId;
+      this.selectValue = e.newVal;
+      this.getLines();
     },
     changNum: function changNum(val) {
       console.log('changenum');
       console.log(val);
-      // this.checknum=val
-
     },
     Settlement: function Settlement() {
       // 结算
+      // uni.navigateTo({
+      // 	url:"../information/editchild?type=2"
+      // })
+      console.log(this.orderInfo);
+    },
+    getList: function getList() {var _this = this; //获取学生
+      this.$http.post('puchildren/listByParentId', {
+        parentId: this.userInfo.id }).
+      then(function (res) {
+        if (res.code == 100) {
+          var list = res.info;
+          _this.childList = [];
+          _this.childStrlist = [];
+          if (list.length > 0) {
+            _this.selectValue = list[0].name;
+            _this.childrenId = list[0].id;
+            _this.orderInfo.childrenId = list[0].id;
+            _this.getLines();
+            list.forEach(function (item, index) {
+              _this.childList.push(item);
+              _this.childStrlist.push(item.name);
+            });
+          }
+        }
+      });
+    },
+    getLines: function getLines() {var _this2 = this;
+      // 获取购买的线路和站点信息
+      // 获取孩子的线轮
+      this.$http.post("puProduct/listProductByChildrenId", {
+        childrenId: this.childrenId }).
+      then(function (res) {
+        if (res.code == 100) {
+          var list = res.info.productVos;
+          _this2.linesInfo = res.info;
+          _this2.orderInfo.productId = res.info.productId;
+          _this2.orderInfo.siteId = res.info.siteIId;
+          _this2.orderInfo.siteName = res.info.siteName;
+          _this2.orderInfo.name = list[0].productName;
+          list.forEach(function (item, index) {
+            if (item.type == 1) {
+              _this2.smList[0].closeDate = item.closeDate;
+              _this2.smList[0].price = item.price;
+            }
+            if (item.type == 2) {
+              _this2.smList[1].closeDate = item.closeDate;
+              _this2.smList[1].price = item.price;
+            }
+            if (item.type == 3) {
+              _this2.smList[2].closeDate = item.closeDate;
+              _this2.smList[2].price = item.price;
+            }
+          });
+        }
+      });
+    },
+    goPay: function goPay() {var _this3 = this;
+      //支付功能
+      //取消支付跳转到待支付界面
+      // this.isShow=true
+      var data = this.orderInfo;
+      data.parentId = this.userInfo.id; //家长id
+      data.openId = this.userInfo.wechatOpenid; //openid
+      this.payInfo = data;
+      console.log(this.payInfo);
+      uni.showLoading({
+        icon: "loading",
+        title: "正在提交订单" });
+
+      this.$http.post("puProduct/createBuyOrder", data, "application/json").then(function (res) {
+        if (res.code == 100) {
+          // this.payInfo=res.info
+          _this3.payres = res.info;
+          _this3.wxPay(res.info);
+          uni.hideLoading();
+        }
+      });
+    },
+    wxPay: function wxPay(data) {
+      var that = this;
+      uni.requestPayment({
+        provider: 'wxpay',
+        timeStamp: data.timeStamp, //时间戳
+        nonceStr: data.nonceStr, //随机字符串
+        package: data.packageValue, //统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx
+        signType: 'MD5', //签名算法
+        paySign: data.paySign, //签名
+        success: function success(res) {
+          console.log('success:' + JSON.stringify(res));
+          // 支付成功
+          uni.showToast({
+            icon: "success",
+            title: "支付成功" });
+
+          setTimeout(function () {
+            uni.switchTab({
+              url: "../../pages/my/index" });
+
+          }, 2000);
+        },
+        fail: function fail(err) {
+          console.log('支付失败');
+          console.log('fail:' + JSON.stringify(err));
+          uni.showToast({
+            icon: "none",
+            title: "支付失败" });
+
+          that.isShow = true;
+        } });
+
+    },
+    goMore: function goMore() {
+      // 点击更多，转学时使用
+      console.log("更多");
       uni.navigateTo({
-        url: "../information/editchild?type=2" });
+        url: "../information/addchildschool?type=2" });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

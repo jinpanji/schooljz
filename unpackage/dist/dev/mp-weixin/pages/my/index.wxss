@@ -50,13 +50,11 @@
 .usermsg .msgbox .txbox.data-v-1e51b393 {
   width: 120rpx;
   height: 120rpx;
-  -webkit-border-radius: 50%;
-          border-radius: 50%;
+  border-radius: 50%;
   border: 2px solid #FFFFFF;
   margin: auto;
   overflow: hidden;
-  -webkit-box-shadow: 0px 0px 5px 0px #999999;
-          box-shadow: 0px 0px 5px 0px #999999;
+  box-shadow: 0px 0px 5px 0px #999999;
   margin-top: 100rpx;
 }
 .usermsg .msgbox .txbox image.data-v-1e51b393 {
@@ -75,8 +73,7 @@
   line-height: 44rpx;
   font-size: 12px;
   margin: auto;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
 }
 .usermsg .msgbox .js image.data-v-1e51b393 {
   width: 35rpx;
@@ -92,21 +89,21 @@
 .swiper-item.data-v-1e51b393 {
   background: #fff;
   border: 1px solid #eee;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
-  -webkit-box-shadow: 0px 0px 1px 1px #ccc;
-          box-shadow: 0px 0px 1px 1px #ccc;
+  border-radius: 20rpx;
+  box-shadow: 0px 0px 1px 1px #ccc;
   margin-bottom: 20rpx;
   width: 98%;
   margin: auto;
   margin-top: 10rpx;
   padding: 20rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 .swiper-item ._h3.data-v-1e51b393 {
   padding-bottom: 20rpx;
   border-bottom: 1px solid #ccc;
+}
+.childmsg .swiper.data-v-1e51b393 {
+  height: 330rpx;
 }
 .childmsg .swiper .swiper-item ._h3 > text.data-v-1e51b393 {
   float: left;
@@ -145,13 +142,15 @@
 .childmsg .swiper .swiper-item > view ._i.data-v-1e51b393 {
   float: right;
   padding: 5rpx 20rpx;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
   background: #ccc;
 }
 .childmsg .swiper .swiper-item > view .xl.data-v-1e51b393 {
   width: 520rpx;
   float: left;
+  max-height: 80rpx;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .childmsg .swiper .swiper-item > view .xl .cl.data-v-1e51b393 {
   margin: 10rpx 0;
@@ -182,12 +181,12 @@
   z-index: 100;
   top: 10rpx;
   padding: 0 10rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 .footerbox.data-v-1e51b393 {
   background: #fff;
   padding: 40rpx 0;
+  margin-top: 20rpx;
 }
 .footerbox image.data-v-1e51b393 {
   width: 210rpx;
@@ -209,6 +208,7 @@
 .shadow.data-v-1e51b393 {
   position: fixed;
   top: 0;
+  right: 0;
   right: 0;
   bottom: 0;
   left: 0;

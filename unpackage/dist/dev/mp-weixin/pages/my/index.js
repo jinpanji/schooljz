@@ -318,36 +318,51 @@ var _default =
           console.log('获取code');
           console.log(e);
           var code = e.code;
+          console.log(code);
           wx.getUserInfo({
             success: function success(res) {
               console.log("获取用户信息");
               // 获取头像
-              console.log(res.userInfo.avatarUrl);
+              // console.log(res)
+              // console.log(res.userInfo.avatarUrl)	
               _this.avatarUrl = res.userInfo.avatarUrl;
               // uni.setStorageSync('userAvatar',res.userInfo.avatarUrl)
+              that.$http.post("puparent/wxGrant", {
+                type: 0, //0:自己   1：别人介绍  2：主账号分享的
+                code: code,
+                encryptedData: res.encryptedData,
+                rawData: res.rawData,
+                signature: res.signature,
+                iv: res.iv,
+                parentId: '' }).
+              then(function (res1) {
+                console.log(res1);
+                if (res1.code == 300) {
+                  uni.navigateTo({
+                    url: "login?avatar=" + that.avatarUrl + "&openid=" + res1.info });
+
+                } else if (res1.code == 100) {
+                  var userInfo = "";
+                  userInfo = JSON.stringify(res1.info);
+                  uni.setStorageSync('userInfo', userInfo);
+                  that.userInfo = res1.info;
+                  that.isLogin = true;
+                  that.getUserList();
+                  uni.showToast({
+                    icon: "none",
+                    title: "登录成功！" });
+
+                }
+              });
+
+
+            },
+            fail: function fail(err) {
+              console.log("请求出错");
+              console.log(err);
             } });
 
-          that.$http.post("puparent/wxGrant", {
-            type: 0, //0:自己   1：别人介绍  2：主账号分享的
-            code: code,
-            parentId: '' }).
-          then(function (res1) {
-            if (res1.code == 300) {
-              uni.navigateTo({
-                url: "login?avatar=" + _this.avatarUrl + "&openid=" + res1.info });
 
-            } else if (res1.code == 100) {
-              var userInfo = "";
-              userInfo = JSON.stringify(res1.info);
-              uni.setStorageSync('userInfo', userInfo);
-              _this.userInfo = res1.info;
-              _this.isLogin = true;
-              uni.showToast({
-                icon: "none",
-                title: "登录成功！" });
-
-            }
-          });
         },
         fail: function fail(err) {
           console.log(err);
@@ -437,6 +452,9 @@ var _default =
           break;
         case 2:
           console.log("安全报告");
+          uni.navigateTo({
+            url: "../../components/msg/record" });
+
           break;
         case 3:
           console.log("邀请奖励");

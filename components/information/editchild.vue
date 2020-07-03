@@ -89,7 +89,7 @@
 				>
 				</xfl-select>
 			</view>
-			<Buslist :list="list"/>
+			<Buslist :list="list" :checkSite="checkSite" @changeLine="changeLine"/>
 		</view>
 		<view class="pick cl">
 			<view class="tit">接送</view>
@@ -124,7 +124,11 @@
 				</view>
 			</view>
 		</view>
-		<button type="primary" v-if="!isInfo" class="preservation" @click="preservation()">保存</button>
+		<button type="primary" v-if="!isInfo&&form.closeDate" class="preservation" @click="preservation()">保存</button>
+		<view class="btns" v-else>
+			<button type="primary" class="preservation" @click="preservation()">保存</button>
+			<button type="primary" class="xfbtn" @click="payLines()">结算</button>
+		</view>
 		<view class="footer" v-else>			
 			<view class="right">
 				<button type="primary" @click="Settlement()">结算</button>
@@ -182,7 +186,12 @@
 					linesId:0,
 					sitesId:0,
 				},
-				productList:{}
+				productList:{},
+				productLine:[],
+				checkProductId:null,
+				PaylineInfo:{},
+				checkSite:null,
+				selectValue:''
 			}
 		},
 		onLoad(e){
@@ -215,20 +224,30 @@
 							this.gxcheck=this.form.relation
 						}
 						this.classCheck=(this.form.grade)*1-1
+						if(!this.form.closeDate){
+							this.getLines()
+						}
 					}
 				})
 			},
 			getchildLines(){
-				this.$http.post("puProduct/getProductByChildrenId",{
+				this.$http.post("puline/getLineByCharendId",{
 					childrenId:this.childId
 				}).then(res=>{
 					let list=res.info
 					this.linesList=res.info
 					if(list.length>0){
 						this.lineStrlist=[]
+						this.selectValue=list[0].lineName						
 						list.forEach((item,index)=>{
-							this.lineStrlist.push(item.name)
+							this.lineStrlist.push(item.lineName)
 						})
+						let val={
+							index:0
+						}
+						setTimeout(()=>{
+							this.selectChange(val)
+						},1000)
 					}
 				})
 			},
@@ -272,18 +291,27 @@
 				// 选择线路，线路改变
 				console.log("选择线路")
 				console.log(val)
-				this.lineInfo.linesId=this.linesList[val.index].id
-				console.log(this.lineInfo.linesId)
-				// this.list=this.linesList[val.index].sites
-				// console.log(this.list)
-				this.$http.post("puline/lineDetail",{
-					childrenId:this.childId,
-					lineId:this.lineInfo.linesId
-				}).then(res=>{
-					if(res.code==100){
-						this.list=res.info
-					}
-				})
+				// console.log(this.lineInfo.linesId)
+				if(this.form.closeDate){
+					console.log("购买的线路站点")
+					this.lineInfo.linesId=this.linesList[val.index].lineId
+					this.$http.post("puline/lineDetail",{
+						childrenId:this.childId,
+						lineId:this.lineInfo.linesId
+					}).then(res=>{
+						if(res.code==100){
+							this.list=res.info.sites
+							this.checkSite=res.info.buySite.siteId
+						}
+					})
+				}else{
+					// 购买产品选择线路
+					console.log(this.productLine)
+					this.list=this.productLine[val.index].sites
+					this.checkProductId=this.productLine[val.index].id
+					this.PaylineInfo=this.productLine[val.index]
+				}
+				
 			},
 			preservation(){
 				//保存
@@ -297,6 +325,42 @@
 					}
 				})
 			},
+			getLines(){
+				this.$http.post("puProduct/getProductBySchoolId",{
+					schoolId:this.form.schoolId
+				}).then(res=>{
+					if(res.code==100){
+						this.lineStrlist=[]
+						let list=[]
+						list=res.info
+						this.productLine=list
+						list.forEach((item,index)=>{
+							this.lineStrlist.push(item.name)
+						})
+					}
+				})
+			},
+			changeLine(val){
+				// 购买时选择站点
+				let list=this.list
+				list.forEach((item,index)=>{
+					if(item.id==val){
+						this.PaylineInfo.siteId=item.id
+						this.PaylineInfo.siteName=item.name
+					}
+				})
+			},
+			payLines(){
+				// 结算
+				if(this.PaylineInfo.siteName){
+					this.PaylineInfo.childrenId=this.childId
+					let data=JSON.stringify(this.PaylineInfo)
+					uni.setStorageSync("userlinesInfo",data)
+					uni.navigateTo({
+						url:"payment"
+					})
+				}
+			}
 		}
 	}
 </script>
@@ -391,6 +455,16 @@
 	}
 	button:after{
 		border: 0;
+	}
+	.btns{
+		button{
+			width: 50%;
+			display: inline-block;
+			border-radius: 0;
+		}
+		.xfbtn{
+			background-color: #F0AD4E;
+		}
 	}
 	.footer{
 		position: fixed;

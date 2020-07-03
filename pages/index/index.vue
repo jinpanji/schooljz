@@ -8,7 +8,7 @@
 					<!--  @click="goRouter()" -->
 					<view v-if="isLogin" class="txboxs cl">
 						<view v-for="(item,index) in childrenList" :class="childCheck==item.id?'imgbox check':'imgbox'" @click="changeChild(item)">
-							<image :src="item.photo?imgUrl+item.phone:'../../static/img/sy_002.png'" mode="widthFix"></image>
+							<image :src="item.photo?imgUrl+item.phone:'../../static/img/mrtx.jpg'" mode="widthFix"></image>
 						</view>
 						<!-- <view class="imgbox">
 							<image src="../../static/img/sy_002.png" mode="widthFix"></image>
@@ -39,7 +39,7 @@
 		<!-- 行程 -->
 		<view class="bus_list">
 			<image src="../../static/img/img/sy_002.png" mode="widthFix"></image>
-			<Trip />
+			<Trip  />
 		</view>
 		<!-- 车辆位置 -->
 		<view class="translate">
@@ -47,8 +47,8 @@
 				车辆位置
 			</view>
 			<view class="times">
-				<text>发车时间：8:00</text>
-				<text>预计到达：8:30</text>
+				<text>发车时间：{{childLines.startTime?childLines.startTime:''}}</text>
+				<text>预计到达：{{childLines.arriveTime?childLines.arriveTime:''}}</text>
 			</view>
 			<Buslist :list="list"/>
 		</view>
@@ -152,6 +152,7 @@
 				}).then(res=>{
 					if(res.code==100){
 						this.childLines=res.info
+						this.list=res.info.sites
 					}
 				})				
 			},
@@ -185,30 +186,6 @@
 					uni.navigateTo({
 						url:"../my/login"
 					})
-				}
-				
-			},
-			lookDetail(){
-				console.log("点击")
-				this.flag=false
-				// this.widths[0]=10
-				//运行当中===>线路详情
-				uni.navigateTo({
-					url:"../../components/msg/linedetails"
-				})
-			},
-			touchStart(e,index){
-				console.log("拖动小车")
-				this.flag=true
-				// console.log(e)
-				let page=e.touches[0].pageX
-				// console.log(page)
-				// console.log(index)
-				switch(index){
-					case 0:
-					// this.widths[index]=page
-					this.width1=page
-					// console.log(this.widths[0])
 				}
 				
 			},

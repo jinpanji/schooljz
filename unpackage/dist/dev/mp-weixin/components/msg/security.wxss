@@ -48,8 +48,7 @@
   padding: 5rpx 30rpx;
   background: #eee;
   font-size: 14px;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
 }
 .report > button.data-v-04e6b33e {
   width: 100%;
@@ -72,8 +71,7 @@ button.data-v-04e6b33e {
   z-index: 1000000;
 }
 .shadow .box.data-v-04e6b33e {
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
   background: #fff;
   width: 560rpx;
   margin: auto;
@@ -88,7 +86,6 @@ button.data-v-04e6b33e {
 }
 .shadow .box button.data-v-04e6b33e {
   margin-top: 30rpx;
-  -webkit-border-radius: 50rpx;
-          border-radius: 50rpx;
+  border-radius: 50rpx;
 }
 

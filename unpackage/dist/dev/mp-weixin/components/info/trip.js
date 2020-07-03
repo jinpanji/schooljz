@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Trip = function Trip() {__webpack_require__.e(/*! require.ensure | components/common/trip */ "components/common/trip").then((function () {return resolve(__webpack_require__(/*! ../../components/common/trip.vue */ 217));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Trip = function Trip() {__webpack_require__.e(/*! require.ensure | components/common/trip */ "components/common/trip").then((function () {return resolve(__webpack_require__(/*! ../../components/common/trip.vue */ 225));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -150,19 +150,27 @@ __webpack_require__.r(__webpack_exports__);
       id: null,
       schoolInfo: {},
       homeInfo: {},
-      date: "" };
+      date: "",
+      childrenId: null };
 
   },
-  onShow: function onShow() {
-    var id = uni.getStorageSync("childId");
-    this.id = id ? id : "";
-    this.getTrip();
-    var date = new Date();
-    var dateStr = "";
-    dateStr = date.getFullYear() + "年";
-    dateStr += date.getMonth() + 1 + "月";
-    dateStr += date.getDate() - 1 + "日";
-    this.date = dateStr;
+  onLoad: function onLoad(e) {
+    if (e.childrenId) {
+      console.log(e);
+      this.date = e.date;
+      this.childrenId = e.childrenId;
+      this.gettripList();
+    } else {
+      var id = uni.getStorageSync("childId");
+      this.id = id ? id : "";
+      this.getTrip();
+      var date = new Date();
+      var dateStr = "";
+      dateStr = date.getFullYear() + "年";
+      dateStr += date.getMonth() + 1 + "月";
+      dateStr += date.getDate() - 1 + "日";
+      this.date = dateStr;
+    }
   },
   methods: {
     getTrip: function getTrip() {var _this = this;
@@ -190,6 +198,25 @@ __webpack_require__.r(__webpack_exports__);
       uni.navigateTo({
         url: "../msg/security?id=" + id });
 
+    },
+    gettripList: function gettripList() {var _this2 = this;
+      // 按日期和孩子查询行程记录
+      this.$http.post("puridingrecord/list", {
+        childrenId: this.childrenId,
+        date: this.date }).
+      then(function (res) {
+        if (res.code == 100) {
+          // this.info=res.info
+          var list = res.info;
+          list.forEach(function (item, index) {
+            if (item.type == 1) {
+              _this2.schoolInfo = item;
+            } else {
+              _this2.homeInfo = item;
+            }
+          });
+        }
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

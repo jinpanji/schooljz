@@ -3,8 +3,8 @@
 		<view class="grouplist cl" :style="'width:'+(list.length*150+150)+'rpx'">
 			<view class="li cl" v-for="(item,index) in list">
 				<view class="cl" @click="changeNum(item.id)"> 
-				<image v-if="checkList.indexOf(item.id)!=-1" src="../../static/img/img/sy_005.png" mode="widthFix"></image>
-					<i :class="checkList.indexOf(item.id)!=-1?'check':''">
+				<image v-if="checkList.indexOf(item.id)!=-1||(checkSite&&checkSite==item.id)" src="../../static/img/img/sy_005.png" mode="widthFix"></image>
+					<i :class="checkList.indexOf(item.id)!=-1||(checkSite&&checkSite==item.id)?'check':''">
 						<!-- <em></em> -->
 					</i>
 					<text>{{item.name}}</text>
@@ -20,7 +20,8 @@
 <script>
 	export default{
 		props:[
-			'list'
+			'list',
+			'checkSite'
 		],
 		data(){
 			return{
@@ -37,10 +38,12 @@
 		
 		methods:{
 			changeNum(id){
-				console.log("选择站点")
-				console.log(id)
-				this.checkList=[id]
-				this.$emit("changeLine",id)
+				if(!this.$props.checkSite){
+					console.log("选择站点")
+					console.log(id)
+					this.checkList=[id]
+					this.$emit("changeLine",id)
+				}
 			}
 		}
 	}

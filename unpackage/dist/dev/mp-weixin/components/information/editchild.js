@@ -130,7 +130,11 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Buslist = function Buslist() {__webpack_require__.e(/*! require.ensure | components/common/buslist */ "components/common/buslist").then((function () {return resolve(__webpack_require__(/*! ../../components/common/buslist.vue */ 224));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../common/xfl-select/xfl-select.vue */ 231));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Buslist = function Buslist() {__webpack_require__.e(/*! require.ensure | components/common/buslist */ "components/common/buslist").then((function () {return resolve(__webpack_require__(/*! ../../components/common/buslist.vue */ 232));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../common/xfl-select/xfl-select.vue */ 239));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+
+
+
+
 
 
 
@@ -314,7 +318,12 @@ function getDate(type) {
         linesId: 0,
         sitesId: 0 },
 
-      productList: {} };
+      productList: {},
+      productLine: [],
+      checkProductId: null,
+      PaylineInfo: {},
+      checkSite: null,
+      selectValue: '' };
 
   },
   onLoad: function onLoad(e) {
@@ -347,20 +356,30 @@ function getDate(type) {
             _this.gxcheck = _this.form.relation;
           }
           _this.classCheck = _this.form.grade * 1 - 1;
+          if (!_this.form.closeDate) {
+            _this.getLines();
+          }
         }
       });
     },
     getchildLines: function getchildLines() {var _this2 = this;
-      this.$http.post("puProduct/getProductByChildrenId", {
+      this.$http.post("puline/getLineByCharendId", {
         childrenId: this.childId }).
       then(function (res) {
         var list = res.info;
         _this2.linesList = res.info;
         if (list.length > 0) {
           _this2.lineStrlist = [];
+          _this2.selectValue = list[0].lineName;
           list.forEach(function (item, index) {
-            _this2.lineStrlist.push(item.name);
+            _this2.lineStrlist.push(item.lineName);
           });
+          var val = {
+            index: 0 };
+
+          setTimeout(function () {
+            _this2.selectChange(val);
+          }, 1000);
         }
       });
     },
@@ -404,18 +423,27 @@ function getDate(type) {
       // 选择线路，线路改变
       console.log("选择线路");
       console.log(val);
-      this.lineInfo.linesId = this.linesList[val.index].id;
-      console.log(this.lineInfo.linesId);
-      // this.list=this.linesList[val.index].sites
-      // console.log(this.list)
-      this.$http.post("puline/lineDetail", {
-        childrenId: this.childId,
-        lineId: this.lineInfo.linesId }).
-      then(function (res) {
-        if (res.code == 100) {
-          _this4.list = res.info;
-        }
-      });
+      // console.log(this.lineInfo.linesId)
+      if (this.form.closeDate) {
+        console.log("购买的线路站点");
+        this.lineInfo.linesId = this.linesList[val.index].lineId;
+        this.$http.post("puline/lineDetail", {
+          childrenId: this.childId,
+          lineId: this.lineInfo.linesId }).
+        then(function (res) {
+          if (res.code == 100) {
+            _this4.list = res.info.sites;
+            _this4.checkSite = res.info.buySite.siteId;
+          }
+        });
+      } else {
+        // 购买产品选择线路
+        console.log(this.productLine);
+        this.list = this.productLine[val.index].sites;
+        this.checkProductId = this.productLine[val.index].id;
+        this.PaylineInfo = this.productLine[val.index];
+      }
+
     },
     preservation: function preservation() {
       //保存
@@ -428,6 +456,42 @@ function getDate(type) {
 
         }
       });
+    },
+    getLines: function getLines() {var _this5 = this;
+      this.$http.post("puProduct/getProductBySchoolId", {
+        schoolId: this.form.schoolId }).
+      then(function (res) {
+        if (res.code == 100) {
+          _this5.lineStrlist = [];
+          var list = [];
+          list = res.info;
+          _this5.productLine = list;
+          list.forEach(function (item, index) {
+            _this5.lineStrlist.push(item.name);
+          });
+        }
+      });
+    },
+    changeLine: function changeLine(val) {var _this6 = this;
+      // 购买时选择站点
+      var list = this.list;
+      list.forEach(function (item, index) {
+        if (item.id == val) {
+          _this6.PaylineInfo.siteId = item.id;
+          _this6.PaylineInfo.siteName = item.name;
+        }
+      });
+    },
+    payLines: function payLines() {
+      // 结算
+      if (this.PaylineInfo.siteName) {
+        this.PaylineInfo.childrenId = this.childId;
+        var data = JSON.stringify(this.PaylineInfo);
+        uni.setStorageSync("userlinesInfo", data);
+        uni.navigateTo({
+          url: "payment" });
+
+      }
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -207,6 +207,7 @@
 			},
 			goRouter(){
 				// 下一步，反馈或添加后跳转到付钱
+			
 				console.log(this.form)
 				if(this.isNull){
 					//反馈
@@ -263,8 +264,13 @@
 				if(!this.form.childrenId){
 					this.form.childrenId=""
 				}
+				uni.showLoading({
+					icon:"loading",
+					title:"正在提交反馈，请稍后!"
+				})
 				this.$http.post("puFeedback/add",this.form).then(res=>{
 					if(res.code==100){
+						uni.hideLoading()
 						uni.navigateTo({
 							url:"declaration"
 						})
@@ -285,9 +291,14 @@
 					// 		title:"请选择线路、站点"
 					// 	})					
 					// }else
+					uni.showLoading({
+						icon:"loading",
+						title:"正在提交，请稍后!"
+					})
 					this.$http.post("puchildren/add",this.form).then(res=>{
 						if(res.code==100){
 							// 存学生id
+							uni.hideLoading()
 							this.form.childrenId=res.info
 							uni.showToast({
 								icon:"success",
@@ -322,14 +333,14 @@
 						if(res.info.length==0){
 							this.isNull=true
 						}else{
-							console.log("列表列表")
+							// console.log("列表列表")
 							this.isNull=false
 							this.list=[]
 							let list=res.info
 							this.linesList=res.info
 							console.log(list)
 							if(list.length>0){
-								console.log('坎坎坷坷扩')
+								// console.log('坎坎坷坷扩')
 								this.lineStrlist=[]
 								list.forEach((item,index)=>{
 									this.lineStrlist.push(item.name)

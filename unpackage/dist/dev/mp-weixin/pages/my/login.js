@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var simpleAddress = function simpleAddress() {Promise.all(/*! require.ensure | components/common/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common/simple-address/simple-address")]).then((function () {return resolve(__webpack_require__(/*! @/components/common/simple-address/simple-address.vue */ 245));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../../components/common/xfl-select/xfl-select.vue */ 231));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var simpleAddress = function simpleAddress() {Promise.all(/*! require.ensure | components/common/simple-address/simple-address */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/common/simple-address/simple-address")]).then((function () {return resolve(__webpack_require__(/*! @/components/common/simple-address/simple-address.vue */ 253));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../../components/common/xfl-select/xfl-select.vue */ 239));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
@@ -177,7 +177,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var QQMapWX = __webpack_require__(/*! ../../components/unitls/qqmap-wx-jssdk.js */ 295);
+var QQMapWX = __webpack_require__(/*! ../../components/unitls/qqmap-wx-jssdk.js */ 174);
 var qqmapsdk;var _default =
 {
   data: function data() {

@@ -78,8 +78,7 @@
   float: left;
   margin-left: 20rpx;
   color: #fff;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
 }
 .pick .box image.data-v-431ccea2 {
   width: 40rpx;
@@ -96,28 +95,32 @@
   text-align: center;
 }
 .pick .zao.data-v-431ccea2 {
-  background: -webkit-gradient(linear, left top, right bottom, from(#4eaa53), to(#73ca7c));
   background: -webkit-linear-gradient(left top, #4eaa53, #73ca7c);
   background: linear-gradient(left top, #4eaa53, #73ca7c);
 }
 .pick .wan.data-v-431ccea2 {
-  background: -webkit-gradient(linear, left top, right bottom, from(#3eabd4), to(#6fc8ea));
   background: -webkit-linear-gradient(left top, #3eabd4, #6fc8ea);
   background: linear-gradient(left top, #3eabd4, #6fc8ea);
 }
 .pick .quan.data-v-431ccea2 {
-  background: -webkit-gradient(linear, left top, right bottom, from(#f46d2b), to(#ff8c4f));
   background: -webkit-linear-gradient(left top, #f46d2b, #ff8c4f);
   background: linear-gradient(left top, #f46d2b, #ff8c4f);
 }
 .preservation.data-v-431ccea2 {
   width: 100%;
   background: #FF6C00;
-  -webkit-border-radius: 0;
-          border-radius: 0;
+  border-radius: 0;
 }
 button.data-v-431ccea2:after {
   border: 0;
+}
+.btns button.data-v-431ccea2 {
+  width: 50%;
+  display: inline-block;
+  border-radius: 0;
+}
+.btns .xfbtn.data-v-431ccea2 {
+  background-color: #F0AD4E;
 }
 .footer.data-v-431ccea2 {
   position: fixed;
@@ -140,8 +143,7 @@ button.data-v-431ccea2:after {
   width: 180rpx;
   background: #FF6C00;
   float: right;
-  -webkit-border-radius: 0;
-          border-radius: 0;
+  border-radius: 0;
 }
 .footer .right text.data-v-431ccea2 {
   color: red;

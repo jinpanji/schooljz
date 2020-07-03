@@ -137,7 +137,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Trip = function Trip() {__webpack_require__.e(/*! require.ensure | components/common/trip */ "components/common/trip").then((function () {return resolve(__webpack_require__(/*! ../../components/common/trip.vue */ 217));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Buslist = function Buslist() {__webpack_require__.e(/*! require.ensure | components/common/buslist */ "components/common/buslist").then((function () {return resolve(__webpack_require__(/*! ../../components/common/buslist.vue */ 224));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Trip = function Trip() {__webpack_require__.e(/*! require.ensure | components/common/trip */ "components/common/trip").then((function () {return resolve(__webpack_require__(/*! ../../components/common/trip.vue */ 225));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var Buslist = function Buslist() {__webpack_require__.e(/*! require.ensure | components/common/buslist */ "components/common/buslist").then((function () {return resolve(__webpack_require__(/*! ../../components/common/buslist.vue */ 232));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
 
@@ -291,6 +291,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (res) {
         if (res.code == 100) {
           _this2.childLines = res.info;
+          _this2.list = res.info.sites;
         }
       });
     },
@@ -324,30 +325,6 @@ __webpack_require__.r(__webpack_exports__);
         uni.navigateTo({
           url: "../my/login" });
 
-      }
-
-    },
-    lookDetail: function lookDetail() {
-      console.log("点击");
-      this.flag = false;
-      // this.widths[0]=10
-      //运行当中===>线路详情
-      uni.navigateTo({
-        url: "../../components/msg/linedetails" });
-
-    },
-    touchStart: function touchStart(e, index) {
-      console.log("拖动小车");
-      this.flag = true;
-      // console.log(e)
-      var page = e.touches[0].pageX;
-      // console.log(page)
-      // console.log(index)
-      switch (index) {
-        case 0:
-          // this.widths[index]=page
-          this.width1 = page;
-        // console.log(this.widths[0])
       }
 
     },

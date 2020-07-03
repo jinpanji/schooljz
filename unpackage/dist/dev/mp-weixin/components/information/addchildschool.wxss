@@ -49,8 +49,7 @@ button.data-v-e1448e7c {
   padding: 10rpx;
   background: #fff;
   border: 0;
-  -webkit-border-radius: 50rpx;
-          border-radius: 50rpx;
+  border-radius: 50rpx;
   margin-left: 30rpx;
 }
 .head button.data-v-e1448e7c {
@@ -69,10 +68,8 @@ button.data-v-e1448e7c {
 .schoolbox.data-v-e1448e7c, .school_null.data-v-e1448e7c {
   height: 1060rpx;
   background: #fff;
-  -webkit-border-top-right-radius: 30rpx;
-          border-top-right-radius: 30rpx;
-  -webkit-border-top-left-radius: 30rpx;
-          border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+  border-top-left-radius: 30rpx;
 }
 .schoolbox .listbox.data-v-e1448e7c {
   height: 920rpx;
@@ -105,7 +102,6 @@ button.data-v-e1448e7c {
 }
 .school_null button.data-v-e1448e7c {
   width: 680rpx;
-  -webkit-border-radius: 50rpx;
-          border-radius: 50rpx;
+  border-radius: 50rpx;
 }
 

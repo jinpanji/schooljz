@@ -130,7 +130,7 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Buslist = function Buslist() {__webpack_require__.e(/*! require.ensure | components/common/buslist */ "components/common/buslist").then((function () {return resolve(__webpack_require__(/*! ../../components/common/buslist.vue */ 224));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../common/xfl-select/xfl-select.vue */ 231));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var Buslist = function Buslist() {__webpack_require__.e(/*! require.ensure | components/common/buslist */ "components/common/buslist").then((function () {return resolve(__webpack_require__(/*! ../../components/common/buslist.vue */ 232));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var xflSelect = function xflSelect() {__webpack_require__.e(/*! require.ensure | components/common/xfl-select/xfl-select */ "components/common/xfl-select/xfl-select").then((function () {return resolve(__webpack_require__(/*! ../common/xfl-select/xfl-select.vue */ 239));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};
 
 
 
@@ -339,6 +339,7 @@ function getDate(type) {
     },
     goRouter: function goRouter() {
       // 下一步，反馈或添加后跳转到付钱
+
       console.log(this.form);
       if (this.isNull) {
         //反馈
@@ -395,8 +396,13 @@ function getDate(type) {
       if (!this.form.childrenId) {
         this.form.childrenId = "";
       }
+      uni.showLoading({
+        icon: "loading",
+        title: "正在提交反馈，请稍后!" });
+
       this.$http.post("puFeedback/add", this.form).then(function (res) {
         if (res.code == 100) {
+          uni.hideLoading();
           uni.navigateTo({
             url: "declaration" });
 
@@ -417,9 +423,14 @@ function getDate(type) {
         // 		title:"请选择线路、站点"
         // 	})					
         // }else
+        uni.showLoading({
+          icon: "loading",
+          title: "正在提交，请稍后!" });
+
         this.$http.post("puchildren/add", this.form).then(function (res) {
           if (res.code == 100) {
             // 存学生id
+            uni.hideLoading();
             _this2.form.childrenId = res.info;
             uni.showToast({
               icon: "success",
@@ -454,14 +465,14 @@ function getDate(type) {
           if (res.info.length == 0) {
             _this3.isNull = true;
           } else {
-            console.log("列表列表");
+            // console.log("列表列表")
             _this3.isNull = false;
             _this3.list = [];
             var list = res.info;
             _this3.linesList = res.info;
             console.log(list);
             if (list.length > 0) {
-              console.log('坎坎坷坷扩');
+              // console.log('坎坎坷坷扩')
               _this3.lineStrlist = [];
               list.forEach(function (item, index) {
                 _this3.lineStrlist.push(item.name);

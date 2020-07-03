@@ -369,10 +369,13 @@
 					if(res.code==100){
 						// this.communityList=re.info
 						let list=res.info
+						this.communiStr=[]
+						this.communityList=[]
 						list.forEach((item,index)=>{
-							this.communityList[index]=item
-							this.communiStr[index]=item.name
+							this.communityList.push(item)
+							this.communiStr.push(item.name)
 						})
+						// con
 					}
 				})
 			},

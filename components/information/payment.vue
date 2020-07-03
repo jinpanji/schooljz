@@ -155,11 +155,16 @@
 				data.siteName=this.form.siteName
 				data.name=this.form.name
 				this.payInfo=data
+				uni.showLoading({
+					icon:"loading",
+					title:"正在提交订单"
+				})
 				this.$http.post("puProduct/createBuyOrder",data,"application/json").then(res=>{
 					if(res.code==100){
 						// this.payInfo=res.info
 						this.payres=res.info
 						this.wxPay(res.info)
+						uni.hideLoading()
 					}
 				})
 				// this.isShow=true
@@ -170,12 +175,21 @@
 				    provider: 'wxpay',
 				    timeStamp: data.timeStamp,//时间戳
 				    nonceStr: data.nonceStr,//随机字符串
-				    package: data.package,//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx
+				    package: data.packageValue,//统一下单接口返回的 prepay_id 参数值，提交格式如：prepay_id=xx
 				    signType: 'MD5',//签名算法
 				    paySign: data.paySign,//签名
 				    success: function (res) {
 				        console.log('success:' + JSON.stringify(res));
 						// 支付成功
+						uni.showToast({
+							icon:"success",
+							title:"支付成功"
+						})
+						setTimeout(()=>{
+							uni.switchTab({
+								url:"../../pages/my/index"
+							})
+						},2000)
 				    },
 				    fail: function (err) {
 						console.log('支付失败')
@@ -214,8 +228,11 @@
 				data.payres=this.payres
 				data=JSON.stringify(data)
 				uni.setStorageSync("payInfo",data)
-				uni.navigateTo({
-					url:"padingpayment"
+				// uni.navigateTo({
+				// 	url:"padingpayment"
+				// })
+				uni.switchTab({
+					url:"../../pages/my/index"
 				})
 			}
 		}

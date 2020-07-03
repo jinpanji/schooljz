@@ -41,8 +41,7 @@
   right: 10rpx;
   bottom: 30rpx;
   padding: 5rpx 30rpx;
-  -webkit-border-radius: 20rpx;
-          border-radius: 20rpx;
+  border-radius: 20rpx;
   color: #fff;
   font-size: 24rpx;
 }

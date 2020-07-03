@@ -35,11 +35,9 @@
   height: 300rpx;
   border: 1px solid #CCCCCC;
   background: #eee;
-  -webkit-border-radius: 10rpx;
-          border-radius: 10rpx;
+  border-radius: 10rpx;
   padding: 10rpx;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 .groupbox.data-v-f53cee0e {
   padding-top: 20rpx;

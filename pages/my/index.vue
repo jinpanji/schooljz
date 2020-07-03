@@ -89,7 +89,7 @@
 			</view>
 		</view>
 		<!-- 家长组信息 -->
-		<view class="jzmsg msgbox">
+		<view class="jzmsg msgbox" v-if="parentList.length>0">
 			<view class="tit">
 				家长组信息
 			</view>
@@ -186,36 +186,51 @@
 						console.log('获取code')
 						console.log(e)
 						let code=e.code
+						console.log(code)
 						wx.getUserInfo({
 							success:(res)=>{
 								console.log("获取用户信息")
 								// 获取头像
-								console.log(res.userInfo.avatarUrl)	
+								// console.log(res)
+								// console.log(res.userInfo.avatarUrl)	
 								this.avatarUrl=res.userInfo.avatarUrl
 								// uni.setStorageSync('userAvatar',res.userInfo.avatarUrl)
+								that.$http.post("puparent/wxGrant",{
+									type:0,//0:自己   1：别人介绍  2：主账号分享的
+									code:code,
+									encryptedData:res.encryptedData,
+									rawData:res.rawData,
+									signature:res.signature,
+									iv:res.iv,
+									parentId:''
+								}).then(res1=>{
+									console.log(res1)
+									if(res1.code==300){								
+										uni.navigateTo({
+											url:"login?avatar="+that.avatarUrl+"&openid="+res1.info
+										})
+									}else if(res1.code==100){
+										let userInfo=""
+										userInfo=JSON.stringify(res1.info)
+										uni.setStorageSync('userInfo',userInfo)
+										that.userInfo=res1.info
+										that.isLogin=true
+										that.getUserList()
+										uni.showToast({
+											icon:"none",
+											title:"登录成功！"
+										})
+									}
+								})
+								
+								
+							},
+							fail:(err)=>{
+								console.log("请求出错")
+								console.log(err)
 							}
 						})
-						that.$http.post("puparent/wxGrant",{
-							type:0,//0:自己   1：别人介绍  2：主账号分享的
-							code:code,
-							parentId:''
-						}).then(res1=>{
-							if(res1.code==300){								
-								uni.navigateTo({
-									url:"login?avatar="+this.avatarUrl+"&openid="+res1.info
-								})
-							}else if(res1.code==100){
-								let userInfo=""
-								userInfo=JSON.stringify(res1.info)
-								uni.setStorageSync('userInfo',userInfo)
-								this.userInfo=res1.info
-								this.isLogin=true
-								uni.showToast({
-									icon:"none",
-									title:"登录成功！"
-								})
-							}
-						})
+						
 					},
 					fail:(err)=>{
 						console.log(err)
@@ -305,6 +320,9 @@
 						break
 					case 2:
 						console.log("安全报告")
+						uni.navigateTo({
+							url:"../../components/msg/record"
+						})
 						break
 					case 3:
 						console.log("邀请奖励")
@@ -407,7 +425,7 @@
 	}
 	.childmsg{
 		.swiper{
-			// height: 470rpx;
+			height: 330rpx;
 			.swiper-item{
 				// height: 370rpx;				
 				h3{
@@ -454,6 +472,9 @@
 					.xl{
 						width: 520rpx;
 						float: left;
+						max-height: 80rpx;
+						overflow-y: scroll;
+						overflow-x: hidden;
 						.cl{
 							margin: 10rpx 0;
 						}
@@ -498,7 +519,8 @@
 	}
 	.footerbox{
 		background: #fff;
-		padding: 40rpx 0;
+		padding: 40rpx 0;		
+		margin-top: 20rpx;
 		image{
 			width: 210rpx;
 			margin-left: 30rpx;
@@ -520,6 +542,7 @@
 	.shadow{
 		position: fixed;
 		top: 0;
+		right: 0;
 		right: 0;
 		bottom: 0;
 		left: 0;
