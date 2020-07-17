@@ -44,7 +44,7 @@
 					</view>
 					<view class="uni-list-cell-db">
 						<picker mode="date" :value="date" :start="startDate" :end="endDate" @change="bindDateChange">
-							<view class="uni-input">{{date}}</view>
+							<view class="uni-input">{{form.birthDate?form.birthDate:'请选择'}}</view>
 						</picker>
 					</view>
 				</view>
@@ -144,7 +144,8 @@
 					name:'',
 					sex:0,
 					grade:1,
-					relation:"父亲"
+					relation:"父亲",
+					birthDate:'',
 				},
 				selectValue:"",//下拉框值
 				lineInfo:{
@@ -279,18 +280,16 @@
 			},
 			add(type){
 				// 添加
+				console.log(!this.form.birthDate)
+				console.log(this.form.birthDate)
 				if(!this.form.name&&!this.form.crazz&&!this.form.birthDate){
 					uni.showToast({
 						icon:"none",
 						title:"请填写完整的信息！"
 					})
-				}else {
-					// if(!this.lineForm&&!this.isNull){
-					// 	uni.showToast({
-					// 		icon:"none",
-					// 		title:"请选择线路、站点"
-					// 	})					
-					// }else
+				}else {		
+					console.log("提交")
+					console.log(this.form)
 					uni.showLoading({
 						icon:"loading",
 						title:"正在提交，请稍后!"
@@ -318,6 +317,12 @@
 									url:"payment"
 								})
 							}
+						}else{
+							uni.hideLoading()
+							uni.showToast({
+								icon:'none',
+								title:res.msg
+							})
 						}
 					})
 				}

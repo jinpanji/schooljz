@@ -24,14 +24,14 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.usermsg.data-v-1e51b393 {
+.usermsg.data-v-4dcceeb0 {
   height: 420rpx;
   position: relative;
 }
-.usermsg > image.data-v-1e51b393 {
+.usermsg > image.data-v-4dcceeb0 {
   width: 100%;
 }
-.usermsg .msgbox.data-v-1e51b393 {
+.usermsg .msgbox.data-v-4dcceeb0 {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -39,15 +39,15 @@
   z-index: 1000;
   color: #fff;
 }
-.usermsg .msgbox ._h5.data-v-1e51b393 {
+.usermsg .msgbox ._h5.data-v-4dcceeb0 {
   position: absolute;
   top: 125rpx;
   right: 100rpx;
 }
-.usermsg .msgbox ._h5 image.data-v-1e51b393 {
+.usermsg .msgbox ._h5 image.data-v-4dcceeb0 {
   width: 50rpx;
 }
-.usermsg .msgbox .txbox.data-v-1e51b393 {
+.usermsg .msgbox .txbox.data-v-4dcceeb0 {
   width: 120rpx;
   height: 120rpx;
   border-radius: 50%;
@@ -57,15 +57,15 @@
   box-shadow: 0px 0px 5px 0px #999999;
   margin-top: 100rpx;
 }
-.usermsg .msgbox .txbox image.data-v-1e51b393 {
+.usermsg .msgbox .txbox image.data-v-4dcceeb0 {
   width: 100%;
 }
-.usermsg .msgbox .username.data-v-1e51b393 {
+.usermsg .msgbox .username.data-v-4dcceeb0 {
   line-height: 80rpx;
   text-align: center;
   font-size: 16px;
 }
-.usermsg .msgbox .js.data-v-1e51b393 {
+.usermsg .msgbox .js.data-v-4dcceeb0 {
   width: 100rpx;
   height: 44rpx;
   background: #f54009;
@@ -75,18 +75,18 @@
   margin: auto;
   border-radius: 20rpx;
 }
-.usermsg .msgbox .js image.data-v-1e51b393 {
+.usermsg .msgbox .js image.data-v-4dcceeb0 {
   width: 35rpx;
   margin-right: 10rpx;
 }
-.msgbox.data-v-1e51b393 {
+.msgbox.data-v-4dcceeb0 {
   padding: 0 30rpx;
   margin-top: 28rpx;
 }
-.msgbox .tit.data-v-1e51b393 {
+.msgbox .tit.data-v-4dcceeb0 {
   padding: 0 20rpx;
 }
-.swiper-item.data-v-1e51b393 {
+.swiper-item.data-v-4dcceeb0 {
   background: #fff;
   border: 1px solid #eee;
   border-radius: 20rpx;
@@ -98,101 +98,101 @@
   padding: 20rpx;
   box-sizing: border-box;
 }
-.swiper-item ._h3.data-v-1e51b393 {
+.swiper-item ._h3.data-v-4dcceeb0 {
   padding-bottom: 20rpx;
   border-bottom: 1px solid #ccc;
 }
-.childmsg .swiper.data-v-1e51b393 {
+.childmsg .swiper.data-v-4dcceeb0 {
   height: 330rpx;
 }
-.childmsg .swiper .swiper-item ._h3 > text.data-v-1e51b393 {
+.childmsg .swiper .swiper-item ._h3 > text.data-v-4dcceeb0 {
   float: left;
   font-size: 14px;
 }
-.childmsg .swiper .swiper-item ._h3 .xb.data-v-1e51b393, .childmsg .swiper .swiper-item ._h3 .nj.data-v-1e51b393 {
+.childmsg .swiper .swiper-item ._h3 .xb.data-v-4dcceeb0, .childmsg .swiper .swiper-item ._h3 .nj.data-v-4dcceeb0 {
   color: #fff;
   font-size: 12px;
   float: right;
   position: relative;
 }
-.childmsg .swiper .swiper-item ._h3 .xb image.data-v-1e51b393, .childmsg .swiper .swiper-item ._h3 .nj image.data-v-1e51b393 {
+.childmsg .swiper .swiper-item ._h3 .xb image.data-v-4dcceeb0, .childmsg .swiper .swiper-item ._h3 .nj image.data-v-4dcceeb0 {
   width: 100%;
 }
-.childmsg .swiper .swiper-item ._h3 .xb text.data-v-1e51b393, .childmsg .swiper .swiper-item ._h3 .nj text.data-v-1e51b393 {
+.childmsg .swiper .swiper-item ._h3 .xb text.data-v-4dcceeb0, .childmsg .swiper .swiper-item ._h3 .nj text.data-v-4dcceeb0 {
   position: absolute;
   width: 100%;
   text-align: center;
   line-height: 30rpx;
 }
-.childmsg .swiper .swiper-item ._h3 .xb.data-v-1e51b393 {
+.childmsg .swiper .swiper-item ._h3 .xb.data-v-4dcceeb0 {
   width: 80rpx;
   margin-right: 20rpx;
 }
-.childmsg .swiper .swiper-item ._h3 .nj.data-v-1e51b393 {
+.childmsg .swiper .swiper-item ._h3 .nj.data-v-4dcceeb0 {
   width: 100rpx;
 }
-.childmsg .swiper .swiper-item > view.data-v-1e51b393 {
+.childmsg .swiper .swiper-item > view.data-v-4dcceeb0 {
   font-size: 14px;
   margin: 10rpx 0;
 }
-.childmsg .swiper .swiper-item > view text.data-v-1e51b393 {
+.childmsg .swiper .swiper-item > view text.data-v-4dcceeb0 {
   float: left;
   margin-right: 20rpx;
 }
-.childmsg .swiper .swiper-item > view ._i.data-v-1e51b393 {
+.childmsg .swiper .swiper-item > view ._i.data-v-4dcceeb0 {
   float: right;
   padding: 5rpx 20rpx;
   border-radius: 20rpx;
   background: #ccc;
 }
-.childmsg .swiper .swiper-item > view .xl.data-v-1e51b393 {
+.childmsg .swiper .swiper-item > view .xl.data-v-4dcceeb0 {
   width: 520rpx;
   float: left;
   max-height: 80rpx;
   overflow-y: scroll;
   overflow-x: hidden;
 }
-.childmsg .swiper .swiper-item > view .xl .cl.data-v-1e51b393 {
+.childmsg .swiper .swiper-item > view .xl .cl.data-v-4dcceeb0 {
   margin: 10rpx 0;
 }
-.childmsg .swiper .swiper-item > view .xl text.data-v-1e51b393 {
+.childmsg .swiper .swiper-item > view .xl text.data-v-4dcceeb0 {
   margin: 0;
   width: 232rpx;
 }
-.childmsg .swiper .swiper-item > view .xl image.data-v-1e51b393 {
+.childmsg .swiper .swiper-item > view .xl image.data-v-4dcceeb0 {
   width: 30rpx;
   margin: 0 10rpx;
   float: left;
   margin-top: 10rpx;
 }
-.jzmsg .msgs.data-v-1e51b393 {
+.jzmsg .msgs.data-v-4dcceeb0 {
   margin-top: 10rpx;
 }
-.jzmsg .msgs text.data-v-1e51b393:first-child {
+.jzmsg .msgs text.data-v-4dcceeb0:first-child {
   margin-right: 10rpx;
 }
-.jzmsg .msgs .switchbox.data-v-1e51b393 {
+.jzmsg .msgs .switchbox.data-v-4dcceeb0 {
   float: right;
   width: 100rpx;
   position: relative;
 }
-.jzmsg .msgs .switchbox .status.data-v-1e51b393 {
+.jzmsg .msgs .switchbox .status.data-v-4dcceeb0 {
   position: absolute;
   z-index: 100;
   top: 10rpx;
   padding: 0 10rpx;
   box-sizing: border-box;
 }
-.footerbox.data-v-1e51b393 {
+.footerbox.data-v-4dcceeb0 {
   background: #fff;
   padding: 40rpx 0;
   margin-top: 20rpx;
 }
-.footerbox image.data-v-1e51b393 {
+.footerbox image.data-v-4dcceeb0 {
   width: 210rpx;
   margin-left: 30rpx;
 }
-.getuserbtn.data-v-1e51b393 {
+.getuserbtn.data-v-4dcceeb0 {
   background: transparent;
   width: 150rpx;
   border: 0;
@@ -202,10 +202,10 @@
   height: 68rpx;
   line-height: 68rpx;
 }
-.getuserbtn.data-v-1e51b393:after {
+.getuserbtn.data-v-4dcceeb0:after {
   border: 0;
 }
-.shadow.data-v-1e51b393 {
+.shadow.data-v-4dcceeb0 {
   position: fixed;
   top: 0;
   right: 0;
@@ -216,7 +216,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
-.morebox.data-v-1e51b393 {
+.morebox.data-v-4dcceeb0 {
   float: right;
   width: 0;
   -webkit-transition: 0.5s;
@@ -225,20 +225,63 @@
   background: #fff;
   color: #000;
 }
-.morebox .box.data-v-1e51b393:first-child {
+.morebox .box.data-v-4dcceeb0:first-child {
   margin-top: 200rpx;
-  border-bottom: 1px solid #ccc;
 }
-.morebox .box.data-v-1e51b393 {
+.morebox .box.data-v-4dcceeb0:last-child {
+  border-bottom: 0;
+}
+.morebox .box.data-v-4dcceeb0 {
+  font-size: 14px;
+  border-bottom: 1px solid #ccc;
   line-height: 80rpx;
   padding: 0 30rpx;
+  background-color: #fff;
 }
-.morebox text.data-v-1e51b393 {
+.morebox text.data-v-4dcceeb0 {
   float: left;
 }
-.morebox image.data-v-1e51b393 {
+.morebox image.data-v-4dcceeb0 {
   float: right;
   width: 20rpx !important;
   margin-top: 23rpx;
+}
+.shadow .tsbox.data-v-4dcceeb0 {
+  width: 550rpx;
+  height: 280rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  padding: 10rpx 30rpx;
+  text-align: center;
+}
+.shadow .tsbox ._h3.data-v-4dcceeb0 {
+  line-height: 60rpx;
+  color: #999;
+}
+.shadow .tsbox text.data-v-4dcceeb0 {
+  color: #666;
+}
+.shadow .tsbox .btns.data-v-4dcceeb0 {
+  margin-top: 50rpx;
+}
+.shadow .tsbox .btns button.data-v-4dcceeb0:after {
+  border: 0;
+}
+.shadow .tsbox .btns button.data-v-4dcceeb0 {
+  width: 40%;
+  margin: 0 5%;
+  float: left;
+  color: #fff;
+  background-color: #F0AD4E;
+  font-size: 14px;
+}
+.shadow .tsbox .btns .sflogo.data-v-4dcceeb0 {
+  background-color: #FF6C00;
 }
 

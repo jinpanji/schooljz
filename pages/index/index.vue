@@ -8,7 +8,7 @@
 					<!--  @click="goRouter()" -->
 					<view v-if="isLogin" class="txboxs cl">
 						<view v-for="(item,index) in childrenList" :class="childCheck==item.id?'imgbox check':'imgbox'" @click="changeChild(item)">
-							<image :src="item.photo?imgUrl+item.phone:'../../static/img/mrtx.jpg'" mode="widthFix"></image>
+							<image :src="item.photo?imgUrl+'eaOss/download/'+item.photo:'../../static/img/mrtx.jpg'" mode="widthFix"></image>
 						</view>
 						<!-- <view class="imgbox">
 							<image src="../../static/img/sy_002.png" mode="widthFix"></image>
@@ -27,11 +27,11 @@
 					</view>
 					<view class="times">
 						<view>
-							2020年1月13日
+							{{date}} {{day}}
 						</view>
-						<view>
+						<!-- <view>
 							冬月三十 周二
-						</view>
+						</view> -->
 					</view>
 				</view>
 			</view>
@@ -39,18 +39,22 @@
 		<!-- 行程 -->
 		<view class="bus_list">
 			<image src="../../static/img/img/sy_002.png" mode="widthFix"></image>
-			<Trip  />
+			<Trip :schoolInfo="siteInfoData"  :homeInfo="homeInfo"/>
 		</view>
 		<!-- 车辆位置 -->
 		<view class="translate">
 			<view class="tit">
 				车辆位置
+				<image @click="goF5()" src="../../static/img/f5.png" mode="widthFix"></image>
 			</view>
 			<view class="times">
 				<text>发车时间：{{childLines.startTime?childLines.startTime:''}}</text>
 				<text>预计到达：{{childLines.arriveTime?childLines.arriveTime:''}}</text>
 			</view>
-			<Buslist :list="list"/>
+			<Buslist v-if="list.length>0" :list="list" :nowSite="childLines.site.id" />
+			<view v-else class="nonebox">
+				暂无车辆位置信息
+			</view>
 		</view>
 		
 		<view class="footerbox">
@@ -67,6 +71,8 @@
 <script>
 	import Trip from '../../components/common/trip.vue'
 	import Buslist from '../../components/common/buslist.vue'
+	var QQMapWX = require("../../components/unitls/qqmap-wx-jssdk.js")
+	var qqmapsdk
 	export default {	
 		components:{
 			Trip,
@@ -88,7 +94,13 @@
 				parentInfo:{},
 				childLines:{},//当前线路信息
 				siteInfo:{},//车辆实时位置信息
-				sxFlag:true
+				sxFlag:true,
+				siteInfoData:{},
+				homeInfo:{},
+				date:'',
+				dayList:['周日','周一','周二','周三','周四','周五','周六'],
+				day:null,
+				city:''
 			}
 		},
 		watch:{
@@ -98,10 +110,24 @@
 			deep:true
 		},
 		onLoad() {
+			qqmapsdk = new QQMapWX({
+			  key: 'SX7BZ-DJI6G-G5OQK-IDBI4-RZ6TO-33FBA' //这里自己的key秘钥进行填充
+			});		
 			this.imgUrl=this.$imgurl
 			uni.authorize({
 				scope:'userInfo'
 			})
+			let date=new Date()
+			let dateStr=""
+			dateStr=date.getFullYear()+"年"
+			dateStr+=(date.getMonth()+1)+"月"
+			dateStr+=date.getDate()+"日"
+			this.date=dateStr
+			let day=null
+			day=date.getDay()
+			this.day=this.dayList[day]
+			// this.getWeather()
+			// this.getcitycode()
 		},
 		onShow(){
 			let parentInfo=uni.getStorageSync("userInfo")
@@ -115,8 +141,8 @@
 					title:"您还未登录，请先登录!"
 				})
 				setTimeout(()=>{
-					uni.switchTab({
-						url:"../my/index"
+					uni.navigateTo({
+						url:"../my/login"
 					})
 				},1000)
 			}
@@ -133,14 +159,18 @@
 					parentId:this.parentInfo.id
 				}).then(res=>{
 					if(res.code==100){
-						this.childrenList=res.info
-						if(!this.childCheck){
-							this.childCheck=res.info[0].id
-							uni.setStorageSync("childId",res.info[0].id)
+						if(res.info.length>0){
+							this.childrenList=res.info
+							if(!this.childCheck){
+								this.childCheck=res.info[0].id
+								uni.setStorageSync("childId",res.info[0].id)
+							}
+							this.getmainList()
+						}else{
+							uni.removeStorageSync("childId")
+							this.childCheck=''
 						}
-						
 						this.getLineInfo()
-						this.getmainList()
 					}
 				})
 			},
@@ -152,17 +182,36 @@
 				}).then(res=>{
 					if(res.code==100){
 						this.childLines=res.info
-						this.list=res.info.sites
+						if(res.info){
+							this.list=res.info.sites
+						}else{
+							this.list=[]
+						}
 					}
 				})				
 			},
 			getmainList(){
 				// 车辆实时位置
+				this.homeInfo={}
+				this.siteInfoData={}
 				this.$http.post("puridingrecord/mainList",{
 					childrenId:this.childCheck
 				}).then(res=>{
 					if(res.code==100){
 						this.siteInfo=res.info
+						let list=res.info
+						let  data={}
+						list.forEach((item,index)=>{
+							if(item.type==1){
+								// 上学
+								if(!this.siteInfoData.takeTime){
+									this.siteInfoData=item
+								}
+							}else{
+								this.homeInfo=item
+							}
+						})
+						// this.siteInfoData=data
 					}
 				})
 			},
@@ -220,6 +269,74 @@
 						break
 				}
 				
+			},
+			goF5(){
+				// 刷新
+				this.getLineInfo()
+				this.getmainList()
+			},
+			getcitycode(){
+				let that=this
+				uni.getLocation({
+					success:(res1)=>{
+						console.log(res1)
+						let latitude=res1.latitude
+						let longitude=res1.longitude
+						qqmapsdk.reverseGeocoder({
+						  location: {
+						    latitude: latitude,
+						    longitude: longitude
+						  },
+						  success: function (res) {
+								let data=res.result.address_component
+								console.log(res)
+								that.city=data.city
+								let city=(that.city).substring(2,-1)
+								let province=data.province
+								province=province.replace('省','')
+								uni.request({
+									url:"https://api.yytianqi.com/citylist/id/1",
+									success:(res2)=>{
+										// console.log(res)
+										let citylist=res2.data.list
+										citylist.forEach((item,index)=>{
+											if(item.name==province){
+												let list2=item.list
+												list2.forEach((item2,index2)=>{
+													// console.log((item2.name).substring(2,-1))
+													// console.log(city)
+													// console.log(item2.name.substring(2,-1)==city)
+													if(item2.name.substring(2,-1)==city){
+														that.getWeather(item2.list[0].city_id)
+													}
+												})
+											}
+										})
+									},
+								})
+						  },
+						  fail: function (res) {
+							 // that.debug="获取中文位置失败"+JSON.stringify(res)
+						    console.log(res);
+						  },
+						  complete: function (res) {
+						    // console.log(res);
+						  }
+						});
+					}
+				})
+			},
+			getcode(list){
+				
+			},
+			getWeather(code){
+				console.log("获取天启")
+				uni.request({
+					url:"https://api.yytianqi.com/observe?city="+code+"&key=cwhq5h588cdmctfc",
+					success:(res)=>{
+						console.log(res)
+					}
+				})
 			}
 		}
 		
@@ -267,6 +384,7 @@
 					border-radius: 50%;
 					margin-right: 40rpx;
 					margin-top: 30rpx;
+					box-sizing: border-box;
 					image{
 						width: 100%;						
 					}
@@ -288,6 +406,14 @@
 		background: #fff;
 		padding: 20rpx 0;
 		margin-bottom: 20rpx;
+		.tit{
+			position: relative;
+			image{
+				width: 40rpx;
+				position: absolute;
+				right: 30rpx;
+			}
+		}
 		>view{
 			padding-left: 20rpx;
 			margin-left: 20rpx;
@@ -304,6 +430,11 @@
 				width: 50%;
 				text-align: center;
 			}
+		}
+		.nonebox{
+			padding: 40rpx 0;
+			text-align: center;
+			color: #999;
 		}
 	}
 	.footerbox{

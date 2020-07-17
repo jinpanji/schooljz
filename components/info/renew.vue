@@ -199,18 +199,34 @@
 				data.openId=this.userInfo.wechatOpenid //openid
 				this.payInfo=data
 				console.log(this.payInfo)
-				uni.showLoading({
-					icon:"loading",
-					title:"正在提交订单"
-				})
-				this.$http.post("puProduct/createBuyOrder",data,"application/json").then(res=>{
-					if(res.code==100){
-						// this.payInfo=res.info
-						this.payres=res.info
-						this.wxPay(res.info)
-						uni.hideLoading()
+				if(data.type&&data.childrenId&&data.productId){
+					uni.showLoading({
+						icon:"loading",
+						title:"正在提交订单"
+					})
+					this.$http.post("puProduct/createBuyOrder",data,"application/json").then(res=>{
+						if(res.code==100){
+							// this.payInfo=res.info
+							this.payres=res.info
+							this.wxPay(res.info)
+							uni.hideLoading()
+						}
+					})
+				}else{
+					let tsMsg=""	
+					if(!data.type){
+						tsMsg="请选择产品"
+					}else if(!data.childrenId){
+						tsMsg="请选择学生"
+					}else if(!data.productId){
+						tsMsg="还没有购买过产品"
 					}
-				})
+					uni.showToast({
+						icon:"none",
+						title:tsMsg
+					})
+				}
+				
 			},
 			wxPay(data){
 				let that=this
@@ -249,7 +265,7 @@
 				// 点击更多，转学时使用
 				console.log("更多")
 				uni.navigateTo({
-					url:"../information/addchildschool?type=2"
+					url:"../information/addchildschool?type=2&childId="+this.childrenId
 				})
 			}
 		},

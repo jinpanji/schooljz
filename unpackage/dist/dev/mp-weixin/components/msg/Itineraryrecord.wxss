@@ -24,24 +24,24 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.jilu.data-v-609da524 {
+.jilu.data-v-101e3883 {
   position: relative;
   padding-bottom: 100rpx;
 }
-.jilu ._h3.data-v-609da524 {
+.jilu ._h3.data-v-101e3883 {
   line-height: 100rpx;
   border-bottom: 1px solid #ccc;
 }
-.jilu ._h3 text.data-v-609da524 {
+.jilu ._h3 text.data-v-101e3883 {
   padding: 0 30rpx;
   border-left: 2px solid #FF6C00;
 }
-.jilu .boxlist.data-v-609da524 {
+.jilu .boxlist.data-v-101e3883 {
   padding: 0 20rpx;
   background: #fff;
   margin: 20rpx 0;
 }
-.jilu .boxlist .list text.data-v-609da524 {
+.jilu .boxlist .list text.data-v-101e3883 {
   display: inline-block;
   width: 215rpx;
   text-align: center;
@@ -52,24 +52,24 @@
   margin: 15rpx;
   font-size: 14px;
 }
-.jilu .boxlist .list text.data-v-609da524:first-child {
+.jilu .boxlist .list text.data-v-101e3883:first-child {
   margin-left: 0;
 }
-.jilu .boxlist .list text.data-v-609da524:last-child {
+.jilu .boxlist .list text.data-v-101e3883:last-child {
   margin-right: 0;
 }
-.jilu .boxlist .list .check_index.data-v-609da524 {
+.jilu .boxlist .list .check_index.data-v-101e3883 {
   background: #FF6C00;
   color: #fff;
 }
-.jilu .msgbox.data-v-609da524 {
+.jilu .msgbox.data-v-101e3883 {
   padding: 0 20rpx;
   background: #fff;
 }
-.jilu .msgbox ._h3.data-v-609da524 {
+.jilu .msgbox ._h3.data-v-101e3883 {
   border: 0;
 }
-.jilu .msgbox textarea.data-v-609da524 {
+.jilu .msgbox textarea.data-v-101e3883 {
   background: #eee;
   width: 100%;
   border-radius: 20rpx;
@@ -79,12 +79,12 @@
   box-sizing: border-box;
   margin-top: 30rpx;
 }
-.jilu .msgbox .tis.data-v-609da524 {
+.jilu .msgbox .tis.data-v-101e3883 {
   color: red;
   line-height: 100rpx;
   font-size: 14px;
 }
-.jilu .box.data-v-609da524 {
+.jilu .box.data-v-101e3883 {
   background: #fff;
   padding: 20rpx 0;
   border-radius: 10rpx;
@@ -93,10 +93,10 @@
   position: relative;
   font-size: 30rpx;
 }
-.jilu .box .tit.data-v-609da524 {
+.jilu .box .tit.data-v-101e3883 {
   margin-left: 20rpx;
 }
-.jilu .box .times.data-v-609da524 {
+.jilu .box .times.data-v-101e3883 {
   position: absolute;
   right: 20rpx;
   top: 20rpx;
@@ -104,20 +104,20 @@
   padding: 5rpx 0rpx;
   border-radius: 30rpx;
 }
-.jilu .box .times text.data-v-609da524 {
+.jilu .box .times text.data-v-101e3883 {
   margin: 0 20rpx;
 }
-.jilu .box > image.data-v-609da524 {
+.jilu .box > image.data-v-101e3883 {
   width: 100%;
 }
-.jilu button.data-v-609da524 {
+.jilu button.data-v-101e3883 {
   background: #FF6C00;
   border-radius: 0;
   position: fixed;
   bottom: 0;
   width: 100%;
 }
-.timebox.data-v-609da524 {
+.timebox.data-v-101e3883 {
   padding: 10rpx;
   background: #fff;
 }

@@ -8,15 +8,17 @@
 			</view>
 			<view class="numbox">
 				<h4>累计</h4>
-				<h3>15430人</h3>
-				<image src="../../static/img/img/wd_049.png" mode="widthFix"></image>
+				<h3>{{list.length}}人</h3>
+				<button class="box cl" id="share2" open-type="share">
+					<image src="../../static/img/img/wd_049.png" mode="widthFix"></image>
+				</button>
 			</view>
 			<view class="listbox">
-				<view class="li">
+				<view class="li" v-for="(item,index) in list">
 					<view class="">
-						用户：xxxxx，已报名，获得奖励xxx元
+						用户：{{item.buyName}}，已报名，获得奖励{{distributionAmount}}元
 					</view>
-					<text>2019-12-04 15:04:30</text>
+					<text>{{item.createTime}}</text>
 				</view>
 				<view class="msg" @click="msgshow=true">
 					《 奖励规则 》
@@ -43,13 +45,64 @@
 		data(){
 			return{
 				msgshow:false,
+				pageNum:1,
+				pageSize:10,
+				parentId:null,
+				list:[],
+				total:null,
+				flag:false,
 			}
+		},
+		onShow(){
+			let userInfo=uni.getStorageSync('userInfo')
+			if(userInfo){
+				userInfo=JSON.parse(userInfo)
+				this.parentId=userInfo.id
+			}	
+			this.init()
 		},
 		methods:{
 			goBack(){
 				uni.switchTab({
 					url:"../../pages/my/index"
 				})
+			},
+			init(){
+				this.flag=false
+				this.$http.post('puDistribut/list',{
+					parentId:this.parentId,
+					pageNum:this.pageNum,
+					pageSize:this.pageSize
+				}).then(res=>{
+					if(res.code==100){
+						let list=res.info.rows
+						this.total=res.info.total
+						if(this.pageNum==1){
+							this.list=list
+						}else{
+							this.list=this.list.concat(list)
+							if(this.list.length<this.flag){
+								this.flag=true
+							}
+						}
+					}
+				})
+			}
+		},
+		onReachBottom:function(){
+			if(this.flag){
+				this.pageNum++
+				this.init()
+			}
+		},
+		onShareAppMessage:function(options){
+			console.log("分享")
+			console.log(options)
+			let parentId=this.parentId
+			console.log(parentId)
+			return{
+				title:"奖励分享",
+				path:'pages/my/login?type=1&parentId='+parentId
 			}
 		}
 	}
@@ -95,12 +148,20 @@
 				font-size: 20px;
 				line-height: 84rpx;
 			}
-			image{
+			.box{
 				width: 200rpx;
+				padding: 0;
+				margin: 0;
 				position: absolute;
-				right: 20rpx;
+				left: 540rpx;
 				top: 0;
+				background: rgba(0,0,0,0);
+				height: 200rpx;
+				image{
+					width: 100%;
+				}
 			}
+			
 		}
 		.listbox{
 			margin-top: 40rpx;

@@ -3,8 +3,8 @@
 		<view class="grouplist cl" :style="'width:'+(list.length*150+150)+'rpx'">
 			<view class="li cl" v-for="(item,index) in list">
 				<view class="cl" @click="changeNum(item.id)"> 
-				<image v-if="checkList.indexOf(item.id)!=-1||(checkSite&&checkSite==item.id)" src="../../static/img/img/sy_005.png" mode="widthFix"></image>
-					<i :class="checkList.indexOf(item.id)!=-1||(checkSite&&checkSite==item.id)?'check':''">
+				<image v-if="checkList.indexOf(item.id)!=-1||(nowSite&&nowSite==item.id)" src="../../static/img/img/sy_005.png" mode="widthFix"></image>
+					<i :class="checkList.indexOf(item.id)!=-1||(nowSite&&nowSite==item.id)?'check':''">
 						<!-- <em></em> -->
 					</i>
 					<text>{{item.name}}</text>
@@ -21,7 +21,8 @@
 	export default{
 		props:[
 			'list',
-			'checkSite'
+			'checkSite',
+			'nowSite'
 		],
 		data(){
 			return{
@@ -32,13 +33,20 @@
 		mounted(){
 			// let listLen=this.$props.list.length
 			// console.log("车站列表")
-			// console.log(this.$props.list)
+			// console.log(this.$props.nowSite)
 			// this.boxWidth=listLen*140
 		},
-		
+		watch:{
+			// nowSite:function(newval,oldval){
+			// 	console.log("当前站点位置监听")
+			// 	console.log(newval)
+			// 	this.checkList[0]=newval.id
+			// },
+			// deep:true,
+		},
 		methods:{
 			changeNum(id){
-				if(!this.$props.checkSite){
+				if(!this.$props.nowSite){
 					console.log("选择站点")
 					console.log(id)
 					this.checkList=[id]

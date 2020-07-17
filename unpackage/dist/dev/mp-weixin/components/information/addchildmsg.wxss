@@ -24,54 +24,54 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.tit.data-v-210d58a3 {
+.tit.data-v-01b65d90 {
   padding: 0 20rpx;
 }
-.information.data-v-210d58a3 {
+.information.data-v-01b65d90 {
   padding: 0 30rpx;
   background: #fff;
 }
-.information > view.data-v-210d58a3 {
+.information > view.data-v-01b65d90 {
   padding: 38rpx 0;
   border-bottom: 1px solid #e7e6ec;
 }
-.information > view text.data-v-210d58a3, .information > view .uni-list-cell-left.data-v-210d58a3 {
+.information > view text.data-v-01b65d90, .information > view .uni-list-cell-left.data-v-01b65d90 {
   float: left;
   width: 162rpx;
   color: #969696;
 }
-.information > view input.data-v-210d58a3, .information > view .uni-list-cell-db.data-v-210d58a3 {
+.information > view input.data-v-01b65d90, .information > view .uni-list-cell-db.data-v-01b65d90 {
   float: left;
   width: 510rpx;
 }
-.information > view .red.data-v-210d58a3 {
+.information > view .red.data-v-01b65d90 {
   color: #fe0000;
 }
-.information > view image.data-v-210d58a3 {
+.information > view image.data-v-01b65d90 {
   float: right;
   width: 20rpx;
 }
-.information > view.data-v-210d58a3:last-child {
+.information > view.data-v-01b65d90:last-child {
   border: 0;
 }
-.information .classcheck .uni-list-cell-db.data-v-210d58a3 {
+.information .classcheck .uni-list-cell-db.data-v-01b65d90 {
   float: left;
   width: 100rpx;
 }
-.information .classcheck input.data-v-210d58a3 {
+.information .classcheck input.data-v-01b65d90 {
   float: left;
   width: 190rpx;
   margin-left: 20rpx;
 }
-.selection_route.data-v-210d58a3, .pick.data-v-210d58a3 {
+.selection_route.data-v-01b65d90, .pick.data-v-01b65d90 {
   background: #fff;
   margin-top: 20rpx;
   padding: 30rpx;
 }
-.selection_route.data-v-210d58a3 {
+.selection_route.data-v-01b65d90 {
   padding-bottom: 130rpx;
 }
-.preservation.data-v-210d58a3 {
+.preservation.data-v-01b65d90 {
   width: 100%;
   background: #FF6C00;
   border-radius: 0;
@@ -80,16 +80,16 @@
   left: 0;
   z-index: 1000;
 }
-button.data-v-210d58a3:after {
+button.data-v-01b65d90:after {
   border: 0;
 }
-.xlnull.data-v-210d58a3 {
+.xlnull.data-v-01b65d90 {
   text-align: center;
 }
-.xlnull image.data-v-210d58a3 {
+.xlnull image.data-v-01b65d90 {
   width: 100%;
 }
-.xlnull text.data-v-210d58a3 {
+.xlnull text.data-v-01b65d90 {
   line-height: 300rpx;
 }
 

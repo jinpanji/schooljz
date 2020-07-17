@@ -24,50 +24,50 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.renewpage.data-v-635d821c {
+.renewpage.data-v-2a84bb67 {
   background: #fff;
   padding: 0 30rpx;
 }
-.listbox.data-v-635d821c, .uni-list-cell.data-v-635d821c {
+.listbox.data-v-2a84bb67, .uni-list-cell.data-v-2a84bb67 {
   border-bottom: 1px solid #ccc;
   padding: 30rpx 0;
   display: block;
 }
-.listbox > view.data-v-635d821c, .uni-list-cell > view.data-v-635d821c {
+.listbox > view.data-v-2a84bb67, .uni-list-cell > view.data-v-2a84bb67 {
   float: left;
 }
-.listbox .imgbox.data-v-635d821c, .uni-list-cell .imgbox.data-v-635d821c {
+.listbox .imgbox.data-v-2a84bb67, .uni-list-cell .imgbox.data-v-2a84bb67 {
   width: 40rpx;
   margin-top: 85rpx;
   margin-right: 40rpx;
 }
-.listbox .imgbox image.data-v-635d821c, .uni-list-cell .imgbox image.data-v-635d821c {
+.listbox .imgbox image.data-v-2a84bb67, .uni-list-cell .imgbox image.data-v-2a84bb67 {
   width: 100%;
 }
-.listbox radio.data-v-635d821c, .uni-list-cell radio.data-v-635d821c {
+.listbox radio.data-v-2a84bb67, .uni-list-cell radio.data-v-2a84bb67 {
   margin-right: 20rpx;
 }
-.xflist radio.data-v-635d821c {
+.xflist radio.data-v-2a84bb67 {
   margin-top: 60rpx;
 }
-.moretxt.data-v-635d821c {
+.moretxt.data-v-2a84bb67 {
   color: #C0C0C0;
   text-align: right;
   font-size: 14px;
   line-height: 60rpx;
 }
-.box.data-v-635d821c {
+.box.data-v-2a84bb67 {
   width: 600rpx;
 }
-.box .bjbox.data-v-635d821c {
+.box .bjbox.data-v-2a84bb67 {
   float: left;
   width: 200rpx;
   position: relative;
 }
-.box .bjbox image.data-v-635d821c {
+.box .bjbox image.data-v-2a84bb67 {
   width: 100%;
 }
-.box .bjbox text.data-v-635d821c {
+.box .bjbox text.data-v-2a84bb67 {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -81,27 +81,27 @@
   color: #fff;
   font-size: 16px;
 }
-.box .msgbox.data-v-635d821c {
+.box .msgbox.data-v-2a84bb67 {
   float: left;
   width: 380rpx;
   margin-left: 20rpx;
   font-size: 14px;
 }
-.box .msgbox .namebox.data-v-635d821c {
+.box .msgbox .namebox.data-v-2a84bb67 {
   width: 100%;
   margin-bottom: 15rpx;
 }
-.box .msgbox .namebox image.data-v-635d821c {
+.box .msgbox .namebox image.data-v-2a84bb67 {
   float: right;
   width: 20rpx;
 }
-.box .msgbox .time.data-v-635d821c {
+.box .msgbox .time.data-v-2a84bb67 {
   line-height: 60rpx;
 }
-.box .msgbox .money.data-v-635d821c {
+.box .msgbox .money.data-v-2a84bb67 {
   color: red;
 }
-.footer.data-v-635d821c {
+.footer.data-v-2a84bb67 {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -109,28 +109,28 @@
   background: #fff;
   line-height: 90rpx;
 }
-.footer .imgbox.data-v-635d821c {
+.footer .imgbox.data-v-2a84bb67 {
   float: left;
   width: 170rpx;
 }
-.footer .imgbox image.data-v-635d821c {
+.footer .imgbox image.data-v-2a84bb67 {
   width: 40rpx;
   margin-right: 40rpx;
 }
-.footer .right.data-v-635d821c {
+.footer .right.data-v-2a84bb67 {
   float: right;
   width: 550rpx;
 }
-.footer .right .msg.data-v-635d821c {
+.footer .right .msg.data-v-2a84bb67 {
   float: right;
 }
-.footer .right button.data-v-635d821c {
+.footer .right button.data-v-2a84bb67 {
   width: 180rpx;
   background: #FF6C00;
   float: right;
   border-radius: 0;
 }
-.footer .right text.data-v-635d821c {
+.footer .right text.data-v-2a84bb67 {
   color: red;
   margin: 0 20rpx;
 }

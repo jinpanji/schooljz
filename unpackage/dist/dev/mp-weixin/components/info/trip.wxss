@@ -24,22 +24,22 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-button.data-v-2805ede6 {
+button.data-v-57bcdf3b {
   background: #FF6C00;
   position: fixed;
   width: 100%;
   left: 0;
   bottom: 0;
 }
-.page.data-v-2805ede6 {
+.page.data-v-57bcdf3b {
   padding: 30rpx;
   background: #fff;
 }
-.page ._h3.data-v-2805ede6 {
+.page ._h3.data-v-57bcdf3b {
   padding: 30rpx 0;
   border-bottom: 1px solid #ccc;
 }
-.page ._h3 text.data-v-2805ede6 {
+.page ._h3 text.data-v-57bcdf3b {
   padding-left: 20rpx;
   border-left: 2px solid #FF6C00;
 }

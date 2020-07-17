@@ -24,24 +24,24 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.jilu.data-v-545ac524 {
+.jilu.data-v-33427b03 {
   position: relative;
   padding-bottom: 100rpx;
 }
-.jilu ._h3.data-v-545ac524 {
+.jilu ._h3.data-v-33427b03 {
   line-height: 100rpx;
   border-bottom: 1px solid #ccc;
 }
-.jilu ._h3 text.data-v-545ac524 {
+.jilu ._h3 text.data-v-33427b03 {
   padding: 0 30rpx;
   border-left: 2px solid #FF6C00;
 }
-.jilu .boxlist.data-v-545ac524 {
+.jilu .boxlist.data-v-33427b03 {
   padding: 0 20rpx;
   background: #fff;
   margin-bottom: 20rpx;
 }
-.jilu .boxlist .list text.data-v-545ac524 {
+.jilu .boxlist .list text.data-v-33427b03 {
   display: inline-block;
   padding: 0 40rpx;
   text-align: center;
@@ -52,22 +52,22 @@
   margin: 20rpx;
   font-size: 14px;
 }
-.jilu .boxlist .list .check_index.data-v-545ac524 {
+.jilu .boxlist .list .check_index.data-v-33427b03 {
   background: #FF6C00;
   color: #fff;
 }
-.jilu .linebox.data-v-545ac524 {
+.jilu .linebox.data-v-33427b03 {
   padding-bottom: 20rpx;
 }
-.jilu .msgbox.data-v-545ac524 {
+.jilu .msgbox.data-v-33427b03 {
   padding: 0 20rpx;
   background: #fff;
   padding-bottom: 100rpx;
 }
-.jilu .msgbox ._h3.data-v-545ac524 {
+.jilu .msgbox ._h3.data-v-33427b03 {
   border: 0;
 }
-.jilu .msgbox textarea.data-v-545ac524 {
+.jilu .msgbox textarea.data-v-33427b03 {
   background: #eee;
   border-radius: 20rpx;
   border: 1px solid #ccc;
@@ -77,7 +77,7 @@
   box-sizing: border-box;
   margin-top: 30rpx;
 }
-.jilu .box.data-v-545ac524 {
+.jilu .box.data-v-33427b03 {
   background: #fff;
   padding: 20rpx 0;
   border-radius: 10rpx;
@@ -86,10 +86,10 @@
   position: relative;
   font-size: 30rpx;
 }
-.jilu .box .tit.data-v-545ac524 {
+.jilu .box .tit.data-v-33427b03 {
   margin-left: 20rpx;
 }
-.jilu .box .times.data-v-545ac524 {
+.jilu .box .times.data-v-33427b03 {
   position: absolute;
   right: 20rpx;
   top: 20rpx;
@@ -97,13 +97,13 @@
   padding: 5rpx 0rpx;
   border-radius: 30rpx;
 }
-.jilu .box .times text.data-v-545ac524 {
+.jilu .box .times text.data-v-33427b03 {
   margin: 0 20rpx;
 }
-.jilu .box > image.data-v-545ac524 {
+.jilu .box > image.data-v-33427b03 {
   width: 100%;
 }
-.jilu button.data-v-545ac524 {
+.jilu button.data-v-33427b03 {
   background: #FF6C00;
   border-radius: 0;
   position: fixed;

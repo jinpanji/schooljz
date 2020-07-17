@@ -24,6 +24,7 @@
 		},
 		onLoad(e){
 			if(e.childrenId){
+				console.log("安全报告")
 				console.log(e)
 				this.date=e.date
 				this.childrenId=e.childrenId
@@ -52,7 +53,9 @@
 						let list=res.info
 						list.forEach((item,index)=>{
 							if(item.type==1){
-								this.schoolInfo=item
+								if(!this.schoolInfo.takeTime){
+									this.schoolInfo=item
+								}
 							}else{
 								this.homeInfo=item
 							}
@@ -78,7 +81,9 @@
 						let list=res.info
 						list.forEach((item,index)=>{
 							if(item.type==1){
-								this.schoolInfo=item
+								if(!this.schoolInfo.takeTime){
+									this.schoolInfo=item								
+								}
 							}else{
 								this.homeInfo=item
 							}

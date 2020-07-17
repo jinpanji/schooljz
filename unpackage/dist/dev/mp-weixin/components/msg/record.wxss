@@ -24,15 +24,15 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.tit.data-v-43eed94f {
+.tit.data-v-0b16129a {
   padding: 0 10rpx;
   background: #fff;
   margin-top: 10rpx;
 }
-.page.data-v-43eed94f {
+.page.data-v-0b16129a {
   padding-bottom: 60rpx;
 }
-button.data-v-43eed94f {
+button.data-v-0b16129a {
   background-color: #FF6C00;
   color: #fff;
   position: fixed;

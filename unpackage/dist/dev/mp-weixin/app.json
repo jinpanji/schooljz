@@ -20,6 +20,7 @@
     "components/complaint/index",
     "components/complaint/info",
     "pages/my/login",
+    "pages/my/reg",
     "components/msg/Itineraryrecord",
     "components/msg/userinfo",
     "components/msg/report",

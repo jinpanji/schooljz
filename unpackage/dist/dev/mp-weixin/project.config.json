@@ -10,7 +10,7 @@
 		"postcss": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.2",
+	"libVersion": "",
 	"appid": "wx26ab287fe42c2365",
 	"projectname": "schoolbus",
 	"simulatorType": "wechat",

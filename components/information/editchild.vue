@@ -8,9 +8,14 @@
 			</view>
 			<view class="cl">
 				<text>姓名</text>
-				<input type="text" value="" v-model="form.name" placeholder="请输入姓名" />
-				<!-- <view class="">张三啊</view> -->
-				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
+				<input type="text" value="" class="username" v-model="form.name" placeholder="请输入姓名" />
+				<!-- <view class="">张三啊</view> -->				
+				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>	
+				<view class="uni-list-cell-db parentbox" v-if="parentData.length>0">
+					<picker mode="selector" :value="parentCheck" :range="parentList" @change="ParentChange">
+						<view class="uni-input">{{parentList[parentCheck]}}</view>
+					</picker>
+				</view>
 			</view>
 			<view class="uni-list cl">
 				<view class="uni-list-cell">
@@ -89,7 +94,7 @@
 				>
 				</xfl-select>
 			</view>
-			<Buslist :list="list" :checkSite="checkSite" @changeLine="changeLine"/>
+			<Buslist :list="list" :nowSite="nowSite" @changeLine="changeLine"/>
 		</view>
 		<view class="pick cl">
 			<view class="tit">接送</view>
@@ -138,6 +143,23 @@
 				</view>
 			</view>
 		</view>
+		<!-- 分配孩子给家长确认按钮 -->
+		<view class="shadow" v-if="tsShow">
+			<view class="box">
+				<h3>提示</h3>
+				<image src="../../static/img/img/xxzx_010.png" mode="widthFix"></image>
+				<p>您是否要将孩子{{form.name}}分配给家长{{parentData[parentCheck-1].name}}？</p>
+				<view class="uni-list-cell-db">
+					<picker mode="selector" :value="gxcheck2" :range="gxlist" @change="gxchange2">
+						<view class="uni-input">关系：{{gxlist[gxcheck2]}}<text>切换</text></view>
+					</picker>
+				</view>
+				<view class="btns">
+					<button type="warn" @click="fpParent()">确定</button>
+					<button type="warn" @click="cancelChange()">取消</button>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -174,6 +196,7 @@
 				classCheck:0,
 				gxlist:["父亲","母亲","爷爷","奶奶","叔叔","阿姨"],
 				gxcheck:0,
+				gxcheck2:0,
 				date:'2020-4-28',
 				startDate:getDate('start'),
 				endDate:getDate('end'),
@@ -191,40 +214,119 @@
 				checkProductId:null,
 				PaylineInfo:{},
 				checkSite:null,
-				selectValue:''
+				selectValue:'',
+				userInfo:{},
+				nowSite:null,
+				parentList:['分配给子账号家长'],
+				parentData:[],
+				parentCheck:0,
+				tsShow:false
 			}
 		},
 		onLoad(e){
 			console.log("type")
+			let userInfo=uni.getStorageSync("userInfo")
+			this.userInfo=JSON.parse(userInfo)
 			console.log(e.type)
+			if(e.id){
+				this.childId=e.id
+			}
+			this.getChildInfo()
 			if(e.type==2){
 				this.isInfo=true
 				uni.setNavigationBarTitle({
 				title:'详情'
 				})
+			}else{
+				// 编辑信息时获取学生已购买的线路和线路详情
+				this.getPlist()
+				this.getchildLines()
+				this.getProduct()
 			}
-			if(e.id){
-				this.childId=e.id
-			}
-			this.getChildInfo()
-			this.getchildLines()
-			this.getProduct()
+			
 		},
 		methods:{
+			ParentChange(e){
+				console.log(e)
+				if(e.detail.value!=0){
+					this.parentCheck=e.detail.value
+					this.tsShow=true
+				}				
+			},
+			cancelChange(){
+				this.tsShow=false
+				this.parentCheck=0
+			},
+			fpParent(){
+				// 分配孩子给家长
+				let parentId=this.parentData[this.parentCheck-1].id
+				let relation=this.gxlist[this.gxcheck2]
+				console.log(parentId)
+				console.log(this.childId)
+				this.$http.post("puchildren/divide",{
+					parentId:parentId,
+					childrenId:this.childId,
+					relation:relation
+				}).then(res=>{
+					if(res.code==100){
+						uni.showToast({
+							icon:"success",
+							title:"设置成功！"
+						})
+						setTimeout(()=>{
+							uni.switchTab({
+								url:"../../pages/my/index"
+							})
+						},2000)
+					}else if(res.code==250){
+						uni.showToast({
+							icon:"icon",
+							title:res.msg
+						})
+					}
+				})
+			},
+			getPlist(){
+				//获取下级用户
+				this.$http.post('puparent/getSubList',{
+					parentId:this.userInfo.id
+				}).then(res=>{
+					if(res.code==100){
+						this.parentData=res.info
+						let list=[]
+						list=res.info
+						this.parentList=['分配给子账号家长']
+						list.forEach((item,index)=>{
+							this.parentList.push(item.name)
+						})
+					}
+				})
+			},
 			getChildInfo(){
 				//获取学生信息
 				this.$http.post("puchildren/detail",{
-					id:this.childId
+					childrenId:this.childId,
+					parentId:this.userInfo.id
 				}).then(res=>{
 					if(res.code==100){
 						this.form=res.info
 						this.date=this.form.birthDate
 						this.xbcheck=this.form.sex
 						if(this.form.relation){
-							this.gxcheck=this.form.relation
+							// this.gxcheck=this.form.relation
+							let relationIndex=this.gxlist.indexOf(this.form.relation)
+							this.gxcheck=relationIndex
 						}
 						this.classCheck=(this.form.grade)*1-1
 						if(!this.form.closeDate){
+							this.getLines()
+						}
+						if(this.isInfo){
+							//快速续费，学校
+							let schoolInfo=uni.getStorageSync('addchildinfo')
+							schoolInfo=JSON.parse(schoolInfo)
+							this.form.schoolName=schoolInfo.schoolName
+							this.form.schoolId=schoolInfo.schoolId
 							this.getLines()
 						}
 					}
@@ -235,12 +337,14 @@
 					childrenId:this.childId
 				}).then(res=>{
 					let list=res.info
-					this.linesList=res.info
+					// this.linesList=res.info
 					if(list.length>0){
 						this.lineStrlist=[]
+						this.linesList=[]
 						this.selectValue=list[0].lineName						
 						list.forEach((item,index)=>{
 							this.lineStrlist.push(item.lineName)
+							this.linesList.push(item)
 						})
 						let val={
 							index:0
@@ -282,6 +386,11 @@
 				this.gxcheck=val.detail.value
 				console.log(this.form.relation)
 			},
+			gxchange2(val){
+				// 关系改变
+				console.log(val)
+				this.gxcheck2=val.detail.value
+			},
 			classchange(val){
 				// 年级改变
 				this.form.grade=(val.detail.value*1)+1
@@ -294,16 +403,26 @@
 				// console.log(this.lineInfo.linesId)
 				if(this.form.closeDate){
 					console.log("购买的线路站点")
-					this.lineInfo.linesId=this.linesList[val.index].lineId
-					this.$http.post("puline/lineDetail",{
-						childrenId:this.childId,
-						lineId:this.lineInfo.linesId
-					}).then(res=>{
-						if(res.code==100){
-							this.list=res.info.sites
-							this.checkSite=res.info.buySite.siteId
-						}
-					})
+					console.log(this.linesList)
+					if(!this.isInfo){
+						this.lineInfo.linesId=this.linesList[val.index].lineId
+						this.$http.post("puline/lineDetail",{
+							childrenId:this.childId,
+							lineId:this.lineInfo.linesId
+						}).then(res=>{
+							if(res.code==100){
+								this.list=res.info.sites
+								this.nowSite=res.info.buySite.siteId
+							}
+						})
+					}else{
+						// this.lineInfo.linesId=this.linesList[val.index].id
+						// 续费
+						this.list=this.productLine[val.index].sites
+						this.checkProductId=this.productLine[val.index].id
+						this.PaylineInfo=this.productLine[val.index]
+					}
+					
 				}else{
 					// 购买产品选择线路
 					console.log(this.productLine)
@@ -322,6 +441,7 @@
 							icon:"success",
 							title:"修改成功"
 						})
+						// 判断是否有线路，没有线路去反馈
 					}
 				})
 			},
@@ -336,6 +456,7 @@
 						this.productLine=list
 						list.forEach((item,index)=>{
 							this.lineStrlist.push(item.name)
+							// this.linesList.push(item)
 						})
 					}
 				})
@@ -351,13 +472,23 @@
 				})
 			},
 			payLines(){
-				// 结算
+				// 结算				
 				if(this.PaylineInfo.siteName){
+					console.log("是是是是是是 ")
+					if(this.isInfo){
+						this.preservation()
+					}
 					this.PaylineInfo.childrenId=this.childId
 					let data=JSON.stringify(this.PaylineInfo)
 					uni.setStorageSync("userlinesInfo",data)
+					console.log(data)
 					uni.navigateTo({
 						url:"payment"
+					})
+				}else{
+					uni.showToast({
+						icon:"none",
+						title:"请选择线路及站点"
 					})
 				}
 			}
@@ -365,8 +496,7 @@
 	}
 </script>
 
-<style lang="scss" scoped>
-	
+<style lang="scss" scoped>	
 	.tit{
 		padding: 0 20rpx;
 	}
@@ -385,12 +515,21 @@
 				float: left;
 				width: 510rpx;
 			}
+			.username{
+				width: 200rpx;
+			}
 			.red{
 				color: #fe0000;
 			}
 			image{
 				float: right;
 				width: 20rpx;
+			}
+			.parentbox{
+				float: right;
+				width: 200rpx;
+				font-size: 12px;
+				color: #55aaff;
 			}
 		}
 		>view:last-child{
@@ -490,6 +629,58 @@
 			text{
 				color: red;
 				margin: 0 20rpx;
+			}
+		}
+	}
+	.shadow{
+		position: fixed;
+		z-index: 10000000000;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+		margin: auto;
+		background-color: rgba(0,0,0,.5);
+		.box{
+			width: 500rpx;
+			padding: 20rpx 30rpx;
+			background-color: #fff;
+			border-radius: 20rpx;
+			margin: auto;
+			margin-top: 40rpx;
+			text-align: center;
+			h3{
+				line-height: 60rpx;
+				color: #999;
+			}
+			button{
+				width: 45%;
+				border-radius: 60rpx;
+				margin: 0 2%;
+				margin-top: 40rpx;
+				background-color: #F0AD4E;
+				font-size: 14px;
+			}
+			button:first-child{
+				background-color: #FF6C00;
+			}
+			image{
+				width: 150rpx;
+				margin: 30rpx;
+			}
+			p{
+				line-height: 50rpx;
+				font-size: 16px;
+				color: #666;
+			}
+			.uni-list-cell-db{
+				text-align: left;
+				color:#666;
+				text{
+					color: #3eabd4;
+					font-size: 12px;
+					margin-left: 30rpx;
+				}
 			}
 		}
 	}

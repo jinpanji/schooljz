@@ -24,14 +24,14 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-.sendbox .msgbox.data-v-f53cee0e {
+.sendbox .msgbox.data-v-32e5c7ce {
   padding: 20rpx;
   margin-bottom: 20rpx;
 }
-.sendbox > view.data-v-f53cee0e {
+.sendbox > view.data-v-32e5c7ce {
   background: #FFFFFF;
 }
-.sendbox textarea.data-v-f53cee0e {
+.sendbox textarea.data-v-32e5c7ce {
   height: 300rpx;
   border: 1px solid #CCCCCC;
   background: #eee;
@@ -39,10 +39,10 @@
   padding: 10rpx;
   box-sizing: border-box;
 }
-.groupbox.data-v-f53cee0e {
+.groupbox.data-v-32e5c7ce {
   padding-top: 20rpx;
 }
-.groupbox .tit.data-v-f53cee0e {
+.groupbox .tit.data-v-32e5c7ce {
   margin-left: 20rpx;
 }
 

@@ -44,7 +44,7 @@
 				</view>
 			</view>
 		</view> -->
-		<view class="uni-list cl">
+	<!-- 	<view class="uni-list cl">
 			<view class="uni-list-cell">
 				<view class="uni-list-cell-left">
 					关系
@@ -56,7 +56,7 @@
 				</view>
 				<image src="../../static/img/img/wd_018.png" mode="widthFix"></image>
 			</view>
-		</view>
+		</view> -->
 		<view class="content">
 			<text>地址</text>
 			<view class="btns" type="default" @tap="openAddres2">{{addressList[0]?(addressList[0]+"-"+addressList[1]+"-"+addressList[2]):"请选择省市区"}}</view>
@@ -82,7 +82,7 @@
 			<text>详细地址</text>
 			<input type="text" v-model="userInfo.detailAddreee" value="" placeholder="请输入地址" />
 		</view>
-		<view class="logout">
+		<view class="logout" @click="logOut()">
 			退出登录
 		</view>
 		<button type="primary" @click="update()">修改</button>
@@ -157,6 +157,12 @@
 		onShow(){
 		},
 		methods:{
+			logOut(){
+				uni.removeStorageSync("userInfo")
+				uni.navigateTo({
+					url:"../../pages/my/login"
+				})
+			},
 			getDwCode(){
 				var index = this.$refs.simpleAddress.queryIndex(this.addressList, 'label');
 				console.log(index);

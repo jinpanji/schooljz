@@ -31,6 +31,15 @@
 				schoolShow:true,
 				serachStr:"",
 				schoolId:null,
+				childId:null,
+				type:null
+			}
+		},
+		onLoad(e){
+			console.log(e)
+			if(e.childId){
+				this.type=2
+				this.childId=e.childId
 			}
 		},
 		methods:{
@@ -94,9 +103,18 @@
 					}
 					data=JSON.stringify(data)
 					uni.setStorageSync("addchildinfo",data)
-					uni.navigateTo({
-						url:"addchildmsg"
-					})
+					if(this.type==2){
+						// 更多，修改学校时
+						uni.navigateTo({
+							url:"editchild?type=2&id="+this.childId
+						})
+					}else{
+						// 第一次添加时						
+						uni.navigateTo({
+							url:"addchildmsg"
+						})
+					}
+					
 					// components/information/addchildmsg
 				}else{
 					uni.showToast({

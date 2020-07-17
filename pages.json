@@ -112,6 +112,14 @@
 				"navigationBarTextStyle":"white"
 				// "navigationStyle":"custom"
 			}
+		},{//登录
+			"path":"pages/my/reg",
+			"style":{
+				"navigationBarTitleText":"",
+				"navigationBarBackgroundColor":"#FF6C00",
+				"navigationBarTextStyle":"white"
+				// "navigationStyle":"custom"
+			}
 		},{
 			"path":"components/msg/Itineraryrecord",
 			"style":{

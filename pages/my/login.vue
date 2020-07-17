@@ -1,226 +1,138 @@
 <template>
-	<view class="login_page cl">
-		<h3>注册</h3>
-		<view class="inputbox">
-			<input type="text" v-model="userName" placeholder="请输入姓名" />
-		</view>
+	<view class="login_page cl" :style="'height:'+windowHeight+'px;'">
+		<h3>登录</h3>
 		<view class="inputbox">
 			<input type="text"v-model="phone" placeholder="请输入手机号" />
 		</view>
 		<view class="inputbox">
 			<input type="text" class="codeinput" v-model="regCode" placeholder="请输入验证码" />
 			<button type="primary" @click="getCodenum()">{{btnStr}}</button>
+		</view>		
+		<button type="primary" class="login" @click="login()">登录</button>			
+			<!-- <view @click="goReg()" class="">
+				去注册
+			</view> -->			
+		<view class="footer">
+			<h4><text>第三方登录</text></h4>
+			<button class="sflogo" open-type="getUserInfo" @getuserinfo="bindGetUserInfo" >
+				<image src="../../static/img/dl_003.png" mode="widthFix"></image>
+			</button>
 		</view>
-		<view class="tit" >
-			<text>省、市、区</text>
-		</view>
-		<view class="content">
-			<button class="btns" type="default" @tap="openAddres2">{{addressList[0]?(addressList[0]+"-"+addressList[1]+"-"+addressList[2]):"请选择省市区"}}</button>
-			<simple-address ref="simpleAddress" :pickerValueDefault="cityPickerValueDefault" @onConfirm="onConfirm" themeColor="#007AFF"></simple-address>
-		</view>
-		<view class="commbox">
-			<xfl-select
-				:list="communiStr"
-				:clearable="false"
-				:showItemNum="5" 
-				:listShow="false"
-				:isCanInput="true"  
-				:style_Container="'height: 50px; font-size: 16px;'"
-				:placeholder = "'请选择小区'"
-				:initValue="streetNmae"
-				:selectHideType="'hideAll'"
-				@change="selectChange"
-			>
-			</xfl-select>
-		</view>
-		<view class="inputbox">
-			<input type="text" v-model="address" placeholder="请输入详细地址" />
-		</view>
-		
-		
-		<button type="primary" class="login" @click="login()">注册</button>		
 	</view>
 </template>
 
 <script>
-	import simpleAddress from '@/components/common/simple-address/simple-address.vue';
-	import xflSelect from '../../components/common/xfl-select/xfl-select.vue';
-	var QQMapWX = require("../../components/unitls/qqmap-wx-jssdk.js")
-	var qqmapsdk
+	
 	export default {
 		data(){
 			return{
 				btnStr:'获取验证码',
 				codeFlag:true,
-				// addressData:{
-				// 	key:"366BZ-AIK6F-DBZJL-NY2AB-GMY2J-CDBRB",
-				// 	id:"",
-				// },
-				cityPickerValueDefault: [0, 0, 1],
-				pickerText: '',
-				// addressList:['湖北省','武汉市','江夏区'],
-				// addressList:['北京市','市辖区','东城区'],
-				addressList:[],
-				codeList:[],
-				userName:"",//姓名
-				phone:"",//电话
-				regCode:"",//验证码
-				address:"",//详细地址
-				avatar:"",//头像
-				openid:"",//微信用户openId
-				streetNmae:"",
-				streetId:null,//小区列表
-				communityList:[],//小区列表
-				communiStr:[]
+				regCode:'',
+				phone:'',
+				type:0,
+				parentId:'',
+				windowHeight:''
 			}
 		},
-	   components: {
-			simpleAddress,xflSelect
-		},
 		onLoad(opt){
-			qqmapsdk = new QQMapWX({
-			  key: 'SX7BZ-DJI6G-G5OQK-IDBI4-RZ6TO-33FBA' //这里自己的key秘钥进行填充
-			});
-			this.avatar=opt.avatar
-			this.openId=opt.openid
+			console.log("登录登录")
+			console.log(opt)
+			if(opt.type){
+				this.type=opt.type
+				this.parentId=opt.parentId
+			}
+			let windInfo=uni.getSystemInfoSync()
+			this.windowHeight=windInfo.windowHeight
 		},
 		onShow(){
-			let that=this
-			// this.getAddress()
-			uni.getLocation({
-				success:(res1)=>{
-					console.log(res1)
-					let latitude=res1.latitude
-					let longitude=res1.longitude
-					qqmapsdk.reverseGeocoder({
-					  location: {
-					    latitude: latitude,
-					    longitude: longitude
-					  },
-					  success: function (res) {
-							let data=res.result.address_component
-							that.addressList[0]=data.province
-							that.addressList[1]=data.city
-							that.addressList[2]=data.district
-							that.getDwCode()
-					  },
-					  fail: function (res) {
-						 // that.debug="获取中文位置失败"+JSON.stringify(res)
-					    console.log(res);
-					  },
-					  complete: function (res) {
-					    // console.log(res);
-					  }
-					});
-				}
-			})
-			
+			this.regCode=""
 		},
-		methods:{			
-			getDwCode(){
-				var index = this.$refs.simpleAddress.queryIndex(this.addressList, 'label');
-				console.log(index);
-				var data=index.data
-				this.codeList[0]=data.province.value
-				this.codeList[1]=data.city.value
-				this.codeList[2]=data.area.value
-				this.getCommunity()
-				console.log(this.codeList)
+		methods:{	
+			goReg(){
+				uni.navigateTo({
+					url:"reg?phone=18827612391"
+				})
 			},
-			openAddres2() {
-				// 根据 label 获取
-				var index = this.$refs.simpleAddress.queryIndex(this.addressList, 'label');
-				console.log(index);
-				this.cityPickerValueDefault = index.index;
-				this.$refs.simpleAddress.open();
-			},
-		
-			onConfirm(e) {
-				this.pickerText = JSON.stringify(e);
-				console.log("这呃呃呃呃呃呃")
-				console.log(e)
-				this.addressList=e.labelArr
-				this.codeList[0]=e.provinceCode
-				this.codeList[1]=e.cityCode
-				this.codeList[2]=e.areaCode
-				console.log(this.codeList)
-				this.getCommunity()
-			},
-			// 从腾讯api获取省市区数据
-			// getAddress(){				
-			// 	uni.request({
-			// 		url:"https://apis.map.qq.com/ws/district/v1/getchildren",
-			// 		method:"GET",
-			// 		data:this.addressData,
-			// 		success(res) {
-			// 			console.log('获取行政区划')
-			// 			console.log(res)
+			bindGetUserInfo(val){
+				console.log("获取微信用户数据")
+				console.log(val)
+				let that=this
+				wx.login({
+					success:(e)=>{
+						console.log('获取code')
+						console.log(e)
+						let code=e.code
+						console.log(code)
+						wx.getUserInfo({
+							success:(res)=>{
+								console.log("获取用户信息")
+								// 获取头像
+								// console.log(res)
+								// console.log(res.userInfo.avatarUrl)	
+								this.avatarUrl=res.userInfo.avatarUrl
+								// uni.setStorageSync('userAvatar',res.userInfo.avatarUrl)
+								that.$http.post("puparent/wxGrantLogin",{
+									type:this.type,//0:自己   1：别人介绍  2：主账号分享的
+									code:code,
+									encryptedData:res.encryptedData,
+									rawData:res.rawData,
+									signature:res.signature,
+									iv:res.iv,
+									parentId:this.parentId
+								}).then(res1=>{
+									console.log(res1)
+									if(res1.code==300){								
+										uni.navigateTo({
+											url:"reg?avatar="+that.avatarUrl+"&openid="+res1.info
+										})
+									}else if(res1.code==100){
+										let userInfo=""
+										userInfo=JSON.stringify(res1.info)
+										uni.setStorageSync('userInfo',userInfo)
+										uni.showToast({
+											icon:"none",
+											title:"登录成功！"
+										})
+										setTimeout(()=>{
+											uni.switchTab({
+												url:"./index"
+											})
+										},2000)
+									}
+								})
+								
+								
+							},
+							fail:(err)=>{
+								console.log("请求出错")
+								console.log(err)
+							}
+						})
 						
-			// 		}
-			// 	})
-			// },
+					},
+					fail:(err)=>{
+						console.log(err)
+					}
+				})
+			},		
 			login(){
-				console.log("注册")
-				if(this.phone&&this.regCode&&this.address&&this.userName){
+				console.log("登录")
 					//请求验证，验证码是否正确,验证码正确再提交注册
-					this.$http.post("puparent/verification",{
-						phone:this.phone,
-						code:this.regCode
-					}).then(res=>{
-						if(res.code==100){
-							this.submitInfo()
-						}else if(res.code==250){
-							uni.showToast({
-								icon:"none",
-								title:res.msg
-							})
-						}
-					})
-				}else{					
-					uni.showToast({
-						icon:"none",
-						title:"请填写完整的信息！"
-					})
-				}
-			},
-			submitInfo(){
-				// 提交注册信息
-				this.$http.post("puparent/register",{
-					wechatOpenid:this.openId,//微信openid
-					photo:this.avatar,//头像
-					detailAddreee:this.address,//详细地址
-					name:this.userName,//用户名称
-					//phone:this.regCode,//验证码？？？？
-					phone:this.phone,//电话？？？？
-					relation:"",//关系？？？？
-					provinceCode:this.codeList[0],//省
-					provinceName:this.addressList[0],
-					cityCode:this.codeList[1],//市
-					cityName:this.addressList[1],
-					areaCode:this.codeList[2],//区
-					areaName:this.addressList[2],
-					streetNmae:this.streetNmae,//小区名称
-					streetId:this.streetId,
+				this.$http.post("puparent/verification",{
+					phone:this.phone,
+					code:this.regCode
 				}).then(res=>{
 					if(res.code==100){
-						let usertInfo=res.info
-						usertInfo=JSON.stringify(usertInfo)
-						uni.setStorageSync('userinfo',usertInfo)
-						uni.showToast({
-							icon:"none",
-							title:"注册成功，请前去登录！"
-						})
-						setTimeout(()=>{
-							uni.navigateBack({})
-						},2000)
-					}else{
+						this.submitInfo()
+					}else if(res.code==250){
 						uni.showToast({
 							icon:"none",
 							title:res.msg
 						})
 					}
 				})
-			},
+			},		
 			getCodenum(){
 				//获取验证码
 				console.log("获取验证码")
@@ -292,33 +204,32 @@
 					 }				
 				}
 			},
-			getCommunity(){
-				// 获取小区列表
-				this.$http.post("mgStreet/simpleList",{
-					provinceName:this.addressList[0],
-					provinceCode:this.codeList[0],
-					cityName:this.addressList[1],
-					cityCode:this.codeList[1],
-					areaName:this.addressList[2],
-					areaCode:this.codeList[2],
-					name:""
+			submitInfo(){
+				this.$http.post('puparent/loginPhone',{
+					type:this.type,
+					phone:this.phone,
+					parentId:this.parentId
 				}).then(res=>{
-					if(res.code==100){
-						// this.communityList=re.info
-						let list=res.info
-						list.forEach((item,index)=>{
-							this.communityList[index]=item
-							this.communiStr[index]=item.name
+					if(res.code==300){
+						uni.navigateTo({
+							url:"reg?phone="+this.phone
 						})
+					}else if(res.code==100){
+						let userInfo=""
+						userInfo=JSON.stringify(res.info)
+						uni.setStorageSync('userInfo',userInfo)
+						uni.showToast({
+							icon:"none",
+							title:"登录成功！"
+						})
+						setTimeout(()=>{
+							uni.switchTab({
+								url:"./index"
+							})
+						},2000)
 					}
 				})
-			},
-			selectChange(val){
-				// 选择小区
-				console.log(val)
-				this.streetNmae=val.newVal
-				this.streetId=this.communityList[val.index].id
-			},
+			}
 		}
 	}
 </script>
@@ -367,10 +278,27 @@
 		background: #FF6C00;
 		margin-top: 40rpx;
 	}
+	.wxlogo{
+		margin-top: 50rpx;
+		// border-top: 1px solid #ccc;
+	}
+	.sflogo{
+		width: 150rpx;
+		height: 150rpx;
+		margin: auto;
+		margin-top: 50rpx;
+		background-color: #fff;
+		image{
+			width: 100%;
+		}		
+	}
+	.sflogo:after{
+		border: 0;
+	}
 	.footer{
 		margin-top: 200rpx;
-		padding-bottom: 228rpx;
 		height: 200rpx;
+		padding-bottom: 228rpx;
 		h4{
 			position: relative;
 			border-top: 1px solid #eee;
@@ -389,16 +317,7 @@
 				margin: auto;
 				text-align: center;
 			}
-		}
-		.sflogo{
-			width: 150rpx;
-			height: 150rpx;
-			margin: auto;
-			margin-top: 80rpx;
-			image{
-				width: 100%;
-			}
-		}
+		}		
 	}
 }
 .tit{

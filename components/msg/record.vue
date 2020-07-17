@@ -58,7 +58,7 @@
 			let dateStr=""
 			dateStr=date.getFullYear()+"-"
 			dateStr+=(date.getMonth()+1)+"-"
-			dateStr+=date.getDate()-1
+			dateStr+=date.getDate()
 			this.date=dateStr
 			let info=uni.getStorageSync('userInfo')
 			this.userInfo=JSON.parse(info)
