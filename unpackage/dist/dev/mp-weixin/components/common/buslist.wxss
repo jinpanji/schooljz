@@ -26,7 +26,7 @@
 /* 文章场景相关 */
 .box.data-v-52f21bf5 {
   width: 750rpx;
-  overflow-y: hidden;
+  overflow-y: scroll;
   overflow-x: scroll;
 }
 .grouplist.data-v-52f21bf5 {
@@ -45,7 +45,7 @@
   position: relative;
   border-top: 30rpx solid #7fc1f5;
   width: 150rpx;
-  height: 200rpx;
+  height: 230rpx;
 }
 .grouplist .li > view.data-v-52f21bf5 {
   position: absolute;
@@ -87,5 +87,10 @@
 }
 .grouplist .li > view .check + text.data-v-52f21bf5 {
   color: #FF6C00;
+}
+.grouplist .li > view text.data-v-52f21bf5 {
+  -webkit-writing-mode: vertical-lr;
+          writing-mode: vertical-lr;
+  letter-spacing: 2px;
 }
 

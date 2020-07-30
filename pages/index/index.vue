@@ -21,17 +21,17 @@
 					
 				</view>
 				<view class="weather">
-					<view class="tit">
+					<!-- <view class="tit">
 						<text class="num">10℃</text>
 						<text class="msg">多云转晴</text>
-					</view>
-					<view class="times">
-						<view>
-							{{date}} {{day}}
+					</view> -->
+					<view class="times tit">
+						<view class="num">
+							{{date}} 
 						</view>
-						<!-- <view>
-							冬月三十 周二
-						</view> -->
+						<view class="msg">
+							{{day}}
+						</view>
 					</view>
 				</view>
 			</view>
@@ -413,7 +413,9 @@
 				position: absolute;
 				right: 30rpx;
 			}
+			
 		}
+		
 		>view{
 			padding-left: 20rpx;
 			margin-left: 20rpx;
@@ -444,6 +446,12 @@
 		image{
 			width: 210rpx;
 			margin-left: 30rpx;
+		}
+	}
+	.headers .weather{
+		.num{
+			font-size: 16px !important;
+			line-height: 40rpx;
 		}
 	}
 </style>

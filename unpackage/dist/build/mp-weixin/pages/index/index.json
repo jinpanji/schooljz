@@ -1,0 +1,7 @@
+{
+  "navigationStyle": "custom",
+  "usingComponents": {
+    "trip": "/components/common/trip",
+    "buslist": "/components/common/buslist"
+  }
+}

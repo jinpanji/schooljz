@@ -60,7 +60,7 @@
 <style lang="scss" scoped>
 	.box{
 		width: 750rpx;
-		overflow-y: hidden;
+		overflow-y: scroll;
 		overflow-x: scroll;
 	}
 	.grouplist{
@@ -79,14 +79,13 @@
 			position: relative;
 			border-top: 30rpx solid #7fc1f5;
 			width: 150rpx;
-			height: 200rpx;
-			>view{
-				
+			height: 230rpx;
+			>view{				
 				position: absolute;
 				right: 15rpx;
 				top: -38rpx;
 				width: 20rpx;
-				z-index: 1000;
+				z-index: 1000;				
 				i{
 					display: inline-block;
 					width: 30rpx;
@@ -120,6 +119,10 @@
 				}
 				.check+text{
 					color: #FF6C00;
+				}
+				text{
+					writing-mode: vertical-lr;
+					letter-spacing: 2px;
 				}
 			}
 		}

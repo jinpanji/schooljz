@@ -457,7 +457,7 @@ function getDate(type) {
 
       }
     },
-    submitInfo: function submitInfo() {
+    submitInfo: function submitInfo() {var _this4 = this;
       console.log("提交");
       this.$http.post("puparent/update", {
         id: this.userInfo.id,
@@ -485,6 +485,11 @@ function getDate(type) {
             icon: "success",
             title: "修改成功" });
 
+          var userInfo = uni.getStorageSync('userInfo');
+          userInfo = JSON.parse(userInfo);
+          userInfo.name = _this4.userInfo.name;
+          userInfo = JSON.stringify(userInfo);
+          uni.setStorageSync('userInfo', userInfo);
           setTimeout(function () {
             uni.navigateBack({});
 
@@ -493,7 +498,7 @@ function getDate(type) {
         }
       });
     },
-    getCommunity: function getCommunity() {var _this4 = this;
+    getCommunity: function getCommunity() {var _this5 = this;
       // 获取小区列表
       this.$http.post("mgStreet/simpleList", {
         provinceName: this.addressList[0],
@@ -507,11 +512,11 @@ function getDate(type) {
         if (res.code == 100) {
           // this.communityList=re.info
           var list = res.info;
-          _this4.communiStr = [];
-          _this4.communityList = [];
+          _this5.communiStr = [];
+          _this5.communityList = [];
           list.forEach(function (item, index) {
-            _this4.communityList.push(item);
-            _this4.communiStr.push(item.name);
+            _this5.communityList.push(item);
+            _this5.communiStr.push(item.name);
           });
           // con
         }

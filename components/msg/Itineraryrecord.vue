@@ -119,7 +119,7 @@
 					this.$http.post("puLeaveApply/add",{
 						childrenId:this.id,
 						startTime:this.startTime,
-						endTime:this.endTime,
+						endTime:this.endTime?this.endTime:this.startTime,
 						type:this.type,
 						remarks:this.remarks
 					}).then(res=>{

@@ -7,7 +7,7 @@ import http from '@/components/unitls/http.js'
 Vue.prototype.$http=http
 
 // Vue.prototype.$imgurl="http://192.168.0.111:3326/"
-Vue.prototype.$imgurl="http://zhixiang.runfkj.com/"
+Vue.prototype.$imgurl="https://request.zhixiangxiaoche.com/"
 
 import "@/components/style/resetm.css"
 

@@ -16,7 +16,7 @@
 			<view class="listbox">
 				<view class="li" v-for="(item,index) in list">
 					<view class="">
-						用户：{{item.buyName}}，已报名，获得奖励{{distributionAmount}}元
+						用户：{{item.buyName?item.buyName:''}}，已报名，获得奖励{{item.distributionAmount?item.distributionAmount:''}}元
 					</view>
 					<text>{{item.createTime}}</text>
 				</view>

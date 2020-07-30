@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "群发信息",
+  "usingComponents": {
+    "buslist": "/components/common/buslist"
+  }
+}

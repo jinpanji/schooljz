@@ -1,0 +1,1 @@
+<view class="info_page data-v-6b205117"><view class="title data-v-6b205117">{{''+(msgDetail.type==1?'家长投诉':msgDetail.type==2?'请假':msgDetail.type==3?'回复':msgDetail.type==4?'安全员推送':msgDetail.type==5?'系统消息':'乘车情况')+''}}</view><text class="data-v-6b205117">{{msgDetail.createTime}}</text><view class="msg data-v-6b205117">{{''+msgDetail.content+''}}</view></view>

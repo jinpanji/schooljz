@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "行车报告",
+  "usingComponents": {
+    "select": "/components/common/select"
+  }
+}

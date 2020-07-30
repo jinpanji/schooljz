@@ -1,7 +1,9 @@
 <template>
 	<view class="info_page">
 		<view class="title">
-			{{msgDetail.type==1?'家长投诉':(msgDetail.type==2?'请假':(msgDetail.type==3?'回复':'安全员推送'))}}
+			{{msgDetail.type==1?'家长投诉':(msgDetail.type==2?'请假':(msgDetail.type==3?'回复':(msgDetail.type==4?'安全员推送':(msgDetail.type==5?'系统消息':'乘车情况'))))}}
+			<!-- {{msgDetail.type==1?'家长投诉':(msgDetail.type==2?'请假':(msgDetail.type==3?'回复':(item.type==4?'安全员推送':(item.type==5?'群发':'推送'))))}} -->
+			<!-- 信息详情 -->
 		</view>
 		<text>{{msgDetail.createTime}}</text>
 		<view class="msg">

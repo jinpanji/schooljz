@@ -8,7 +8,7 @@
 				</view>
 				<view class="textbox">
 					<h3>
-						<text>{{item.type==1?'家长投诉':(item.type==2?'请假':(item.type==3?'回复':'安全员推送'))}}</text>
+						<text>{{item.type==1?'家长投诉':(item.type==2?'请假':(item.type==3?'回复':(item.type==4?'安全员推送':(item.type==5?'系统消息':'乘车情况'))))}}</text>
 						<text>{{item.createTime}}</text>
 					</h3>
 					<text>{{item.content}}</text>
@@ -58,7 +58,9 @@
 					"../../static/img/img/xxzx_004.png",
 					"../../static/img/img/xxzx_012.png",
 					"../../static/img/img/xxzx_009.png",
-					"../../static/img/img/xxzx_007.png"
+					"../../static/img/img/xxzx_007.png",
+					"../../static/img/img/xxzx_011.png",
+					"../../static/img/img/xxzx_010.png"
 				],
 				pageNum:1,
 				pageSize:10,

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "运行报告",
+  "usingComponents": {
+    "select": "/components/common/select"
+  }
+}

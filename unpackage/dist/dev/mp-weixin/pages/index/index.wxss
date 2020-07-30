@@ -123,4 +123,8 @@
   width: 210rpx;
   margin-left: 30rpx;
 }
+.headers .weather .num.data-v-57280228 {
+  font-size: 16px !important;
+  line-height: 40rpx;
+}
 

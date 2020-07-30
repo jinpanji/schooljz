@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "个人资料",
+  "usingComponents": {
+    "simple-address": "/components/common/simple-address/simple-address",
+    "xfl-select": "/components/common/xfl-select/xfl-select"
+  }
+}

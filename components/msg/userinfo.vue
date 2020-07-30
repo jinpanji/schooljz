@@ -353,6 +353,11 @@
 							icon:"success",
 							title:"修改成功"
 						})
+						let userInfo=uni.getStorageSync('userInfo')
+						userInfo=JSON.parse(userInfo)
+						userInfo.name=this.userInfo.name
+						userInfo=JSON.stringify(userInfo)
+						uni.setStorageSync('userInfo',userInfo)
 						setTimeout(()=>{
 							uni.navigateBack({
 								

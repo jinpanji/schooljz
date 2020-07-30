@@ -36,7 +36,10 @@
 		<view class="inputbox">
 			<input type="text" v-model="address" placeholder="请输入详细地址" />
 		</view>
-		
+		<!-- 
+		<view class="">
+			断点：{{debug}}
+		</view> -->
 		
 		<button type="primary" class="login" @click="login()">注册</button>		
 	</view>
@@ -66,7 +69,8 @@
 				streetId:null,//小区列表
 				communityList:[],//小区列表
 				communiStr:[],
-				isPhoneReg:false
+				isPhoneReg:false,
+				debug:''
 			}
 		},
 	   components: {
@@ -93,12 +97,14 @@
 					console.log(res1)
 					let latitude=res1.latitude
 					let longitude=res1.longitude
+					this.debug="获取经纬度"
 					qqmapsdk.reverseGeocoder({
 					  location: {
 					    latitude: latitude,
 					    longitude: longitude
 					  },
 					  success: function (res) {
+						  that.debug="获取城市地质成功"
 							let data=res.result.address_component
 							that.addressList[0]=data.province
 							that.addressList[1]=data.city
@@ -106,7 +112,7 @@
 							that.getDwCode()
 					  },
 					  fail: function (res) {
-						 // that.debug="获取中文位置失败"+JSON.stringify(res)
+						 that.debug="获取中文位置失败"+JSON.stringify(res)
 					    console.log(res);
 					  },
 					  complete: function (res) {
