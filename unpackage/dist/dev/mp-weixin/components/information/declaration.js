@@ -141,6 +141,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 var _default =
 {
+  data: function data() {
+    return {
+      str: "" };
+
+  },
+  onLoad: function onLoad(opt) {
+    console.log(opt.type);
+    var str = "";
+    var addchildinfo = uni.getStorageSync('addchildinfo');
+    addchildinfo = JSON.parse(addchildinfo);
+    console.log(addchildinfo);
+    if (opt.type == 1) {
+      // 学校未录入
+      str = "您申请的" + addchildinfo.schoolName + "学校，暂未开通，请耐心等待平台开通。";
+    } else {
+      str = "您申请的" + addchildinfo.schoolName + "学校，未匹配到合适的线路，请耐心等待平台开通。";
+    }
+    this.str = str;
+  },
   methods: {
     isOk: function isOk() {
       uni.switchTab({

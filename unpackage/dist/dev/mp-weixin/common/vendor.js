@@ -1729,8 +1729,8 @@ function normalizeComponent (
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var baseUrl = 'https://request.zhixiangxiaoche.com/';
-// const baseUrl='http://liuxiang9527.e1.luyouxia.net:26753/'
 // const baseUrl='http://192.168.0.111:3326/'
+// const baseUrl='http://liuxiang9527.e1.luyouxia.net:26753/'
 
 var http = {};
 var headers = {};

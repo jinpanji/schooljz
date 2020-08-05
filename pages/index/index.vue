@@ -46,12 +46,13 @@
 			<view class="tit">
 				车辆位置
 				<image @click="goF5()" src="../../static/img/f5.png" mode="widthFix"></image>
+				<text @click="goF5()">立即更新</text>
 			</view>
 			<view class="times">
 				<text>发车时间：{{childLines.startTime?childLines.startTime:''}}</text>
 				<text>预计到达：{{childLines.arriveTime?childLines.arriveTime:''}}</text>
 			</view>
-			<Buslist v-if="list.length>0" :list="list" :nowSite="childLines.site.id" />
+			<Buslist v-if="list.length>0" :list="list" :nowSite="childLines.site.id" :nowOrder="childLines.site.order" />
 			<view v-else class="nonebox">
 				暂无车辆位置信息
 			</view>
@@ -64,6 +65,10 @@
 			<image src="../../static/img/img/sy_010.png" mode="widthFix" @click="goInfo(1)"></image>
 			<!-- 昨日行程 -->
 			<image src="../../static/img/img/sy_011.png" mode="widthFix"  @click="goInfo(3)"></image>
+		</view>
+		<!-- loading动画 -->
+		<view class="loading" v-show="isLoading">
+			<image class="loading" src="../../static/img/loading.jpg" mode="widthFix"></image>			
 		</view>
 	</view>
 </template>
@@ -100,7 +105,8 @@
 				date:'',
 				dayList:['周日','周一','周二','周三','周四','周五','周六'],
 				day:null,
-				city:''
+				city:'',
+				isLoading:false
 			}
 		},
 		watch:{
@@ -128,6 +134,10 @@
 			this.day=this.dayList[day]
 			// this.getWeather()
 			// this.getcitycode()
+			uni.pageScrollTo({
+			    scrollTop: 300,  //距离页面顶部的距离
+			    duration: 300
+			});
 		},
 		onShow(){
 			let parentInfo=uni.getStorageSync("userInfo")
@@ -187,6 +197,10 @@
 						}else{
 							this.list=[]
 						}
+						setTimeout(()=>{
+							// uni.hideLoading()
+							this.isLoading=false
+						},1000)
 					}
 				})				
 			},
@@ -272,6 +286,11 @@
 			},
 			goF5(){
 				// 刷新
+				// uni.showLoading({
+				// 	icon:"loading",
+				// 	title:"正在更新"
+				// })
+				this.isLoading=true
 				this.getLineInfo()
 				this.getmainList()
 			},
@@ -413,7 +432,12 @@
 				position: absolute;
 				right: 30rpx;
 			}
-			
+			text{
+				position: absolute;
+				right: 80rpx;
+				font-size: 12px;
+				color: #666;
+			}
 		}
 		
 		>view{
@@ -425,8 +449,9 @@
 			border-radius: 40rpx;
 			width: 710rpx;
 			font-size: 14px;
-			line-height: 60rpx;
+			line-height: 70rpx;
 			margin-bottom: 20rpx;
+			font-weight: bold;
 			text{
 				display: inline-block;
 				width: 50%;
@@ -452,6 +477,20 @@
 		.num{
 			font-size: 16px !important;
 			line-height: 40rpx;
+		}
+	}
+	.loading{
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		margin: auto;
+		z-index: 1000;
+		background-color: rgba(0,0,0,0.5);
+		image{
+			border-radius: 200rpx;
+			width: 300rpx;
 		}
 	}
 </style>

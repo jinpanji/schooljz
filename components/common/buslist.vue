@@ -1,5 +1,6 @@
 <template>
-	<view class="box">
+	<!-- scroll-left="200px" -->
+	<scroll-view class="box" id='box' scroll-x="true" scroll-y="true" :scroll-left="nowOrder>5?(nowOrder-5)*80:0">
 		<view class="grouplist cl" :style="'width:'+(list.length*150+150)+'rpx'">
 			<view class="li cl" v-for="(item,index) in list">
 				<view class="cl" @click="changeNum(item.id)"> 
@@ -13,8 +14,9 @@
 			<view class="li endli">
 				
 			</view>
+			<!-- <button @click="yd()">移动</button> -->
 		</view>
-	</view>
+	</scroll-view>
 </template>
 
 <script>
@@ -22,7 +24,8 @@
 		props:[
 			'list',
 			'checkSite',
-			'nowSite'
+			'nowSite',
+			'nowOrder'
 		],
 		data(){
 			return{
@@ -30,21 +33,24 @@
 				checkList:[]
 			}
 		},
-		mounted(){
-			// let listLen=this.$props.list.length
-			// console.log("车站列表")
-			// console.log(this.$props.nowSite)
-			// this.boxWidth=listLen*140
+		mounted(){			
 		},
 		watch:{
-			// nowSite:function(newval,oldval){
-			// 	console.log("当前站点位置监听")
-			// 	console.log(newval)
-			// 	this.checkList[0]=newval.id
-			// },
-			// deep:true,
+			deep:true,
+			nowSite:function(newVal,oldVal){
+				console.log(newVal)
+				  // let info = uni.createSelectorQuery().select(".box");  
+				  // console.log(info)
+			}
 		},
 		methods:{
+			yd(){
+		// 		let info = uni.createSelectorQuery().select("#box");
+		// 		console.log(info)
+		// 		 info.boundingClientRect(function(data) { //data - 各种参数  
+		// 			 console.log(data)  
+		// 　　    }).exec()　
+			},
 			changeNum(id){
 				if(!this.$props.nowSite){
 					console.log("选择站点")
@@ -60,8 +66,9 @@
 <style lang="scss" scoped>
 	.box{
 		width: 750rpx;
-		overflow-y: scroll;
-		overflow-x: scroll;
+		// overflow-y: scroll;
+		// overflow-x: scroll;
+		scroll-left:200px;
 	}
 	.grouplist{
 		margin-top: 30rpx;

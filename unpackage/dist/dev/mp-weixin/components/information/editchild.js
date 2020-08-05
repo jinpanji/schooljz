@@ -573,7 +573,6 @@ function getDate(type) {
             icon: "success",
             title: "修改成功" });
 
-          // 判断是否有线路，没有线路去反馈
         }
       });
     },
@@ -618,11 +617,42 @@ function getDate(type) {
           url: "payment" });
 
       } else {
-        uni.showToast({
-          icon: "none",
-          title: "请选择线路及站点" });
+        console.log(this.lineStrlist);
+        if (this.lineStrlist.length == 0) {
+          this.feedBack();
+        } else {
+          uni.showToast({
+            icon: "none",
+            title: "请选择线路及站点" });
+
+        }
 
       }
+    },
+    feedBack: function feedBack() {var _this8 = this;
+      // 反馈，没有线路或没有学校的时候
+      uni.showLoading({
+        icon: "loading",
+        title: "正在提交反馈，请稍后!" });
+
+      this.$http.post("puFeedback/add", {
+        schoolId: this.form.schoolId,
+        schoolName: this.form.schoolName,
+        childrenId: this.childId,
+        parentId: this.form.parentId,
+        status: 1 }).
+      then(function (res) {
+        if (res.code == 100) {
+          uni.hideLoading();
+          var data = _this8.form;
+          console.log(data);
+          data = JSON.stringify(data);
+          uni.setStorageSync('addchildinfo', data);
+          uni.navigateTo({
+            url: "declaration?type=2" });
+
+        }
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

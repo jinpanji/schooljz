@@ -13,9 +13,9 @@
 					</h3>
 					<text>{{item.content}}</text>
 				</view>
-				<view :class="deleCheck==index?'deletebox show':'deletebox'">
+				<!-- <view :class="deleCheck==index?'deletebox show':'deletebox'">
 					删除
-				</view>
+				</view> -->
 			</view>
 			
 		</view>

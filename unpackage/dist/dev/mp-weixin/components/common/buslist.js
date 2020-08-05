@@ -151,12 +151,15 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
 //
 //
 //
+//
+//
 var _default =
 {
   props: [
   'list',
   'checkSite',
-  'nowSite'],
+  'nowSite',
+  'nowOrder'],
 
   data: function data() {
     return {
@@ -165,20 +168,23 @@ var _default =
 
   },
   mounted: function mounted() {
-    // let listLen=this.$props.list.length
-    // console.log("车站列表")
-    // console.log(this.$props.nowSite)
-    // this.boxWidth=listLen*140
   },
   watch: {
-    // nowSite:function(newval,oldval){
-    // 	console.log("当前站点位置监听")
-    // 	console.log(newval)
-    // 	this.checkList[0]=newval.id
-    // },
-    // deep:true,
-  },
+    deep: true,
+    nowSite: function nowSite(newVal, oldVal) {
+      console.log(newVal);
+      // let info = uni.createSelectorQuery().select(".box");  
+      // console.log(info)
+    } },
+
   methods: {
+    yd: function yd() {
+      // 		let info = uni.createSelectorQuery().select("#box");
+      // 		console.log(info)
+      // 		 info.boundingClientRect(function(data) { //data - 各种参数  
+      // 			 console.log(data)  
+      // 　　    }).exec()　
+    },
     changeNum: function changeNum(id) {
       if (!this.$props.nowSite) {
         console.log("选择站点");

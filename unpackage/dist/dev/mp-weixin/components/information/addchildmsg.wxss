@@ -71,14 +71,23 @@
 .selection_route.data-v-01b65d90 {
   padding-bottom: 130rpx;
 }
-.preservation.data-v-01b65d90 {
-  width: 100%;
-  background: #FF6C00;
-  border-radius: 0;
+.footer.data-v-01b65d90 {
   position: fixed;
   bottom: 0;
   left: 0;
   z-index: 1000;
+  width: 100%;
+}
+.footer button.data-v-01b65d90 {
+  width: 50%;
+  float: left;
+  border-radius: 0;
+}
+.preservation.data-v-01b65d90 {
+  background-color: #F0AD4E;
+}
+.settlement.data-v-01b65d90 {
+  background: #FF6C00;
 }
 button.data-v-01b65d90:after {
   border: 0;

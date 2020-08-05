@@ -210,6 +210,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 var QQMapWX = __webpack_require__(/*! ../../components/unitls/qqmap-wx-jssdk.js */ 19);
 var qqmapsdk;var _default =
 {
@@ -239,7 +244,8 @@ var qqmapsdk;var _default =
       date: '',
       dayList: ['周日', '周一', '周二', '周三', '周四', '周五', '周六'],
       day: null,
-      city: '' };
+      city: '',
+      isLoading: false };
 
   },
   watch: {
@@ -267,6 +273,10 @@ var qqmapsdk;var _default =
     this.day = this.dayList[day];
     // this.getWeather()
     // this.getcitycode()
+    uni.pageScrollTo({
+      scrollTop: 300, //距离页面顶部的距离
+      duration: 300 });
+
   },
   onShow: function onShow() {
     var parentInfo = uni.getStorageSync("userInfo");
@@ -326,6 +336,10 @@ var qqmapsdk;var _default =
           } else {
             _this2.list = [];
           }
+          setTimeout(function () {
+            // uni.hideLoading()
+            _this2.isLoading = false;
+          }, 1000);
         }
       });
     },
@@ -411,6 +425,11 @@ var qqmapsdk;var _default =
     },
     goF5: function goF5() {
       // 刷新
+      // uni.showLoading({
+      // 	icon:"loading",
+      // 	title:"正在更新"
+      // })
+      this.isLoading = true;
       this.getLineInfo();
       this.getmainList();
     },

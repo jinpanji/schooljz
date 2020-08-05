@@ -95,7 +95,10 @@
 				<text>无可用线路</text>
 			</view>
 		</view>
-		<button type="primary" class="preservation" @click="goRouter()">下一步</button>
+		<view class="footer cl">
+			<button type="primary" class="preservation" @click="add(3)">保存</button>
+			<button type="primary" class="settlement" @click="goRouter()">结算</button>
+		</view>
 		
 	</view>
 </template>
@@ -185,6 +188,7 @@
 				console.log(val)
 				// 性别改变
 				this.form.sex=val.detail.value
+				this.xbcheck=val.detail.value
 			},
 			gxchange(val){
 				// 关系改变
@@ -265,6 +269,11 @@
 				if(!this.form.childrenId){
 					this.form.childrenId=""
 				}
+				if(!this.form.schoolId){
+					this.form.status=0
+				}else{
+					this.form.status=1
+				}
 				uni.showLoading({
 					icon:"loading",
 					title:"正在提交反馈，请稍后!"
@@ -272,8 +281,17 @@
 				this.$http.post("puFeedback/add",this.form).then(res=>{
 					if(res.code==100){
 						uni.hideLoading()
+						let type=null
+						if(this.form.status==0){
+							type=1
+						}else{
+							type=2
+						}
+						let data=this.form
+						data=JSON.stringify(data)
+						uni.setStorageSync('addchildinfo',data)
 						uni.navigateTo({
-							url:"declaration"
+							url:"declaration?type="+type
 						})
 					}
 				})
@@ -282,51 +300,62 @@
 				// 添加
 				console.log(!this.form.birthDate)
 				console.log(this.form.birthDate)
-				if(!this.form.name&&!this.form.crazz&&!this.form.birthDate){
-					uni.showToast({
-						icon:"none",
-						title:"请填写完整的信息！"
-					})
-				}else {		
-					console.log("提交")
-					console.log(this.form)
-					uni.showLoading({
-						icon:"loading",
-						title:"正在提交，请稍后!"
-					})
-					this.$http.post("puchildren/add",this.form).then(res=>{
-						if(res.code==100){
-							// 存学生id
-							uni.hideLoading()
-							this.form.childrenId=res.info
-							uni.showToast({
-								icon:"success",
-								title:"添加成功！"
-							})
-							if(type==1){
-								// 反馈
-								this.feedBack()
-								uni.navigateTo({
-									url:"declaration"
+				if(type==3&&this.isNull&&!this.form.schoolId){
+					this.feedBack()
+				}else{
+					if(!this.form.name&&!this.form.crazz&&!this.form.birthDate){
+						uni.showToast({
+							icon:"none",
+							title:"请填写完整的信息！"
+						})
+					}else {		
+						console.log("提交")
+						console.log(this.form)
+						uni.showLoading({
+							icon:"loading",
+							title:"正在提交，请稍后!"
+						})
+						this.$http.post("puchildren/add",this.form).then(res=>{
+							if(res.code==100){
+								// 存学生id
+								uni.hideLoading()
+								this.form.childrenId=res.info
+								uni.showToast({
+									icon:"success",
+									title:"添加成功！"
 								})
+								if(type==1){
+									// 反馈
+									this.feedBack()
+									uni.navigateTo({
+										url:"declaration"
+									})
+								}else if(type==2){
+									this.lineInfo.childrenId=res.info
+									let data=JSON.stringify(this.lineInfo)
+									uni.setStorageSync("userlinesInfo",data)
+									uni.navigateTo({
+										url:"payment"
+									})
+								}else{
+									uni.showToast({
+										icon:"success",
+										title:"添加成功！"
+									})
+									uni.switchTab({
+										url:"../../pages/my/index"
+									})
+								}
 							}else{
-								this.lineInfo.childrenId=res.info
-								let data=JSON.stringify(this.lineInfo)
-								uni.setStorageSync("userlinesInfo",data)
-								uni.navigateTo({
-									url:"payment"
+								uni.hideLoading()
+								uni.showToast({
+									icon:'none',
+									title:res.msg
 								})
 							}
-						}else{
-							uni.hideLoading()
-							uni.showToast({
-								icon:'none',
-								title:res.msg
-							})
-						}
-					})
-				}
-				
+						})
+					}
+				}	
 			},
 			getlinesList(){
 				// 获取线路
@@ -411,14 +440,23 @@
 	.selection_route{
 		padding-bottom: 130rpx;
 	}
-	.preservation{
-		width: 100%;
-		background: #FF6C00;
-		border-radius: 0;
+	.footer{
 		position: fixed;
 		bottom: 0;
 		left:0;
 		z-index: 1000;
+		width: 100%;
+		button{
+			width: 50%;
+			float: left;
+			border-radius: 0;
+		}
+	}
+	.preservation{
+		background-color: #F0AD4E;
+	}
+	.settlement{
+		background: #FF6C00;
 	}
 	button:after{
 		border: 0;

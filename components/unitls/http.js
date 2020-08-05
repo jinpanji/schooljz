@@ -1,6 +1,6 @@
  const baseUrl='https://request.zhixiangxiaoche.com/'
-// const baseUrl='http://liuxiang9527.e1.luyouxia.net:26753/'
 // const baseUrl='http://192.168.0.111:3326/'
+// const baseUrl='http://liuxiang9527.e1.luyouxia.net:26753/'
 
 const http={}
 const headers={}

@@ -26,8 +26,7 @@
 /* 文章场景相关 */
 .box.data-v-52f21bf5 {
   width: 750rpx;
-  overflow-y: scroll;
-  overflow-x: scroll;
+  scroll-left: 200px;
 }
 .grouplist.data-v-52f21bf5 {
   margin-top: 30rpx;

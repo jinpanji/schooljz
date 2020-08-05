@@ -157,9 +157,13 @@ var _default =
         schoolName: "",
         schoolId: "" },
 
-      address: '' };
+      address: '',
+      userInfo: {} };
 
-
+  },
+  onLoad: function onLoad() {
+    var userInfo = uni.getStorageSync('userInfo');
+    this.userInfo = JSON.parse(userInfo);
   },
   methods: {
     gomap: function gomap() {var _this = this;
@@ -177,10 +181,8 @@ var _default =
       if (this.form.schoolName && this.form.longitude) {
         var data = this.form;
         data = JSON.stringify(data);
-        uni.setStorageSync("addchildinfo", data);
-        uni.navigateTo({
-          url: "addchildmsg" });
-
+        uni.setStorageSync('addchildinfo', data);
+        this.feedBack();
       } else {
         uni.showToast({
           icon: "none",
@@ -188,6 +190,23 @@ var _default =
 
       }
 
+    },
+    feedBack: function feedBack() {
+      // 反馈，没有线路或没有学校的时候
+      uni.showLoading({
+        icon: "loading",
+        title: "正在提交反馈，请稍后!" });
+
+      this.form.parentId = this.userInfo.id;
+      this.form.status = 0;
+      this.$http.post("puFeedback/add", this.form).then(function (res) {
+        if (res.code == 100) {
+          uni.hideLoading();
+          uni.navigateTo({
+            url: "declaration?type=1" });
+
+        }
+      });
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

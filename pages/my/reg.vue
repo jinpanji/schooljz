@@ -168,7 +168,7 @@
 			// },
 			login(){
 				console.log("注册")
-				if(this.phone&&this.address&&this.userName){
+				if(this.phone&&this.address&&this.userName&&this.streetNmae){
 					if(this.isPhoneReg){
 						//手机号码注册
 						this.submitInfo()

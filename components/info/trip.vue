@@ -2,7 +2,7 @@
 	<view class="page">
 		<h3><text>{{date}}</text></h3>
 		<Trip :schoolInfo="schoolInfo" :homeInfo="homeInfo" @goReport="goReport"></Trip>
-		<button type="primary">确认</button>
+		<button type="primary" @click="goBack()">确认</button>
 	</view>
 </template>
 
@@ -89,6 +89,11 @@
 							}
 						})
 					}
+				})
+			},
+			goBack(){
+				uni.navigateBack({
+					
 				})
 			}
 		}
